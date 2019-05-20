@@ -1,4 +1,4 @@
-#' @exports
+#' @export
 
 screenOutput <- function (
   outputId,
