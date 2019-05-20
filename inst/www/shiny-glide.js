@@ -23,18 +23,19 @@ $( document ).ready(function() {
 	  var next_condition = slide.getAttribute('data-next-condition');
 	  var prev_condition = slide.getAttribute('data-prev-condition');
 	  if (prev_condition !== null) {
+	    $(prev_control).data("data-display-if-func", null);
       prev_control.setAttribute("data-display-if", prev_condition);
 	  }
 	  if (next_condition !== null) {
+	    $(next_control).data("data-display-if-func", null);
       next_control.setAttribute("data-display-if", next_condition);
 	  }
 	  if (prev_condition !== null || next_condition !== null) {
       window.Shiny.shinyapp.$updateConditionals();
 	  }
 
-    function check_status(el) {
+    function update_disable_status(el) {
       var shown = $(el).attr("style") !== "display: none;";
-      console.log(shown)
 	    if (shown) {
 	      $(el).removeClass("disabled");
 	    } else {
@@ -46,12 +47,16 @@ $( document ).ready(function() {
 	  if (disable_type == "disable") {
 	    $(next_control).addClass("always-shown");
 	    $(prev_control).addClass("always-shown");
-	    check_status(next_control);
-	    check_status(prev_control);
+	    update_disable_status(next_control);
+	    update_disable_status(prev_control);
 	    $(document).off('shiny:conditional');
 	    $(document).on('shiny:conditional', () => {
-	       check_status(next_control);
-	       check_status(prev_control);
+	       if (glide.index < (slides.length - 1)) {
+	        update_disable_status(next_control);
+	       }
+	       if (glide.index > 0) {
+	        update_disable_status(prev_control);
+	       }
 	    })
 	  }
 
@@ -59,7 +64,7 @@ $( document ).ready(function() {
       $(prev_control).removeClass("always-shown");
       $(prev_control).hide();
     }
-    if (glide.index == slides.length - 1) {
+    if (glide.index == (slides.length - 1)) {
       $(next_control).removeClass("always-shown");
       $(next_control).hide();
     }

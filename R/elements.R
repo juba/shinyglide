@@ -3,7 +3,7 @@
 glide <- function(...,
   next_label = "Next",
   previous_label = "Previous",
-  disable_type = "hide") {
+  disable_type = c("hide", "disable")) {
 
   tagList(
     tags$div(id = "shinyglide", class = "glide", `data-disable-type` = disable_type,
