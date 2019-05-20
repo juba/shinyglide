@@ -55,7 +55,7 @@ glideControls <- function(previous_label, next_label) {
 
 nextButton <- function(label = "Next") {
   tags$a(
-    class="btn btn-primary next-slide",
+    class="btn btn-primary next-screen",
     HTML(paste(label, '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>'))
   )
 }
@@ -65,7 +65,7 @@ nextButton <- function(label = "Next") {
 
 prevButton <- function(label = "Previous") {
   tags$a(
-    class="btn btn-default prev-slide",
+    class="btn btn-default prev-screen",
     HTML(paste('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> ', label))
   )
 }

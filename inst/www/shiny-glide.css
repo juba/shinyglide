@@ -1,23 +1,11 @@
-.hidden {
+.shinyglide-hidden {
     display: none;
 }
 
-.always-shown {
+.shinyglide-always-shown {
     display: inline-block !important;
 }
 
-.shiny-glide-controls {
-    display: block;
-    position: absolute;
-    top: auto;
-    bottom: 12px;
-    right: auto;
-    left: auto;
-    width: 100%;
-    z-index: 1;
-    color: #000;
-    font-size: 10px;
-    pointer-events: auto;
-}
+
 
 

@@ -8,18 +8,19 @@ $( document ).ready(function() {
 
   var slides = root.querySelectorAll(".glide__slide");
   var disable_type = root.getAttribute("data-disable-type");
-  var prev_control = root.querySelector(".prev-slide");
-  var next_control = root.querySelector(".next-slide");
+  var prev_control = root.querySelector(".prev-screen");
+  var next_control = root.querySelector(".next-screen");
 
   next_control.addEventListener("click", event => glide.go(">"));
   prev_control.addEventListener("click", event => glide.go("<"));
+
 
   function update_controls() {
 
     $(prev_control).show();
     $(next_control).show();
     var slide = slides[glide.index];
-    var visible_slides = $(slides).not('.hidden');
+    var visible_slides = $(slides).not('.shinyglide-hidden');
     var n_slides = visible_slides.length - 1;
 
 	  var next_condition = slide.getAttribute('data-next-condition');
@@ -47,8 +48,8 @@ $( document ).ready(function() {
     }
 
 	  if (disable_type == "disable") {
-	    $(next_control).addClass("always-shown");
-	    $(prev_control).addClass("always-shown");
+	    $(next_control).addClass("shinyglide-always-shown");
+	    $(prev_control).addClass("shinyglide-always-shown");
 	    update_disable_status(next_control);
 	    update_disable_status(prev_control);
 	    $(document).off('shiny:conditional');
@@ -63,20 +64,20 @@ $( document ).ready(function() {
 	  }
 
     if (glide.index == 0) {
-      $(prev_control).removeClass("always-shown");
+      $(prev_control).removeClass("shinyglide-always-shown");
       $(prev_control).hide();
     }
     if (glide.index == n_slides) {
-      $(next_control).removeClass("always-shown");
+      $(next_control).removeClass("shinyglide-always-shown");
       $(next_control).hide();
     }
   }
 
   glide.on('run', move => {
     if (slides[glide.index].innerHTML == "") {
-      $(slides[glide.index]).addClass("hidden");
+      $(slides[glide.index]).addClass("shinyglide-hidden");
     } else {
-      $(slides[glide.index]).removeClass("hidden");
+      $(slides[glide.index]).removeClass("shinyglide-hidden");
     }
   })
 
