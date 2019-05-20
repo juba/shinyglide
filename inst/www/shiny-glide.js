@@ -19,6 +19,8 @@ $( document ).ready(function() {
     $(prev_control).show();
     $(next_control).show();
     var slide = slides[glide.index];
+    var visible_slides = $(slides).not('.hidden');
+    var n_slides = visible_slides.length - 1;
 
 	  var next_condition = slide.getAttribute('data-next-condition');
 	  var prev_condition = slide.getAttribute('data-prev-condition');
@@ -51,7 +53,7 @@ $( document ).ready(function() {
 	    update_disable_status(prev_control);
 	    $(document).off('shiny:conditional');
 	    $(document).on('shiny:conditional', () => {
-	       if (glide.index < (slides.length - 1)) {
+	       if (glide.index < n_slides) {
 	        update_disable_status(next_control);
 	       }
 	       if (glide.index > 0) {
@@ -64,17 +66,23 @@ $( document ).ready(function() {
       $(prev_control).removeClass("always-shown");
       $(prev_control).hide();
     }
-    if (glide.index == (slides.length - 1)) {
+    if (glide.index == n_slides) {
       $(next_control).removeClass("always-shown");
       $(next_control).hide();
     }
   }
 
-  glide.on('run.after', function () {
+  glide.on('run', move => {
+    if (slides[glide.index].innerHTML == "") {
+      $(slides[glide.index]).addClass("hidden");
+    } else {
+      $(slides[glide.index]).removeClass("hidden");
+    }
+  })
+
+  glide.on('run.after', move => {
     update_controls();
   });
-
-  $(prev_control).hide();
 
   // Wait for shiny app to be started
   var wait_ready = function() {

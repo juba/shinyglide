@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .always-shown {
     display: inline-block !important;
 }
