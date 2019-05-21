@@ -11,69 +11,93 @@ $( document ).ready(function() {
   var prev_control = root.querySelector(".prev-screen");
   var next_control = root.querySelector(".next-screen");
 
+  var prev_detector = root.querySelector(".prev-detector");
+  var next_detector = root.querySelector(".next-detector");
+
   next_control.addEventListener("click", event => glide.go(">"));
   prev_control.addEventListener("click", event => glide.go("<"));
+
+  if (disable_type == "disable") {
+    $(prev_detector).on('hide', () => {
+      $(prev_control).addClass("disabled");
+    })
+    $(prev_detector).on('show', () => {
+      $(prev_control).removeClass("disabled");
+    })
+    $(next_detector).on('hide', () => {
+      $(next_control).addClass("disabled");
+    })
+    $(next_detector).on('show', () => {
+      $(next_control).removeClass("disabled");
+    })
+
+  }
+  if (disable_type == "hide") {
+    $(prev_detector).on('hide', () => {
+      $(prev_control).hide();
+    })
+    $(prev_detector).on('show', () => {
+      $(prev_control).show();
+    })
+    $(next_detector).on('hide', () => {
+      $(next_control).hide();
+    })
+    $(next_detector).on('show', () => {
+      $(next_control).show();
+    })
+  }
 
 
   function update_controls() {
 
     $(prev_control).show();
     $(next_control).show();
-    var slide = slides[glide.index];
+    if (disable_type == "disable") {
+      $(prev_control).removeClass("disabled");
+      $(next_control).removeClass("disabled");
+    }
+
     var visible_slides = $(slides).not('.shinyglide-hidden');
+    var slide = visible_slides[glide.index];
     var n_slides = visible_slides.length - 1;
 
 	  var next_condition = slide.getAttribute('data-next-condition');
 	  var prev_condition = slide.getAttribute('data-prev-condition');
-	  if (prev_condition !== null) {
-	    $(prev_control).data("data-display-if-func", null);
-      prev_control.setAttribute("data-display-if", prev_condition);
-	  }
-	  if (next_condition !== null) {
-	    $(next_control).data("data-display-if-func", null);
-      next_control.setAttribute("data-display-if", next_condition);
-	  }
-	  if (prev_condition !== null || next_condition !== null) {
-      window.Shiny.shinyapp.$updateConditionals();
-	  }
+
+    $(prev_detector).data("data-display-if-func", null);
+    $(next_detector).data("data-display-if-func", null);
+    if(prev_condition === null) {
+      prev_detector.removeAttribute("data-display-if");
+    } else {
+      prev_detector.setAttribute("data-display-if", prev_condition);
+    }
+    if(next_condition === null) {
+      next_detector.removeAttribute("data-display-if");
+    } else {
+      next_detector.setAttribute("data-display-if", next_condition);
+    }
+
+    window.Shiny.shinyapp.$updateConditionals();
+
 
     function update_disable_status(el) {
       var shown = $(el).attr("style") !== "display: none;";
 	    if (shown) {
 	      $(el).removeClass("disabled");
 	    } else {
-	      $(el).show();
 	      $(el).addClass("disabled");
 	    }
     }
 
-	  if (disable_type == "disable") {
-	    $(next_control).addClass("shinyglide-always-shown");
-	    $(prev_control).addClass("shinyglide-always-shown");
-	    update_disable_status(next_control);
-	    update_disable_status(prev_control);
-	    $(document).off('shiny:conditional');
-	    $(document).on('shiny:conditional', () => {
-	       if (glide.index < n_slides) {
-	        update_disable_status(next_control);
-	       }
-	       if (glide.index > 0) {
-	        update_disable_status(prev_control);
-	       }
-	    })
-	  }
-
     if (glide.index == 0) {
-      $(prev_control).removeClass("shinyglide-always-shown");
       $(prev_control).hide();
     }
     if (glide.index == n_slides) {
-      $(next_control).removeClass("shinyglide-always-shown");
       $(next_control).hide();
     }
   }
 
-  glide.on('run', move => {
+  glide.on('run.before', move => {
     slides.forEach(slide => {
       if (slide.innerHTML == "") {
         $(slide).addClass("shinyglide-hidden");

@@ -1,10 +1,12 @@
+.shinyglide-detector {
+    width: 0;
+    height: 0;
+}
+
 .shinyglide-hidden {
     display: none;
 }
 
-.shinyglide-always-shown {
-    display: inline-block !important;
-}
 
 
 

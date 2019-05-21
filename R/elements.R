@@ -11,7 +11,8 @@ glide <- function(...,
         tags$ul(class = "glide__slides",
           list(...)
         ),
-        glideControls(previous_label, next_label)
+        glideControls(previous_label, next_label),
+        glideDetectors()
       )
     ),
     glideLib(),
@@ -48,6 +49,15 @@ glideControls <- function(previous_label, next_label) {
     column(width = 6, class = "text-right",
       nextButton(next_label)
     )
+  )
+}
+
+#' @export
+
+glideDetectors <- function() {
+  tagList(
+    tags$span(class = "shinyglide-detector next-detector"),
+    tags$span(class = "shinyglide-detector prev-detector")
   )
 }
 
