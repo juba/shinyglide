@@ -3,12 +3,16 @@
 glide <- function(...,
   next_label = "Next",
   previous_label = "Previous",
-  disable_type = c("hide", "disable")) {
+  disable_type = c("hide", "disable"),
+  height = "100%") {
+
+  css <- paste0("height: ", height, ";")
 
   tagList(
-    tags$div(id = "shinyglide", class = "glide", `data-disable-type` = disable_type,
+    tags$div(id = "shinyglide", class = "glide",
+             `data-disable-type` = disable_type,
       tags$div(class = "glide__track", `data-glide-el` = "track",
-        tags$ul(class = "glide__slides",
+        tags$ul(class = "glide__slides", style = css,
           list(...)
         ),
         glideControls(previous_label, next_label),
