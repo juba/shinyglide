@@ -4,7 +4,8 @@ $( document ).ready(function() {
   var glide = new Glide(root, {
     rewind: false,
     keyboard: false,
-    swipeThreshold: false
+    swipeThreshold: false,
+    dragThreshold: false
   }).mount();
 
   var slides = root.querySelectorAll(".glide__slide");
