@@ -74,11 +74,13 @@ $( document ).ready(function() {
   }
 
   glide.on('run', move => {
-    if (slides[glide.index].innerHTML == "") {
-      $(slides[glide.index]).addClass("shinyglide-hidden");
-    } else {
-      $(slides[glide.index]).removeClass("shinyglide-hidden");
-    }
+    slides.forEach(slide => {
+      if (slide.innerHTML == "") {
+        $(slide).addClass("shinyglide-hidden");
+      } else {
+        $(slide).removeClass("shinyglide-hidden");
+      }
+    })
   })
 
   glide.on('run.after', move => {
