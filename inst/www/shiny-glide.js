@@ -3,7 +3,8 @@ $( document ).ready(function() {
   var root = document.querySelector("#shinyglide");
   var glide = new Glide(root, {
     rewind: false,
-    keyboard: false
+    keyboard: false,
+    swipeThreshold: false
   }).mount();
 
   var slides = root.querySelectorAll(".glide__slide");
