@@ -78,12 +78,12 @@ $( document ).ready(function() {
     $(prev_detector).data("data-display-if-func", null);
     $(next_detector).data("data-display-if-func", null);
     if(prev_condition === null) {
-      prev_detector.removeAttribute("data-display-if");
+      prev_detector.setAttribute("data-display-if", "true");
     } else {
       prev_detector.setAttribute("data-display-if", prev_condition);
     }
     if(next_condition === null) {
-      next_detector.removeAttribute("data-display-if");
+      next_detector.setAttribute("data-display-if", "true");
     } else {
       next_detector.setAttribute("data-display-if", next_condition);
     }
@@ -99,11 +99,11 @@ $( document ).ready(function() {
 
     busy_screens = [];
     var next_screenoutputs = $(slide).find("~ li.glide__slide");
-    var index = next_screenoutputs.toArray().findIndex(element => !$(element).hasClass("shiny-html-output"));
-    console.log(index);
+    var index = next_screenoutputs
+              .toArray()
+              .findIndex(element => !$(element).hasClass("shiny-html-output"));
     if (index == -1) {index = 0};
     next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
-    console.log(next_screenoutputs);
 
     $(document).off('shiny:outputinvalidated', '#shinyglide');
     $(document).off('shiny:value', '#shinyglide');
