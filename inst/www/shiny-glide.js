@@ -98,7 +98,12 @@ $( document ).ready(function() {
     }
 
     busy_screens = [];
-    var next_screenoutputs = $(slide).find("~ li.shiny-html-output.glide__slide");
+    var next_screenoutputs = $(slide).find("~ li.glide__slide");
+    var index = next_screenoutputs.toArray().findIndex(element => !$(element).hasClass("shiny-html-output"));
+    console.log(index);
+    if (index == -1) {index = 0};
+    next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
+    console.log(next_screenoutputs);
 
     $(document).off('shiny:outputinvalidated', '#shinyglide');
     $(document).off('shiny:value', '#shinyglide');
