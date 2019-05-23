@@ -24,16 +24,16 @@ $( document ).ready(function() {
 
   if (disable_type == "disable") {
     $(prev_detector).on('hide', () => {
-      $(prev_control).addClass("disabled");
+      prev_control.setAttribute("disabled", "disabled");
     })
     $(prev_detector).on('show', () => {
-      $(prev_control).removeClass("disabled");
+      prev_control.removeAttribute("disabled");
     })
     $(next_detector).on('hide', () => {
-      $(next_control).addClass("disabled");
+      next_control.setAttribute("disabled", "disabled");
     })
     $(next_detector).on('show', () => {
-      $(next_control).removeClass("disabled");
+      next_control.removeAttribute("disabled");
     })
 
   }
@@ -86,16 +86,6 @@ $( document ).ready(function() {
 
     window.Shiny.shinyapp.$updateConditionals();
 
-
-    function update_disable_status(el) {
-      var shown = $(el).attr("style") !== "display: none;";
-	    if (shown) {
-	      $(el).removeClass("disabled");
-	    } else {
-	      $(el).addClass("disabled");
-	    }
-    }
-
     if (glide.index == 0) {
       $(prev_control).hide();
     }
@@ -113,7 +103,7 @@ $( document ).ready(function() {
         busy_screens.push(event.target);
       }
       if (busy_screens.length > 0) {
-        $(next_control).addClass("disabled");
+        $(next_control).addClass("loader-disabled");
         $(next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
         $(next_control).find(".next-screen-label").html(loading_label);
       }
@@ -123,7 +113,7 @@ $( document ).ready(function() {
         busy_screens = busy_screens.filter(elem => {elem != event.target});
       }
       if (busy_screens.length == 0) {
-        $(next_control).removeClass("disabled");
+        $(next_control).removeClass("loader-disabled");
         $(next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
         $(next_control).find(".next-screen-label").html(next_label);
       }
