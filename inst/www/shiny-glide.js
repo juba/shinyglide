@@ -9,6 +9,9 @@ $( document ).ready(function() {
   }).mount();
 
   var slides = root.querySelectorAll(".glide__slide");
+  var next_label = root.getAttribute("data-next-label");
+  var previous_label = root.getAttribute("data-previous-label");
+  var loading_label = root.getAttribute("data-loading-label");
   var disable_type = root.getAttribute("data-disable-type");
   var prev_control = root.querySelector(".prev-screen");
   var next_control = root.querySelector(".next-screen");
@@ -48,6 +51,8 @@ $( document ).ready(function() {
       $(next_control).show();
     })
   }
+
+  var busy_screens = [];
 
 
   function update_controls() {
@@ -97,6 +102,33 @@ $( document ).ready(function() {
     if (glide.index == n_slides) {
       $(next_control).hide();
     }
+
+    busy_screens = [];
+    var next_screenoutputs = $(slide).find("~ li.shiny-html-output.glide__slide");
+
+    $(document).off('shiny:outputinvalidated', '#shinyglide');
+    $(document).off('shiny:value', '#shinyglide');
+    $(document).on('shiny:outputinvalidated', '#shinyglide', event => {
+      if($.inArray(event.target, next_screenoutputs) != -1) {
+        busy_screens.push(event.target);
+      }
+      if (busy_screens.length > 0) {
+        $(next_control).addClass("disabled");
+        $(next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
+        $(next_control).find(".next-screen-label").html(loading_label);
+      }
+    });
+    $(document).on('shiny:value', '#shinyglide', event => {
+      if($.inArray(event.target, next_screenoutputs) != -1) {
+        busy_screens = busy_screens.filter(elem => {elem != event.target});
+      }
+      if (busy_screens.length == 0) {
+        $(next_control).removeClass("disabled");
+        $(next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
+        $(next_control).find(".next-screen-label").html(next_label);
+      }
+    });
+
   }
 
   glide.on('run.before', move => {
