@@ -1,8 +1,11 @@
+default_next_label <- paste('Next', shiny::icon("chevron-right", lib = "glyphicon"))
+default_prev_label <- paste(shiny::icon("chevron-left", lib = "glyphicon"), 'Back')
+
 #' @export
 
 glide <- function(...,
-  next_label = 'Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
-  previous_label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back',
+  next_label = default_next_label,
+  previous_label = default_prev_label,
   loading_label = "Loading",
   loading_class = "shinyglide-loader",
   disable_type = c("disable", "hide"),
@@ -84,7 +87,7 @@ glideDetectors <- function() {
 
 #' @export
 
-nextButton <- function(label = 'Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>') {
+nextButton <- function(label = default_next_label) {
   tags$button(
     class="btn btn-primary next-screen",
     tags$span(class = "next-screen-spinner"),
@@ -97,7 +100,7 @@ nextButton <- function(label = 'Next <span class="glyphicon glyphicon-chevron-ri
 
 #' @export
 
-prevButton <- function(label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back') {
+prevButton <- function(label = default_prev_label) {
   tags$button(
     class="btn btn-default prev-screen",
     HTML(label)
