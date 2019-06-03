@@ -1,70 +1,93 @@
 $( document ).ready(function() {
 
-  var root = document.querySelector("#shinyglide");
-  var glide = new Glide(root, {
-    rewind: false,
-    keyboard: false,
-    swipeThreshold: false,
-    dragThreshold: false
-  }).mount();
-
-  var slides = root.querySelectorAll(".glide__slide");
-  var next_label = root.getAttribute("data-next-label");
-  var previous_label = root.getAttribute("data-previous-label");
-  var loading_label = root.getAttribute("data-loading-label");
-  var disable_type = root.getAttribute("data-disable-type");
-
-  var prev_control = root.querySelector(".prev-screen");
-  var next_control = root.querySelector(".next-screen");
-
-  var first_control = root.querySelector(".first-screen");
-  var last_control = root.querySelector(".last-screen");
-
-  var prev_detector = root.querySelector(".prev-detector");
-  var next_detector = root.querySelector(".next-detector");
-
-  next_control.addEventListener("click", event => glide.go(">"));
-  prev_control.addEventListener("click", event => glide.go("<"));
-
-  // Hide previous control at startup
-  $(prev_control).hide();
-
-  if (disable_type == "disable") {
-    $(prev_detector).on('hide', () => {
-      prev_control.setAttribute("disabled", "disabled");
-      $(prev_control).addClass("disabled");
-    })
-    $(prev_detector).on('show', () => {
-      prev_control.removeAttribute("disabled");
-      $(prev_control).removeClass("disabled");
-    })
-    $(next_detector).on('hide', () => {
-      next_control.setAttribute("disabled", "disabled");
-      $(next_control).addClass("disabled");
-    })
-    $(next_detector).on('show', () => {
-      next_control.removeAttribute("disabled");
-      $(next_control).removeClass("disabled");
-    })
-
-  }
-  if (disable_type == "hide") {
-    $(prev_detector).on('hide', () => {
-      $(prev_control).hide();
-    })
-    $(prev_detector).on('show', () => {
-      $(prev_control).show();
-    })
-    $(next_detector).on('hide', () => {
-      $(next_control).hide();
-    })
-    $(next_detector).on('show', () => {
-      $(next_control).show();
-    })
-  }
+  var glide, root, slides,
+      next_label, previous_label, loading_label, disable_type,
+      prev_control, next_control, first_control, last_control,
+      prev_dtector, next_detector;
 
   var busy_screens = [];
 
+  function init(root) {
+
+
+
+    slides = root.querySelectorAll(".glide__slide");
+    next_label = root.getAttribute("data-next-label");
+    previous_label = root.getAttribute("data-previous-label");
+    loading_label = root.getAttribute("data-loading-label");
+    disable_type = root.getAttribute("data-disable-type");
+
+    prev_control = root.getElementsByClassName("prev-screen")[0];
+    next_control = root.getElementsByClassName("next-screen")[0];
+
+    // Hide previous control at startup
+    $(prev_control).hide();
+
+    first_control = root.getElementsByClassName("first-screen")[0];
+    last_control = root.getElementsByClassName("last-screen")[0];
+
+    prev_detector = root.getElementsByClassName("prev-detector")[0];
+    next_detector = root.getElementsByClassName("next-detector")[0];
+
+    next_control.addEventListener("click", event => glide.go(">"));
+    prev_control.addEventListener("click", event => glide.go("<"));
+
+    if (disable_type == "disable") {
+      $(prev_detector).on('hide', () => {
+        prev_control.setAttribute("disabled", "disabled");
+        $(prev_control).addClass("disabled");
+      })
+      $(prev_detector).on('show', () => {
+        prev_control.removeAttribute("disabled");
+        $(prev_control).removeClass("disabled");
+      })
+      $(next_detector).on('hide', () => {
+        next_control.setAttribute("disabled", "disabled");
+        $(next_control).addClass("disabled");
+      })
+      $(next_detector).on('show', () => {
+        next_control.removeAttribute("disabled");
+        $(next_control).removeClass("disabled");
+      })
+
+    }
+    if (disable_type == "hide") {
+      $(prev_detector).on('hide', () => {
+        $(prev_control).hide();
+      })
+      $(prev_detector).on('show', () => {
+        $(prev_control).show();
+      })
+      $(next_detector).on('hide', () => {
+        $(next_control).hide();
+      })
+      $(next_detector).on('show', () => {
+        $(next_control).show();
+      })
+    }
+
+    glide = new Glide(root, {
+      rewind: false,
+      keyboard: false,
+      swipeThreshold: false,
+      dragThreshold: false
+    }).mount();
+
+    glide.on('run.before', move => {
+      slides.forEach(slide => {
+        if (slide.innerHTML == "") {
+          $(slide).addClass("shinyglide-hidden");
+        } else {
+          $(slide).removeClass("shinyglide-hidden");
+        }
+      })
+    })
+
+    glide.on('run.after', move => {
+      update_controls();
+    });
+
+  }
 
   function update_controls() {
 
@@ -105,6 +128,7 @@ $( document ).ready(function() {
       $(first_control).show();
     }
     if (glide.index == n_slides) {
+      console.log(last_control);
       $(next_control).hide();
       $(last_control).show();
     }
@@ -144,26 +168,59 @@ $( document ).ready(function() {
 
   }
 
-  glide.on('run.before', move => {
-    slides.forEach(slide => {
-      if (slide.innerHTML == "") {
-        $(slide).addClass("shinyglide-hidden");
-      } else {
-        $(slide).removeClass("shinyglide-hidden");
+  // Source : https://stackoverflow.com/questions/38881301/observe-mutations-on-a-target-node-that-doesnt-exist-yet
+  function waitForAddedNode(params) {
+    new MutationObserver(function(mutations) {
+        var el = document.getElementById(params.id);
+        if (el) {
+            this.disconnect();
+            params.done(el);
+        }
+    }).observe(params.parent || document, {
+        subtree: !!params.recursive,
+        childList: true,
+    });
+  }
+
+
+  root = document.getElementById("shinyglide");
+
+  // If root doesn't exist yet, wait for it
+  // Useful if glide is in a modal
+  if (root === null) {
+
+    waitForAddedNode({
+      id: 'shinyglide',
+      parent: document.querySelector('body'),
+      recursive: false,
+      done: function(el) {
+        root = el;
+        var modal = $(el).parents('#shiny-modal');
+        if (modal.length > 0) {
+          // If the glide is in a modal, wait for it to
+          // be shown otherwise dimensions are incorrect
+          modal.on("shown.bs.modal", () => {
+            init(root);
+            update_controls();
+            modal.off("shown.bs.modal");
+          })
+        } else {
+          init(root);
+          update_controls();
+        }
       }
-    })
-  })
+    });
 
-  glide.on('run.after', move => {
-    update_controls();
-  });
+  } else {
 
+    init(root);
+    // Wait for shiny app to be started
+    $(document).on("shiny:recalculated", '#shinyglide', () => {
+      update_controls();
+      $(document).off("shiny:recalculated", '#shinyglide');
+    });
 
-  // Wait for shiny app to be started
-  $(document).on("shiny:recalculated", '#shinyglide', () => {
-    update_controls();
-    $(document).off("shiny:recalculated", '#shinyglide');
-  });
+  }
 
 });
 
