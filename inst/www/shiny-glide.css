@@ -1,3 +1,9 @@
+.prev-screen,
+.last-screen {
+  display: none;
+}
+
+
 .shinyglide-detector {
     width: 0;
     height: 0;
