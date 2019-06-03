@@ -146,16 +146,12 @@ $( document ).ready(function() {
     update_controls();
   });
 
+
   // Wait for shiny app to be started
-  var wait_ready = function() {
-    if (window.Shiny.shinyapp === undefined) {
-      var timeout = window.setTimeout(wait_ready, 100);
-    } else {
-      window.clearTimeout(timeout);
-      update_controls();
-    }
-  }
-  wait_ready();
+  $(document).on("shiny:recalculated", '#shinyglide', () => {
+    update_controls();
+    $(document).off("shiny:recalculated", '#shinyglide');
+  });
 
 });
 
