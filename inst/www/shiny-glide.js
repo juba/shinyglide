@@ -13,14 +13,21 @@ $( document ).ready(function() {
   var previous_label = root.getAttribute("data-previous-label");
   var loading_label = root.getAttribute("data-loading-label");
   var disable_type = root.getAttribute("data-disable-type");
+
   var prev_control = root.querySelector(".prev-screen");
   var next_control = root.querySelector(".next-screen");
+
+  var first_control = root.querySelector(".first-screen");
+  var last_control = root.querySelector(".last-screen");
 
   var prev_detector = root.querySelector(".prev-detector");
   var next_detector = root.querySelector(".next-detector");
 
   next_control.addEventListener("click", event => glide.go(">"));
   prev_control.addEventListener("click", event => glide.go("<"));
+
+  // Hide previous control at startup
+  $(prev_control).hide();
 
   if (disable_type == "disable") {
     $(prev_detector).on('hide', () => {
@@ -61,12 +68,15 @@ $( document ).ready(function() {
 
   function update_controls() {
 
+    // default controls status
     $(prev_control).show();
     $(next_control).show();
     if (disable_type == "disable") {
       $(prev_control).removeClass("disabled");
       $(next_control).removeClass("disabled");
     }
+    $(first_control).hide();
+    $(last_control).hide();
 
     var visible_slides = $(slides).not('.shinyglide-hidden');
     var slide = visible_slides[glide.index];
@@ -92,9 +102,11 @@ $( document ).ready(function() {
 
     if (glide.index == 0) {
       $(prev_control).hide();
+      $(first_control).show();
     }
     if (glide.index == n_slides) {
       $(next_control).hide();
+      $(last_control).show();
     }
 
     busy_screens = [];
