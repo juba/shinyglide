@@ -14,7 +14,7 @@ glide <- function(...,
   tagList(
     tags$div(id = "shinyglide", class = "glide",
             `data-next-label` = next_label,
-            `data-previous-label` = previous_label,
+            `data-prev-label` = previous_label,
             `data-loading-label` = loading_label,
             `data-disable-type` = disable_type,
       tags$div(class = "glide__track", `data-glide-el` = "track",
@@ -40,12 +40,16 @@ glide <- function(...,
 #' @export
 
 screen <- function(...,
+  next_label = NULL,
+  prev_label = NULL,
   next_condition = NULL,
   prev_condition = NULL) {
 
   shiny::tag("li",
     list(
       class = "glide__slide",
+      `data-prev-label` = prev_label,
+      `data-next-label` = next_label,
       `data-prev-condition` = prev_condition,
       `data-next-condition` = next_condition,
       list(...)

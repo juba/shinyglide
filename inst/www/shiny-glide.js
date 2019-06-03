@@ -1,19 +1,18 @@
 $( document ).ready(function() {
 
   var glide, root, slides,
-      next_label, previous_label, loading_label, disable_type,
+      next_label, prev_label, loading_label, disable_type,
       prev_control, next_control, first_control, last_control,
-      prev_dtector, next_detector;
+      prev_detector, next_detector;
 
   var busy_screens = [];
 
+
   function init(root) {
-
-
 
     slides = root.querySelectorAll(".glide__slide");
     next_label = root.getAttribute("data-next-label");
-    previous_label = root.getAttribute("data-previous-label");
+    prev_label = root.getAttribute("data-prev-label");
     loading_label = root.getAttribute("data-loading-label");
     disable_type = root.getAttribute("data-disable-type");
 
@@ -119,6 +118,20 @@ $( document ).ready(function() {
       next_detector.setAttribute("data-display-if", "true");
     } else {
       next_detector.setAttribute("data-display-if", next_condition);
+    }
+
+	  var screen_next_label = slide.getAttribute('data-next-label');
+	  var screen_prev_label = slide.getAttribute('data-prev-label');
+
+    if (screen_next_label !== null) {
+      $(next_control).html(screen_next_label);
+    }	else {
+      $(next_control).html(next_label);
+    }
+    if (screen_prev_label !== null) {
+      $(prev_control).html(screen_prev_label);
+    }	else {
+      $(prev_control).html(prev_label);
     }
 
     window.Shiny.shinyapp.$updateConditionals();
