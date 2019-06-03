@@ -2,11 +2,12 @@
 
 glide <- function(...,
   next_label = 'Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
-  previous_label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous',
+  previous_label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back',
   loading_label = "Loading",
+  loading_class = "shinyglide-loader",
   disable_type = c("hide", "disable"),
   height = "100%",
-  controls = TRUE) {
+  default_controls = FALSE) {
 
   css <- paste0("height: ", height, ";")
 
@@ -20,7 +21,7 @@ glide <- function(...,
         tags$ul(class = "glide__slides", style = css,
           list(...)
         ),
-        if (controls) glideControls(previous_label, next_label),
+        if (default_controls) glideControls(previous_label, next_label),
         glideDetectors()
       )
     ),
@@ -62,12 +63,16 @@ glideControls <- function(previous_label, next_label) {
   )
 }
 
+
+#' @export
+
 glideDetectors <- function() {
   tagList(
     tags$span(class = "shinyglide-detector next-detector"),
     tags$span(class = "shinyglide-detector prev-detector")
   )
 }
+
 
 #' @export
 
@@ -84,9 +89,33 @@ nextButton <- function(label = 'Next <span class="glyphicon glyphicon-chevron-ri
 
 #' @export
 
-prevButton <- function(label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Previous') {
+prevButton <- function(label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back') {
   tags$button(
     class="btn btn-lg btn-default prev-screen",
     HTML(label)
   )
 }
+
+
+#' @export
+
+firstButton <- function(...) {
+  tags$button(
+    class="btn btn-lg btn-default first-screen",
+    list(...)
+  )
+}
+
+
+#' @export
+
+lastButton <- function(...) {
+  tags$button(
+    class="btn btn-lg btn-default last-screen",
+    list(...)
+  )
+}
+
+
+
+
