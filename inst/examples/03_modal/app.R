@@ -5,7 +5,7 @@ library(shinyglide)
 
 ui <- fluidPage(
 
-  titlePanel("shinyglide modal example app"),
+  titlePanel("shinyglide modal example"),
   sidebarLayout(
     sidebarPanel(
       numericInput("mean", "Mean", value = 0),
@@ -46,6 +46,7 @@ server <- function(input, output, session) {
         )
       ),
       screen(
+        next_label = 'Yes, please ! <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
         p("Let's initialize some values, would you ?")
       ),
       screen(
