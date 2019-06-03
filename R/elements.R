@@ -5,9 +5,9 @@ glide <- function(...,
   previous_label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back',
   loading_label = "Loading",
   loading_class = "shinyglide-loader",
-  disable_type = c("hide", "disable"),
+  disable_type = c("disable", "hide"),
   height = "100%",
-  default_controls = FALSE) {
+  custom_controls = NULL) {
 
   css <- paste0("height: ", height, ";")
 
@@ -21,7 +21,11 @@ glide <- function(...,
         tags$ul(class = "glide__slides", style = css,
           list(...)
         ),
-        if (default_controls) glideControls(previous_label, next_label),
+        if(is.null(custom_controls)) {
+          glideControls(previous_label, next_label)
+        } else {
+          custom_controls
+        },
         glideDetectors()
       )
     ),
@@ -78,9 +82,9 @@ glideDetectors <- function() {
 
 nextButton <- function(label = 'Next <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>') {
   tags$button(
-    class="btn btn-lg btn-primary next-screen",
-    span(class = "next-screen-spinner"),
-    span(class = "next-screen-label",
+    class="btn btn-primary next-screen",
+    tags$span(class = "next-screen-spinner"),
+    tags$span(class = "next-screen-label",
       HTML(label)
     )
   )
@@ -91,7 +95,7 @@ nextButton <- function(label = 'Next <span class="glyphicon glyphicon-chevron-ri
 
 prevButton <- function(label = '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back') {
   tags$button(
-    class="btn btn-lg btn-default prev-screen",
+    class="btn btn-default prev-screen",
     HTML(label)
   )
 }
@@ -100,9 +104,11 @@ prevButton <- function(label = '<span class="glyphicon glyphicon-chevron-left" a
 #' @export
 
 firstButton <- function(...) {
-  tags$button(
-    class="btn btn-lg btn-default first-screen",
-    list(...)
+  shiny::tag("button",
+    list(
+      class="btn btn-default first-screen",
+      ...
+    )
   )
 }
 
@@ -110,9 +116,11 @@ firstButton <- function(...) {
 #' @export
 
 lastButton <- function(...) {
-  tags$button(
-    class="btn btn-lg btn-default last-screen",
-    list(...)
+  shiny::tag("button",
+    list(
+      class="btn btn-default last-screen",
+      ...
+    )
   )
 }
 
