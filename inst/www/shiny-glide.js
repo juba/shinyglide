@@ -123,10 +123,12 @@ $( document ).ready(function() {
 	  var screen_next_label = slide.getAttribute('data-next-label');
 	  var screen_prev_label = slide.getAttribute('data-prev-label');
 
+    var next_label_span = $(next_control).find(".next-screen-label");
+    var target = next_label_span.length > 0 ? next_label_span : $(next_control);
     if (screen_next_label !== null) {
-      $(next_control).html(screen_next_label);
+      target.html(screen_next_label);
     }	else {
-      $(next_control).html(next_label);
+      target.html(next_label);
     }
     if (screen_prev_label !== null) {
       $(prev_control).html(screen_prev_label);
