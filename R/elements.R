@@ -13,6 +13,7 @@ glide <- function(...,
   custom_controls = NULL) {
 
   css <- paste0("height: ", height, ";")
+  disable_type <- match.arg(disable_type)
 
   tagList(
     tags$div(id = "shinyglide", class = "glide",
