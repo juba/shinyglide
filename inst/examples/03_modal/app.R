@@ -22,29 +22,32 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
+  modal_controls <- fluidRow(
+    column(width = 6,
+      prevButton(),
+      tags$button(
+        class = "btn btn-danger first-screen",
+        `data-dismiss`="modal",
+        "No, thanks !"
+      )
+    ),
+    column(width = 6, class = "text-right",
+      nextButton(),
+      tags$button(
+        class = "btn btn-success last-screen",
+        `data-dismiss`="modal",
+        "Done"
+      )
+    )
+  )
+
   glide_modal <- modalDialog(
     title = "Startup assistant",
     easyClose = FALSE,
     footer = NULL,
     glide(
-      custom_controls = fluidRow(
-        column(width = 6,
-          prevButton(),
-          tags$button(
-            class = "btn btn-danger first-screen",
-            `data-dismiss`="modal",
-            "No, thanks !"
-          )
-        ),
-        column(width = 6, class = "text-right",
-          nextButton(),
-          tags$button(
-            class = "btn btn-success last-screen",
-            `data-dismiss`="modal",
-            "Done"
-          )
-        )
-      ),
+      custom_controls = NULL,
+      modal_controls,
       screen(
         next_label = 'Yes, please ! <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
         p("Let's initialize some values, would you ?")
