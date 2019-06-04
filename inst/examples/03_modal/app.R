@@ -46,8 +46,7 @@ server <- function(input, output, session) {
     easyClose = FALSE,
     footer = NULL,
     glide(
-      custom_controls = NULL,
-      modal_controls,
+      custom_controls = modal_controls,
       screen(
         next_label = 'Yes, please ! <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>',
         p("Let's initialize some values, would you ?")
