@@ -10,10 +10,18 @@ glide <- function(...,
   loading_class = "shinyglide-loader",
   disable_type = c("disable", "hide"),
   height = "100%",
-  custom_controls = NULL) {
+  custom_controls = NULL,
+  controls_position = c("bottom", "top")) {
 
   css <- paste0("height: ", height, ";")
   disable_type <- match.arg(disable_type)
+  controls_position <- match.arg(controls_position)
+
+  controls <- if(is.null(custom_controls)) {
+    glideControls(previous_label, next_label)
+  } else {
+    custom_controls
+  }
 
   tagList(
     tags$div(id = "shinyglide", class = "glide",
@@ -21,17 +29,14 @@ glide <- function(...,
             `data-prev-label` = previous_label,
             `data-loading-label` = loading_label,
             `data-disable-type` = disable_type,
+      if (controls_position == "top") controls,
       tags$div(class = "glide__track", `data-glide-el` = "track",
         tags$ul(class = "glide__slides", style = css,
           list(...)
-        ),
-        if(is.null(custom_controls)) {
-          glideControls(previous_label, next_label)
-        } else {
-          custom_controls
-        },
-        glideDetectors()
-      )
+        )
+      ),
+      if (controls_position == "bottom") controls,
+      glideDetectors()
     ),
     glideLib(),
     shinyglideLib()
