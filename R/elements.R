@@ -1,11 +1,10 @@
-default_next_label <- paste('Next', shiny::icon("chevron-right", lib = "glyphicon"))
-default_prev_label <- paste(shiny::icon("chevron-left", lib = "glyphicon"), 'Back')
-
 #' @export
 
 glide <- function(...,
-  next_label = default_next_label,
-  previous_label = default_prev_label,
+  next_label = "Next",
+  next_label_icon = shiny::icon("chevron-right", lib = "glyphicon"),
+  previous_label = "Back",
+  previous_label_icon = shiny::icon("chevron-left", lib = "glyphicon"),
   loading_label = "Loading",
   loading_class = "shinyglide-loader",
   disable_type = c("disable", "hide"),
@@ -16,6 +15,9 @@ glide <- function(...,
   css <- paste0("height: ", height, ";")
   disable_type <- match.arg(disable_type)
   controls_position <- match.arg(controls_position)
+
+  next_label <- paste(next_label, next_label_icon)
+  previous_label <- paste(previous_label_icon, previous_label)
 
   controls <- if(is.null(custom_controls)) {
     glideControls(previous_label, next_label)
@@ -50,9 +52,14 @@ glide <- function(...,
 
 screen <- function(...,
   next_label = NULL,
+  next_label_icon = NULL,
   prev_label = NULL,
+  prev_label_icon = NULL,
   next_condition = NULL,
   prev_condition = NULL) {
+
+  next_label <- paste(next_label, next_label_icon)
+  prev_label <- paste(prev_label_icon, prev_label)
 
   shiny::tag("li",
     list(
@@ -93,7 +100,12 @@ glideDetectors <- function() {
 
 #' @export
 
-nextButton <- function(label = default_next_label) {
+nextButton <- function(
+  label = "Next",
+  label_icon = shiny::icon("chevron-right", lib = "glyphicon")) {
+
+  label <- paste(label, label_icon)
+
   tags$button(
     class="btn btn-primary next-screen",
     tags$span(class = "next-screen-spinner"),
@@ -106,9 +118,15 @@ nextButton <- function(label = default_next_label) {
 
 #' @export
 
-prevButton <- function(label = default_prev_label) {
+prevButton <- function(
+  label = "Back",
+  label_icon = shiny::icon("chevron-left", lib = "glyphicon")) {
+
+  label <- paste(label_icon, label)
+
   tags$button(
     class="btn btn-default prev-screen",
+    style="display: none",
     HTML(label)
   )
 }
@@ -131,7 +149,8 @@ firstButton <- function(...) {
 lastButton <- function(...) {
   shiny::tag("button",
     list(
-      class="btn btn-default last-screen",
+      class="btn btn-success last-screen",
+      style="display: none",
       ...
     )
   )
