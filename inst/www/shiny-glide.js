@@ -143,7 +143,6 @@ $( document ).ready(function() {
       $(first_control).show();
     }
     if (glide.index == n_slides) {
-      console.log(last_control);
       $(next_control).hide();
       $(last_control).show();
     }
@@ -153,33 +152,38 @@ $( document ).ready(function() {
     var index = next_screenoutputs
               .toArray()
               .findIndex(element => !$(element).hasClass("shiny-html-output"));
-    if (index == -1) {index = 0};
+    if (index == -1) { index = 0 };
     next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
 
     $(document).off('shiny:outputinvalidated', '#shinyglide');
     $(document).off('shiny:value', '#shinyglide');
-    $(document).on('shiny:outputinvalidated', '#shinyglide', event => {
-      if($.inArray(event.target, next_screenoutputs) != -1) {
-        busy_screens.push(event.target);
-      }
-      if (busy_screens.length > 0) {
-        next_control.setAttribute("disabled", "disabled");
-        $(next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
-        $(next_control).find(".next-screen-label").html(loading_label);
-      }
-    });
-    $(document).on('shiny:value', '#shinyglide', event => {
-      if($.inArray(event.target, next_screenoutputs) != -1) {
-        busy_screens = busy_screens.filter(elem => {elem != event.target});
-      }
-      if (busy_screens.length == 0) {
-        if (!$(next_control).hasClass("disabled")) {
-          next_control.removeAttribute("disabled");
+
+    if (next_screenoutputs.length > 0) {
+      $(document).on('shiny:outputinvalidated', '#shinyglide', event => {
+        console.log('invalidated');
+        if($.inArray(event.target, next_screenoutputs) != -1) {
+          busy_screens.push(event.target);
         }
-        $(next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
-        $(next_control).find(".next-screen-label").html(next_label);
-      }
-    });
+        if (busy_screens.length > 0) {
+          next_control.setAttribute("disabled", "disabled");
+          $(next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
+          $(next_control).find(".next-screen-label").html(loading_label);
+        }
+      });
+      $(document).on('shiny:value', '#shinyglide', event => {
+        console.log("value");
+        if($.inArray(event.target, next_screenoutputs) != -1) {
+          busy_screens = busy_screens.filter(elem => {elem != event.target});
+        }
+        if (busy_screens.length == 0) {
+          if (!$(next_control).hasClass("disabled")) {
+            next_control.removeAttribute("disabled");
+          }
+          $(next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
+          $(next_control).find(".next-screen-label").html(next_label);
+        }
+      });
+    }
 
   }
 
