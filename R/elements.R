@@ -26,7 +26,7 @@ glide <- function(...,
   }
 
   tagList(
-    tags$div(id = "shinyglide", class = "shinyglide",
+    tags$div(class = "shinyglide",
             `data-next-label` = next_label,
             `data-prev-label` = previous_label,
             `data-loading-label` = loading_label,
