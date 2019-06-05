@@ -74,12 +74,23 @@ class ShinyGlide {
     init_glide() {
       var glide = new Glide(this.root, {
         rewind: false,
-        keyboard: false,
-        swipeThreshold: false,
-        dragThreshold: false
+        keyboard: true
       }).mount();
 
       glide.on('run.before', move => {
+ 
+        // Don't move if control is disabled
+        if ($(this.next_detector).css("display") == "none") {
+          if (move.direction == ">") {
+            move.direction = null;
+          }
+        }
+        if ($(this.prev_detector).css("display") == "none") {
+          if (move.direction == "<") {
+            move.direction = null;
+          }
+        }
+
         this.slides.forEach(slide => {
           if (slide.innerHTML == "") {
             slide.classList.add("shinyglide-hidden");
