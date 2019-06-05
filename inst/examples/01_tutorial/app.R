@@ -1,4 +1,4 @@
-## shinyglide full example app
+## shinyglide introduction app
 
 library(shiny)
 library(shinyglide)
@@ -54,8 +54,6 @@ ui <- fluidPage(
         custom_controls = controls,
 
         screen(
-          next_label = "Tell me more !",
-          next_label_icon = shiny::icon("chevron-right", lib = "glyphicon"),
 
           h3("shinyglide introduction app"),
           p(HTML("This is an introduction app to <code>shinyglide</code>, an R package to make carousel-like or assistant-like or younameit-like <a href='https://shiny.rstudio.com/'>shiny apps</a>.")),
