@@ -1,237 +1,270 @@
-$( document ).ready(function() {
-
-  var glide, root, slides,
-      next_label, prev_label, loading_label, disable_type,
-      prev_control, next_control, first_control, last_control,
-      prev_detector, next_detector;
-
-  var busy_screens = [];
-
-
-  function init(root) {
-
-    slides = root.querySelectorAll(".glide__slide");
-    next_label = root.getAttribute("data-next-label");
-    prev_label = root.getAttribute("data-prev-label");
-    loading_label = root.getAttribute("data-loading-label");
-    disable_type = root.getAttribute("data-disable-type");
-
-    prev_control = root.getElementsByClassName("prev-screen")[0];
-    next_control = root.getElementsByClassName("next-screen")[0];
-
-    // Hide previous control at startup
-    $(prev_control).hide();
-
-    first_control = root.getElementsByClassName("first-screen")[0];
-    last_control = root.getElementsByClassName("last-screen")[0];
-
-    prev_detector = root.getElementsByClassName("prev-detector")[0];
-    next_detector = root.getElementsByClassName("next-detector")[0];
-
-    next_control.addEventListener("click", event => glide.go(">"));
-    prev_control.addEventListener("click", event => glide.go("<"));
-
-    if (disable_type == "disable") {
-      $(prev_detector).on('hide', () => {
-        prev_control.setAttribute("disabled", "disabled");
-        $(prev_control).addClass("disabled");
-      })
-      $(prev_detector).on('show', () => {
-        prev_control.removeAttribute("disabled");
-        $(prev_control).removeClass("disabled");
-      })
-      $(next_detector).on('hide', () => {
-        next_control.setAttribute("disabled", "disabled");
-        $(next_control).addClass("disabled");
-      })
-      $(next_detector).on('show', () => {
-        next_control.removeAttribute("disabled");
-        $(next_control).removeClass("disabled");
-      })
-
+// Source : https://stackoverflow.com/questions/38881301/observe-mutations-on-a-target-node-that-doesnt-exist-yet
+function waitForAddedNode(params) {
+  new MutationObserver(function (mutations) {
+    var el = document.getElementsByClassName(params.class)[0];
+    if (el) {
+      this.disconnect();
+      params.done(el);
     }
-    if (disable_type == "hide") {
-      $(prev_detector).on('hide', () => {
-        $(prev_control).hide();
-      })
-      $(prev_detector).on('show', () => {
-        $(prev_control).show();
-      })
-      $(next_detector).on('hide', () => {
-        $(next_control).hide();
-      })
-      $(next_detector).on('show', () => {
-        $(next_control).show();
-      })
-    }
+  }).observe(params.parent || document, {
+    subtree: !!params.recursive,
+    childList: true,
+  });
+}
 
-    glide = new Glide(root, {
-      rewind: false,
-      keyboard: false,
-      swipeThreshold: false,
-      dragThreshold: false
-    }).mount();
 
-    glide.on('run.before', move => {
-      slides.forEach(slide => {
-        if (slide.innerHTML == "") {
-          $(slide).addClass("shinyglide-hidden");
-        } else {
-          $(slide).removeClass("shinyglide-hidden");
-        }
-      })
-    })
+class ShinyGlide {
 
-    glide.on('run.after', move => {
-      update_controls();
-    });
+  constructor(root) {
 
-  }
+  this.root = root;
 
-  function update_controls() {
+  this.glide = null;
+  
+  this.slides = root.querySelectorAll(".glide__slide");
+  this.next_label = root.getAttribute("data-next-label");
+  this.prev_label = root.getAttribute("data-prev-label");
+  this.loading_label = root.getAttribute("data-loading-label");
+  this.disable_type = root.getAttribute("data-disable-type");
+  this.prev_control = root.getElementsByClassName("prev-screen")[0];
+  this.next_control = root.getElementsByClassName("next-screen")[0];
+  this.first_control = root.getElementsByClassName("first-screen")[0];
+  this.last_control = root.getElementsByClassName("last-screen")[0];
+  this.prev_detector = root.getElementsByClassName("prev-detector")[0];
+  this.next_detector = root.getElementsByClassName("next-detector")[0];
 
-    // default controls status
-    $(prev_control).show();
-    $(next_control).show();
-    if (disable_type == "disable") {
-      $(prev_control).removeClass("disabled");
-      $(next_control).removeClass("disabled");
-    }
-    $(first_control).hide();
-    $(last_control).hide();
+  this.busy_screens = [];
 
-    var visible_slides = $(slides).not('.shinyglide-hidden');
-    var slide = visible_slides[glide.index];
-    var n_slides = visible_slides.length - 1;
+  this.init(root);
 
-	  var next_condition = slide.getAttribute('data-next-condition');
-	  var prev_condition = slide.getAttribute('data-prev-condition');
+}
 
-    $(prev_detector).data("data-display-if-func", null);
-    $(next_detector).data("data-display-if-func", null);
-    if(prev_condition === null) {
-      prev_detector.setAttribute("data-display-if", "true");
-    } else {
-      prev_detector.setAttribute("data-display-if", prev_condition);
-    }
-    if(next_condition === null) {
-      next_detector.setAttribute("data-display-if", "true");
-    } else {
-      next_detector.setAttribute("data-display-if", next_condition);
+    // Add observers to link detectors and controls
+    init_detectors () {
+
+      // Disable controls
+      if (this.disable_type == "disable") {
+        $(this.prev_detector).on('hide', () => {
+          this.prev_control.setAttribute("disabled", "disabled");
+          this.prev_control.classList.add("disabled");
+        })
+        $(this.prev_detector).on('show', () => {
+          this.prev_control.removeAttribute("disabled");
+          this.prev_control.classList.remove("disabled");
+        })
+        $(this.next_detector).on('hide', () => {
+          this.next_control.setAttribute("disabled", "disabled");
+          this.next_control.classList.add("disabled");
+        })
+        $(this.next_detector).on('show', () => {
+          this.next_control.removeAttribute("disabled");
+          this.next_control.classList.remove("disabled");
+        })
+      }
+      // Hide controls
+      if (this.disable_type == "hide") {
+        $(this.prev_detector).on('hide', () => { $(this.prev_control).hide(); })
+        $(this.prev_detector).on('show', () => { $(this.prev_control).show(); })
+        $(this.next_detector).on('hide', () => { $(this.next_control).hide(); })
+        $(this.next_detector).on('show', () => { $(this.next_control).show(); })
+      }
     }
 
-	  var screen_next_label = slide.getAttribute('data-next-label');
-	  var screen_prev_label = slide.getAttribute('data-prev-label');
+    // Init glide object 
+    init_glide() {
+      var glide = new Glide(this.root, {
+        rewind: false,
+        keyboard: false,
+        swipeThreshold: false,
+        dragThreshold: false
+      }).mount();
 
-    var next_label_span = $(next_control).find(".next-screen-label");
-    var target = next_label_span.length > 0 ? next_label_span : $(next_control);
-    if (screen_next_label !== null) {
-      target.html(screen_next_label);
-    }	else {
-      target.html(next_label);
-    }
-    if (screen_prev_label !== null) {
-      $(prev_control).html(screen_prev_label);
-    }	else {
-      $(prev_control).html(prev_label);
-    }
-
-    window.Shiny.shinyapp.$updateConditionals();
-
-    if (glide.index == 0) {
-      $(prev_control).hide();
-      $(first_control).show();
-    }
-    if (glide.index == n_slides) {
-      $(next_control).hide();
-      $(last_control).show();
-    }
-
-    busy_screens = [];
-    var next_screenoutputs = $(slide).find("~ li.glide__slide");
-    var index = next_screenoutputs
-              .toArray()
-              .findIndex(element => !$(element).hasClass("shiny-html-output"));
-    if (index == -1) { index = 0 };
-    next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
-
-    $(document).off('shiny:outputinvalidated', '#shinyglide');
-    $(document).off('shiny:value', '#shinyglide');
-
-    if (next_screenoutputs.length > 0) {
-      $(document).on('shiny:outputinvalidated', '#shinyglide', event => {
-        console.log('invalidated');
-        if($.inArray(event.target, next_screenoutputs) != -1) {
-          busy_screens.push(event.target);
-        }
-        if (busy_screens.length > 0) {
-          next_control.setAttribute("disabled", "disabled");
-          $(next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
-          $(next_control).find(".next-screen-label").html(loading_label);
-        }
-      });
-      $(document).on('shiny:value', '#shinyglide', event => {
-        console.log("value");
-        if($.inArray(event.target, next_screenoutputs) != -1) {
-          busy_screens = busy_screens.filter(elem => {elem != event.target});
-        }
-        if (busy_screens.length == 0) {
-          if (!$(next_control).hasClass("disabled")) {
-            next_control.removeAttribute("disabled");
+      glide.on('run.before', move => {
+        this.slides.forEach(slide => {
+          if (slide.innerHTML == "") {
+            slide.classList.add("shinyglide-hidden");
+          } else {
+            slide.classList.remove("shinyglide-hidden");
           }
-          $(next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
-          $(next_control).find(".next-screen-label").html(next_label);
-        }
+        })
+      })
+
+      glide.on('run.after', move => {
+        this.update_controls();
       });
+
+      this.glide = glide;
+    }
+
+
+    // Global init
+    init() {
+
+      $(this.prev_control).hide()
+
+      this.next_control.addEventListener("click", event => this.glide.go(">"));
+      this.prev_control.addEventListener("click", event => this.glide.go("<"));
+
+      this.init_detectors();
+      this.init_glide();
+
+      // Wait for shiny app to be started
+      $(document).on("shiny:recalculated", this.root, () => {
+        this.update_controls();
+        $(document).off("shiny:recalculated", this.root);
+      });
+
+
+    }
+
+    // Update controls enabling conditions
+    update_conditions(slide) {
+
+      var next_condition = slide.getAttribute('data-next-condition');
+      var prev_condition = slide.getAttribute('data-prev-condition');
+
+      $(this.prev_detector).data("data-display-if-func", null);
+      $(this.next_detector).data("data-display-if-func", null);
+      if (prev_condition === null) {
+        this.prev_detector.setAttribute("data-display-if", "true");
+      } else {
+        this.prev_detector.setAttribute("data-display-if", prev_condition);
+      }
+      if (next_condition === null) {
+        this.next_detector.setAttribute("data-display-if", "true");
+      } else {
+        this.next_detector.setAttribute("data-display-if", next_condition);
+      }
+
+      window.Shiny.shinyapp.$updateConditionals();
+    }
+
+    // Get current slide next label
+    slide_next_label(slide) {
+      var screen_next_label = slide.getAttribute('data-next-label');
+      var label = screen_next_label !== null ? screen_next_label : this.next_label;
+      return(label);
+    }
+
+    // Get current slide prev label
+    slide_prev_label(slide) {
+      var screen_prev_label = slide.getAttribute('data-prev-label');
+      var label = screen_prev_label !== null ? screen_prev_label : this.prev_label;
+      return(label);
+    }
+
+
+    // Update controls labels
+    update_labels(slide) {
+
+      var next_label_span = $(this.next_control).find(".next-screen-label");
+      var target = next_label_span.length > 0 ? next_label_span : $(this.next_control);
+      target.html(this.slide_next_label(slide));
+      $(this.prev_control).html(this.slide_prev_label(slide));
+
+    }
+
+    // Update loading status of next control
+    update_loading(slide) {
+      
+      this.busy_screens = [];
+      
+      var next_screenoutputs = $(slide).find("~ li.glide__slide");
+      var index = next_screenoutputs
+        .toArray()
+        .findIndex(element => !$(element).hasClass("shiny-html-output"));
+      if (index == -1) { index = 0 };
+      next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
+
+      $(document).off('shiny:outputinvalidated', this.root);
+      $(document).off('shiny:value', this.root);
+
+      if (next_screenoutputs.length > 0) {
+        $(document).on('shiny:outputinvalidated', this.root, event => {
+          if ($.inArray(event.target, next_screenoutputs) != -1) {
+            this.busy_screens.push(event.target);
+          }
+          if (this.busy_screens.length > 0) {
+            this.next_control.setAttribute("disabled", "disabled");
+            $(this.next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
+            $(this.next_control).find(".next-screen-label").html(this.loading_label);
+          }
+        });
+        $(document).on('shiny:value', this.root, event => {
+          if ($.inArray(event.target, next_screenoutputs) != -1) {
+            this.busy_screens = this.busy_screens.filter(elem => { elem != event.target });
+          }
+          if (this.busy_screens.length == 0) {
+            if (!$(this.next_control).hasClass("disabled")) {
+              this.next_control.removeAttribute("disabled");
+            }
+            $(this.next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
+            $(this.next_control).find(".next-screen-label").html(this.slide_next_label(slide));
+          }
+        });
+      }
+
+    }
+
+    // Update controls after each slide change
+    update_controls() {
+
+      // default controls status
+      $(this.prev_control).show();
+      $(this.next_control).show();
+      if (this.disable_type == "disable") {
+        this.prev_control.classList.remove("disabled");
+        this.next_control.classList.remove("disabled");
+      }
+      $(this.first_control).hide();
+      $(this.last_control).hide();
+
+      var visible_slides = $(this.slides).not('.shinyglide-hidden');
+      var slide = visible_slides[this.glide.index];
+      var n_slides = visible_slides.length - 1;
+
+      this.update_conditions(slide);
+      this.update_labels(slide);
+
+      if (this.glide.index == 0) {
+        $(this.prev_control).hide();
+        $(this.first_control).show();
+      }
+      if (this.glide.index == n_slides) {
+        $(this.next_control).hide();
+        $(this.last_control).show();
+      }
+
+      this.update_loading(slide);
+
     }
 
   }
 
-  // Source : https://stackoverflow.com/questions/38881301/observe-mutations-on-a-target-node-that-doesnt-exist-yet
-  function waitForAddedNode(params) {
-    new MutationObserver(function(mutations) {
-        var el = document.getElementsByClassName(params.class)[0];
-        if (el) {
-            this.disconnect();
-            params.done(el);
-        }
-    }).observe(params.parent || document, {
-        subtree: !!params.recursive,
-        childList: true,
-    });
-  }
 
 
-  root = document.getElementById("shinyglide");
+$(document).ready(function () {
 
+  $(".shinyglide").each(function(index) {
+    new ShinyGlide(this);
+  });
+  
   // If the glide is in a shiny modal, wait for it to
   // be shown otherwise dimensions are incorrect
   var modal_wrapper = document.getElementById('shiny-modal-wrapper');
-  if (modal !== null) {
+  if (modal_wrapper !== null) {
     waitForAddedNode({
       class: 'shinyglide',
       parent: modal_wrapper,
       recursive: false,
-      done: function(el) {
+      done: function (el) {
         var shiny_modal = $(modal_wrapper).find("#shiny-modal");
         shiny_modal.on("shown.bs.modal", () => {
-          init(el);
-          update_controls();
+          new ShinyGlide(el);
           shiny_modal.off("shown.bs.modal");
         })
       }
     })
-  } else {
-
-  root = document.getElementById("shinyglide");
-
-    init(root);
-    // Wait for shiny app to be started
-    $(document).on("shiny:recalculated", '#shinyglide', () => {
-      update_controls();
-      $(document).off("shiny:recalculated", '#shinyglide');
-    });
-
   }
 
 });
