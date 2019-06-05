@@ -190,7 +190,7 @@ $( document ).ready(function() {
   // Source : https://stackoverflow.com/questions/38881301/observe-mutations-on-a-target-node-that-doesnt-exist-yet
   function waitForAddedNode(params) {
     new MutationObserver(function(mutations) {
-        var el = document.getElementById(params.id);
+        var el = document.getElementsByClassName(params.class)[0];
         if (el) {
             this.disconnect();
             params.done(el);
@@ -204,33 +204,26 @@ $( document ).ready(function() {
 
   root = document.getElementById("shinyglide");
 
-  // If root doesn't exist yet, wait for it
-  // Useful if glide is in a modal
-  if (root === null) {
-
+  // If the glide is in a shiny modal, wait for it to
+  // be shown otherwise dimensions are incorrect
+  var modal_wrapper = document.getElementById('shiny-modal-wrapper');
+  if (modal !== null) {
     waitForAddedNode({
-      id: 'shinyglide',
-      parent: document.querySelector('body'),
+      class: 'shinyglide',
+      parent: modal_wrapper,
       recursive: false,
       done: function(el) {
-        root = el;
-        var modal = $(el).parents('#shiny-modal');
-        if (modal.length > 0) {
-          // If the glide is in a modal, wait for it to
-          // be shown otherwise dimensions are incorrect
-          modal.on("shown.bs.modal", () => {
-            init(root);
-            update_controls();
-            modal.off("shown.bs.modal");
-          })
-        } else {
-          init(root);
+        var shiny_modal = $(modal_wrapper).find("#shiny-modal");
+        shiny_modal.on("shown.bs.modal", () => {
+          init(el);
           update_controls();
-        }
+          shiny_modal.off("shown.bs.modal");
+        })
       }
-    });
-
+    })
   } else {
+
+  root = document.getElementById("shinyglide");
 
     init(root);
     // Wait for shiny app to be started
