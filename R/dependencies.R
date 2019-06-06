@@ -1,3 +1,7 @@
+#' @importFrom htmltools htmlDependency
+
+## Glide.js library
+
 glideLib <- function() {
   htmltools::htmlDependency(
     name = "glide",
@@ -7,6 +11,8 @@ glideLib <- function() {
     script = "dist/glide.min.js"
   )
 }
+
+## Package specific js and css
 
 shinyglideLib <- function() {
   htmltools::htmlDependency(

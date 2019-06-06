@@ -6,21 +6,21 @@
 #' @param next_label label to be used in the "next" control.
 #' @param previous_label label to be used in the "back" control.
 #' @param loading_label label to be used in the "next" control when the next
-#' screen is still loading.
+#'     screen is still loading.
 #' @param loading_class class to add to the "next" control when the next
-#' screen is still loading.
+#'     screen is still loading.
 #' @param disable_type either to "disable" or "hide" the next or back control
-#' when it is disabled by a condition.
-#' @param height height of the glide (something like "400px" or "100%").
+#'     when it is disabled by a condition.
+#' @param height height of the glide (something like "400px" or "100\%").
 #' @param custom_controls custom HTML or shiny tags to be used for the controls.
-#' If `NULL``, use the default ones.
+#'     If `NULL``, use the default ones.
 #' @param controls_position either to place the default or custom controls on "top"
-#' or "bottom" of the glide.
+#'     or "bottom" of the glide.
 #' @param ... content of the glide.
 #'
 #' @seealso screen nextButton prevButton firstButton lastButton
 #'
-#' @example
+#' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -117,7 +117,7 @@ glide <- function(...,
 #'
 #' @seealso glide
 #'
-#' @example
+#' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
 #'
@@ -252,17 +252,14 @@ prevButton <- function(
 #'
 #' @export
 
-firstButton <- function(...,
-    class = c("btn", "btn-default")
+firstButton <- function(label, class = c("btn", "btn-default")
   ) {
 
   class <- paste(union(class, "first-screen"), collapse = " ")
 
-  shiny::tag("button",
-    list(
-      class = class,
-      ...
-    )
+  tags$button(
+    class = class,
+    HTML(label)
   )
 }
 
@@ -278,17 +275,14 @@ firstButton <- function(...,
 #'
 #' @export
 
-lastButton <- function(...,
-    class = c("btn", "btn-success")
+lastButton <- function(label, class = c("btn", "btn-success")
   ) {
 
   class <- paste(union(class, "last-screen"), collapse = " ")
 
-  shiny::tag("button",
-    list(
-      class = class,
-      ...
-    )
+  tags$button(
+    class = class,
+    HTML(label)
   )
 }
 
