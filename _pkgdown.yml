@@ -1,0 +1,13 @@
+url: https://juba.github.io/shinyglide/
+template:
+  params:
+    bootswatch: cosmo
+reference:
+- title: Main functions
+  contents:
+  - '`glide`'
+  - '`screen`'
+  - '`screenOutput`'
+- title: Helper functions
+  contents:
+  - '`nextButton`'
