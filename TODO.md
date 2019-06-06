@@ -1,4 +1,5 @@
 # TODO
 
-- Keyboard navigation with respect to conditions
-
+- Update example apps
+- Write README
+- Write vignette
