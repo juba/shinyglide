@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 TODO.md
 docs/
+.travis.yml
+_pkgdown.yml
