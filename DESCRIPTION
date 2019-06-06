@@ -3,8 +3,15 @@ Type: Package
 Title: Glide Component For Shiny Applications
 Version: 0.0.1
 Date: 2019-06-07
-Author: c(person("Julien", "Barnier", email="julien.barnier@ens-lyon.fr",
-    role=c("aut","cre")))
+Author: c(
+    person("Julien", "Barnier", 
+           role=c("aut","cre"),
+           email="julien.barnier@ens-lyon.fr"),
+    person(
+        "Jędrzej", " Chałubek",
+        role = c("aut", "cph"),
+        comment = "Glide JavaScript library, https://glidejs.com")
+    )
 Maintainer: Julien Barnier <julien.barnier@ens-lyon.fr>
 Description: Insert Glide JavaScript component into Shiny applications for
     carousel or assistant-like user interfaces.

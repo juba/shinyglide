@@ -8,3 +8,8 @@
 
 
 Work in progress...
+
+
+## Credits
+
+- `shinyglide` is based on the [Glide](https://glidejs.com/) JavaScript library, by [Jędrzej Chałubek](https://github.com/jedrzejchalubek).
