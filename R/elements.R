@@ -74,10 +74,10 @@ screen <- function(...,
 
 glideControls <- function(previous_label, next_label) {
   fluidRow(
-    column(width = 6,
+    tags$div(class="col-xs-6",
       prevButton(previous_label)
     ),
-    column(width = 6, class = "text-right",
+    tags$div(class="col-xs-6 text-right",
       nextButton(next_label)
     )
   )
