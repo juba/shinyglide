@@ -2,7 +2,7 @@
 % Please edit documentation in R/elements.R
 \name{glide}
 \alias{glide}
-\title{glide component creation}
+\title{Glide component creation}
 \usage{
 glide(..., id = NULL, next_label = paste("Next",
   shiny::icon("chevron-right", lib = "glyphicon")),

@@ -2,7 +2,7 @@
 % Please edit documentation in R/elements.R
 \name{screen}
 \alias{screen}
-\title{screen creation}
+\title{Screen creation}
 \usage{
 screen(..., next_label = NULL, prev_label = NULL,
   next_condition = NULL, prev_condition = NULL, class = NULL)

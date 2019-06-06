@@ -1,4 +1,4 @@
-#' glide component creation
+#' Glide component creation
 #'
 #' Insert a glide component in the current shiny app UI
 #'
@@ -97,7 +97,7 @@ glide <- function(...,
 
 
 
-#' screen creation
+#' Screen creation
 #'
 #' Insert a new screen into a glide component.
 #'
