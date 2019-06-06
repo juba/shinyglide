@@ -1,3 +1,48 @@
+#' glide component creation
+#'
+#' Insert a glide component in the current shiny app UI
+#'
+#' @param id optional HTML id of the glide root element.
+#' @param next_label label to be used in the "next" control.
+#' @param previous_label label to be used in the "back" control.
+#' @param loading_label label to be used in the "next" control when the next
+#' screen is still loading.
+#' @param loading_class class to add to the "next" control when the next
+#' screen is still loading.
+#' @param disable_type either to "disable" or "hide" the next or back control
+#' when it is disabled by a condition.
+#' @param height height of the glide (something like "400px" or "100%").
+#' @param custom_controls custom HTML or shiny tags to be used for the controls.
+#' If `NULL``, use the default ones.
+#' @param controls_position either to place the default or custom controls on "top"
+#' or "bottom" of the glide.
+#' @param ... content of the glide.
+#'
+#' @seealso screen nextButton prevButton firstButton lastButton
+#'
+#' @example
+#' ## Only run examples in interactive R sessions
+#' if (interactive()) {
+#'
+#' ui <- fixedPage(
+#'  h3("Simple shinyglide app"),
+#'  glide(
+#'     screen(
+#'       p("First screen.")
+#'     ),
+#'     screen(
+#'       p("Second screen."),
+#'     )
+#'   )
+#' )
+#'
+#' server <- function(input, output, session) {
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+#' }
+#'
 #' @export
 
 glide <- function(...,
@@ -49,6 +94,53 @@ glide <- function(...,
 
 
 
+
+
+#' screen creation
+#'
+#' Insert a new screen into a glide component.
+#'
+#' This function inserts a new "screen" into an existing `glide` component. It
+#' can only be used inside a `glide()` call, in a shiny app UI.
+#'
+#' @param next_label specific label of the "next" control for this screen. If `NULL`,
+#' use the default one for the current glide.
+#' @param prev_label specific label of the "back" control for this screen. If `NULL`,
+#' use the default one for the current glide.
+#' @param next_condition condition for the "next" control to be enabled. Same syntax
+#' as `shiny::conditionalPanel`.
+#' @param prev_condition condition for the "back" control to be enabled. Same syntax
+#' as `shiny::conditionalPanel`.
+#' @param ... content of the screen.
+#'
+#' @seealso glide
+#'
+#' @example
+#' ## Only run examples in interactive R sessions
+#' if (interactive()) {
+#'
+#' ui <- fixedPage(
+#'  h3("Simple shinyglide app"),
+#'  glide(
+#'     screen(
+#'       next_label = "Go next",
+#'       next_condition = "input.x > 0",
+#'       p("First screen."),
+#'       numericInput("x", "x", value = 0)
+#'     ),
+#'     screen(
+#'       p("Final screen."),
+#'     )
+#'   )
+#' )
+#'
+#' server <- function(input, output, session) {
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+#' }
+#'
 #' @export
 
 screen <- function(...,
@@ -70,8 +162,6 @@ screen <- function(...,
 }
 
 
-#' @export
-
 glideControls <- function(previous_label, next_label) {
   fluidRow(
     tags$div(class="col-xs-6",
@@ -84,8 +174,6 @@ glideControls <- function(previous_label, next_label) {
 }
 
 
-#' @export
-
 glideDetectors <- function() {
   tagList(
     tags$span(class = "shinyglide-detector next-detector"),
@@ -94,51 +182,106 @@ glideDetectors <- function() {
 }
 
 
+
+#' Code for the default "next" control
+#'
+#' This generates the code of the default "next" control, and can be used in custom
+#' controls.
+#'
+#' @param label control label.
+#' @param class control CSS classes. `next-screen` is automatically added.
+#'
+#' @seealso prevButton firstButton lastButton
+#'
 #' @export
 
 nextButton <- function(
-    label = paste("Next", shiny::icon("chevron-right", lib = "glyphicon"))
+    label = paste("Next", shiny::icon("chevron-right", lib = "glyphicon")),
+    class = c("btn", "btn-primary")
   ) {
 
+  class <- paste(union(class, "next-screen"), collapse = " ")
+
   tags$button(
-    class="btn btn-primary next-screen",
+    class = class,
     HTML(label)
   )
 }
 
 
+#' Code for the default "back" control
+#'
+#' This generates the code of the default "back" control, and can be used in custom
+#' controls.
+#'
+#' @param label control label.
+#' @param class control CSS classes. `prev-screen` is automatically added.
+#'
+#' @seealso nextButton firstButton lastButton
+#'
 #' @export
 
 prevButton <- function(
-    label = paste(shiny::icon("chevron-left", lib = "glyphicon"), "Back")
+    label = paste(shiny::icon("chevron-left", lib = "glyphicon"), "Back"),
+    class = c("btn", "btn-default")
   ) {
 
+  class <- paste(union(class, "prev-screen"), collapse = " ")
+
   tags$button(
-    class="btn btn-default prev-screen",
+    class = class,
     HTML(label)
   )
 }
 
-
+#' Code for the default "first" control
+#'
+#' This generates the code of the default "first" control, which is only displayed
+#' on the first screen of a glkide, and can be used in custom controls.
+#'
+#' @param label control label.
+#' @param class control CSS classes. `first-screen` is automatically added.
+#'
+#'
+#' @seealso nextButton prevButton lastButton
+#'
 #' @export
 
-firstButton <- function(...) {
+firstButton <- function(...,
+    class = c("btn", "btn-default")
+  ) {
+
+  class <- paste(union(class, "first-screen"), collapse = " ")
+
   shiny::tag("button",
     list(
-      class="btn btn-default first-screen",
+      class = class,
       ...
     )
   )
 }
 
-
+#' Code for the default "last" control
+#'
+#' This generates the code of the default "last" control, which is only displayed
+#' on the last screen of a glide, and can be used in custom controls.
+#'
+#' @param label control label.
+#' @param class control CSS classes. `last-screen` is automatically added.
+#'
+#' @seealso nextButton prevButton firstButton
+#'
 #' @export
 
-lastButton <- function(...) {
+lastButton <- function(...,
+    class = c("btn", "btn-success")
+  ) {
+
+  class <- paste(union(class, "last-screen"), collapse = " ")
+
   shiny::tag("button",
     list(
-      class="btn btn-success last-screen",
-      style="display: none",
+      class = class,
       ...
     )
   )
