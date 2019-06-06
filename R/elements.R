@@ -188,15 +188,17 @@ glideDetectors <- function() {
 
 
 
-#' Code for the default "next" control
+#' Code for the default controls
 #'
-#' This generates the code of the default "next" control, and can be used in custom
+#' This generates the code of the default controls, and can be used in custom
 #' controls.
 #'
-#' @param label control label.
-#' @param class control CSS classes. `next-screen` is automatically added.
+#' @details
+#' `firstButton` is only shown on the first screen, where `prevButton` is hidden.
+#' `lastButton` is only shown on the last screen, where `nextButton` is hidden.
 #'
-#' @seealso prevButton firstButton lastButton
+#' @param label control label.
+#' @param class control CSS classes. The needed class is automatically added.
 #'
 #' @export
 
@@ -214,16 +216,7 @@ nextButton <- function(
 }
 
 
-#' Code for the default "back" control
-#'
-#' This generates the code of the default "back" control, and can be used in custom
-#' controls.
-#'
-#' @param label control label.
-#' @param class control CSS classes. `prev-screen` is automatically added.
-#'
-#' @seealso nextButton firstButton lastButton
-#'
+#' @rdname nextButton
 #' @export
 
 prevButton <- function(
@@ -239,17 +232,8 @@ prevButton <- function(
   )
 }
 
-#' Code for the default "first" control
-#'
-#' This generates the code of the default "first" control, which is only displayed
-#' on the first screen of a glkide, and can be used in custom controls.
-#'
-#' @param label control label.
-#' @param class control CSS classes. `first-screen` is automatically added.
-#'
-#'
-#' @seealso nextButton prevButton lastButton
-#'
+
+#' @rdname nextButton
 #' @export
 
 firstButton <- function(label, class = c("btn", "btn-default")
@@ -263,16 +247,8 @@ firstButton <- function(label, class = c("btn", "btn-default")
   )
 }
 
-#' Code for the default "last" control
-#'
-#' This generates the code of the default "last" control, which is only displayed
-#' on the last screen of a glide, and can be used in custom controls.
-#'
-#' @param label control label.
-#' @param class control CSS classes. `last-screen` is automatically added.
-#'
-#' @seealso nextButton prevButton firstButton
-#'
+
+#' @rdname nextButton
 #' @export
 
 lastButton <- function(label, class = c("btn", "btn-success")
