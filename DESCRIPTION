@@ -3,21 +3,17 @@ Type: Package
 Title: Glide Component For Shiny Applications
 Version: 0.0.1
 Date: 2019-06-07
-Author: c(
+Authors@R: c(
     person("Julien", "Barnier", 
            role=c("aut","cre"),
-           email="julien.barnier@ens-lyon.fr"),
-    person(
-        "Jędrzej", " Chałubek",
-        role = c("aut", "cph"),
-        comment = "Glide JavaScript library, https://glidejs.com")
+           email="julien.barnier@ens-lyon.fr")
     )
 Maintainer: Julien Barnier <julien.barnier@ens-lyon.fr>
 Description: Insert Glide JavaScript component into Shiny applications for
     carousel or assistant-like user interfaces.
 License: GPL (>= 3)
 VignetteBuilder: knitr
-URL: https://juba.github.io/shinyglide/
+URL: https://juba.github.io/shinyglide/, https://github.com/juba/shinyglide
 BugReports: https://github.com/juba/shinyglide/issues
 Encoding: UTF-8
 Imports:
