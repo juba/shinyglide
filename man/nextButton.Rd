@@ -2,20 +2,31 @@
 % Please edit documentation in R/elements.R
 \name{nextButton}
 \alias{nextButton}
-\title{Code for the default "next" control}
+\alias{prevButton}
+\alias{firstButton}
+\alias{lastButton}
+\title{Code for the default controls}
 \usage{
 nextButton(label = paste("Next", shiny::icon("chevron-right", lib =
   "glyphicon")), class = c("btn", "btn-primary"))
+
+prevButton(label = paste(shiny::icon("chevron-left", lib = "glyphicon"),
+  "Back"), class = c("btn", "btn-default"))
+
+firstButton(label, class = c("btn", "btn-default"))
+
+lastButton(label, class = c("btn", "btn-success"))
 }
 \arguments{
 \item{label}{control label.}
 
-\item{class}{control CSS classes. \code{next-screen} is automatically added.}
+\item{class}{control CSS classes. The needed class is automatically added.}
 }
 \description{
-This generates the code of the default "next" control, and can be used in custom
+This generates the code of the default controls, and can be used in custom
 controls.
 }
-\seealso{
-prevButton firstButton lastButton
+\details{
+\code{firstButton} is only shown on the first screen, where \code{prevButton} is hidden.
+\code{lastButton} is only shown on the last screen, where \code{nextButton} is hidden.
 }
