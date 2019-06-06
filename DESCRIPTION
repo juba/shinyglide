@@ -2,6 +2,7 @@ Package: shinyglide
 Type: Package
 Title: Glide Component For Shiny Applications
 Version: 0.0.1
+Date: 2019-06-07
 Author: c(person("Julien", "Barnier", email="julien.barnier@ens-lyon.fr",
     role=c("aut","cre")))
 Maintainer: Julien Barnier <julien.barnier@ens-lyon.fr>
