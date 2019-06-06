@@ -20,7 +20,7 @@ class ShinyGlide {
   this.root = root;
 
   this.glide = null;
-  
+
   this.slides = root.querySelectorAll(".glide__slide");
   this.next_label = root.getAttribute("data-next-label");
   this.prev_label = root.getAttribute("data-prev-label");
@@ -33,7 +33,7 @@ class ShinyGlide {
   this.prev_detector = root.getElementsByClassName("prev-detector")[0];
   this.next_detector = root.getElementsByClassName("next-detector")[0];
 
-  this.busy_screens = [];
+  this.busy_screens = 0;
 
   this.init(root);
 
@@ -70,7 +70,7 @@ class ShinyGlide {
       }
     }
 
-    // Init glide object 
+    // Init glide object
     init_glide() {
       var glide = new Glide(this.root, {
         rewind: false,
@@ -78,7 +78,7 @@ class ShinyGlide {
       }).mount();
 
       glide.on('run.before', move => {
- 
+
         // Don't move if control is disabled
         if ($(this.next_detector).css("display") == "none") {
           if (move.direction == ">") {
@@ -113,16 +113,20 @@ class ShinyGlide {
 
       $(this.prev_control).hide()
 
-      this.next_control.addEventListener("click", event => this.glide.go(">"));
-      this.prev_control.addEventListener("click", event => this.glide.go("<"));
+      this.next_control.addEventListener("click", event => {
+        if (!this.next_control.hasAttribute("disabled")) { this.glide.go(">") };
+      });
+      this.prev_control.addEventListener("click", event => {
+        if (!this.prev_control.hasAttribute("disabled")) { this.glide.go("<") };
+      });
 
       this.init_detectors();
       this.init_glide();
 
       // Wait for shiny app to be started
-      $(document).on("shiny:recalculated", this.root, () => {
+      $(document).on("shiny:sessioninitialized", this.root, () => {
         this.update_controls();
-        $(document).off("shiny:recalculated", this.root);
+        $(document).off("shiny:sessioninitialized", this.root);
       });
 
 
@@ -175,11 +179,36 @@ class ShinyGlide {
 
     }
 
+
     // Update loading status of next control
-    update_loading(slide) {
-      
-      this.busy_screens = [];
-      
+    update_loading_control(slide) {
+
+      if (this.busy_screens > 0) {
+        this.next_control.setAttribute("disabled", "disabled");
+        this.next_control.classList.add("disabled");
+        $(this.next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
+        $(this.next_control).find(".next-screen-label").html(this.loading_label);
+      }
+
+      if (this.busy_screens == 0) {
+        if (!($(this.next_detector).css("display") == "none")) {
+          this.next_control.removeAttribute("disabled");
+          this.next_control.classList.remove("disabled");
+        }
+        $(this.next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
+        $(this.next_control).find(".next-screen-label").html(this.slide_next_label(slide));
+        $(document).off('shiny:outputinvalidated', this.root);
+        $(document).off('shiny:value', this.root);
+      }
+
+    }
+
+
+    // Manage list of loading screen siblings
+    update_loading_screens(slide) {
+
+      this.busy_screens = 0;
+
       var next_screenoutputs = $(slide).find("~ li.glide__slide");
       var index = next_screenoutputs
         .toArray()
@@ -187,35 +216,23 @@ class ShinyGlide {
       if (index == -1) { index = 0 };
       next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
 
-      $(document).off('shiny:outputinvalidated', this.root);
-      $(document).off('shiny:value', this.root);
-
       if (next_screenoutputs.length > 0) {
         $(document).on('shiny:outputinvalidated', this.root, event => {
           if ($.inArray(event.target, next_screenoutputs) != -1) {
-            this.busy_screens.push(event.target);
+            this.busy_screens += 1;
           }
-          if (this.busy_screens.length > 0) {
-            this.next_control.setAttribute("disabled", "disabled");
-            $(this.next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
-            $(this.next_control).find(".next-screen-label").html(this.loading_label);
-          }
+          this.update_loading_control(slide);
         });
         $(document).on('shiny:value', this.root, event => {
           if ($.inArray(event.target, next_screenoutputs) != -1) {
-            this.busy_screens = this.busy_screens.filter(elem => { elem != event.target });
+            this.busy_screens -= 1;
           }
-          if (this.busy_screens.length == 0) {
-            if (!$(this.next_control).hasClass("disabled")) {
-              this.next_control.removeAttribute("disabled");
-            }
-            $(this.next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
-            $(this.next_control).find(".next-screen-label").html(this.slide_next_label(slide));
-          }
+          this.update_loading_control(slide);
         });
       }
 
     }
+
 
     // Update controls after each slide change
     update_controls() {
@@ -246,7 +263,7 @@ class ShinyGlide {
         $(this.last_control).show();
       }
 
-      this.update_loading(slide);
+      this.update_loading_screens(slide);
 
     }
 
@@ -259,7 +276,7 @@ $(document).ready(function () {
   $(".shinyglide").each(function(index) {
     new ShinyGlide(this);
   });
-  
+
   // If the glide is in a shiny modal, wait for it to
   // be shown otherwise dimensions are incorrect
   var modal_wrapper = document.getElementById('shiny-modal-wrapper');
