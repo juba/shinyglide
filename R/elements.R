@@ -44,6 +44,7 @@
 #' }
 #'
 #' @export
+#' @import shiny
 
 glide <- function(...,
   id = NULL,
@@ -111,6 +112,7 @@ glide <- function(...,
 #' as `shiny::conditionalPanel`.
 #' @param prev_condition condition for the "back" control to be enabled. Same syntax
 #' as `shiny::conditionalPanel`.
+#' @param class screen CSS classes. `glide__slide` is automatically added.
 #' @param ... content of the screen.
 #'
 #' @seealso glide
@@ -147,11 +149,14 @@ screen <- function(...,
   next_label = NULL,
   prev_label = NULL,
   next_condition = NULL,
-  prev_condition = NULL) {
+  prev_condition = NULL,
+  class = NULL) {
+
+  class <- paste(union(class, "glide__slide"), collapse = " ")
 
   shiny::tag("li",
     list(
-      class = "glide__slide",
+      class = class,
       `data-prev-label` = prev_label,
       `data-next-label` = next_label,
       `data-prev-condition` = prev_condition,
