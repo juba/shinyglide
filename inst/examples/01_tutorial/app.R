@@ -176,8 +176,6 @@ ui <- fluidPage(
           tags$ul(
             tags$li(HTML("<code>next_label</code>&nbsp;: next control label")),
             tags$li(HTML("<code>previous_label</code>&nbsp;: previous control label")),
-            tags$li(HTML("<code>next_label_icon</code></code>&nbsp;: next control icon")),
-            tags$li(HTML("<code>previous_label_icon</code>&nbsp;: previous control icon")),
             tags$li(HTML("<code>loading_label</code>, <code>loading_class</code>&nbsp;: next control label and class when in loading state")),
             tags$li(HTML('<code>disable_type</code>&nbsp;: wether to <code>"hide"</code> or <code>"disable"</code> a control when condition is not met')),
             tags$li(HTML('<code>controls_position</code>&nbsp;: wether to place controls on <code>"top"</code> or <code>"bottom"</code>'))
@@ -202,8 +200,7 @@ ui <- fluidPage(
         ),
 
         screen(
-          next_label = "Next one please !",
-          next_label_icon = icon("arrow-right", lib="glyphicon"),
+          next_label = paste("Next one please !", icon("arrow-right", lib="glyphicon")),
           prev_label = "Let\'s go back",
 
           h3("Customizing controls per screen"),

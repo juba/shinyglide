@@ -25,6 +25,7 @@ class ShinyGlide {
   this.next_label = root.getAttribute("data-next-label");
   this.prev_label = root.getAttribute("data-prev-label");
   this.loading_label = root.getAttribute("data-loading-label");
+  this.loading_class = root.getAttribute("data-loading-class");
   this.disable_type = root.getAttribute("data-disable-type");
   this.prev_control = root.getElementsByClassName("prev-screen")[0];
   this.next_control = root.getElementsByClassName("next-screen")[0];
@@ -172,9 +173,7 @@ class ShinyGlide {
     // Update controls labels
     update_labels(slide) {
 
-      var next_label_span = $(this.next_control).find(".next-screen-label");
-      var target = next_label_span.length > 0 ? next_label_span : $(this.next_control);
-      target.html(this.slide_next_label(slide));
+      $(this.next_control).html(this.slide_next_label(slide));
       $(this.prev_control).html(this.slide_prev_label(slide));
 
     }
@@ -186,8 +185,8 @@ class ShinyGlide {
       if (this.busy_screens > 0) {
         this.next_control.setAttribute("disabled", "disabled");
         this.next_control.classList.add("disabled");
-        $(this.next_control).find(".next-screen-spinner").addClass("shinyglide-loader");
-        $(this.next_control).find(".next-screen-label").html(this.loading_label);
+        $(this.next_control).addClass(this.loading_class);
+        $(this.next_control).html(this.loading_label);
       }
 
       if (this.busy_screens == 0) {
@@ -195,8 +194,8 @@ class ShinyGlide {
           this.next_control.removeAttribute("disabled");
           this.next_control.classList.remove("disabled");
         }
-        $(this.next_control).find(".next-screen-spinner").removeClass("shinyglide-loader");
-        $(this.next_control).find(".next-screen-label").html(this.slide_next_label(slide));
+        $(this.next_control).removeClass(this.loading_class);
+        $(this.next_control).html(this.slide_next_label(slide));
         $(document).off('shiny:outputinvalidated', this.root);
         $(document).off('shiny:value', this.root);
       }
@@ -211,8 +210,8 @@ class ShinyGlide {
 
       var next_screenoutputs = $(slide).find("~ li.glide__slide");
       var index = next_screenoutputs
-        .toArray()
-        .findIndex(element => !$(element).hasClass("shiny-html-output"));
+                  .toArray()
+                  .findIndex(element => !$(element).hasClass("shiny-html-output"));
       if (index == -1) { index = 0 };
       next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
 
