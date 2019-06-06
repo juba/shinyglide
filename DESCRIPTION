@@ -1,12 +1,24 @@
 Package: shinyglide
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Glide Component For Shiny Applications
+Version: 0.0.1
+Author: c(person("Julien", "Barnier", email="julien.barnier@ens-lyon.fr",
+    role=c("aut","cre")))
+Maintainer: Julien Barnier <julien.barnier@ens-lyon.fr>
+Description: Insert Glide JavaScript component into Shiny applications for
+    carousel or assistant-like user interfaces.
+License: GPL (>= 3)
+VignetteBuilder: knitr
+URL: https://juba.github.io/shinyglide/
+BugReports: https://github.com/juba/shinyglide/issues
 Encoding: UTF-8
+Imports:
+    shiny (>= 1.2.0),
+    htmltools
+Suggests: 
+    knitr,
+    rmarkdown
+Roxygen: list(markdown = TRUE) 
 LazyData: true
 RoxygenNote: 6.1.1
+
