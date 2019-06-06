@@ -3,7 +3,7 @@
 library(shiny)
 library(shinyglide)
 
-ui <- fluidPage(
+ui <- fixedPage(
   h3("Simple shinyglide app"),
   glide(
     screen(
