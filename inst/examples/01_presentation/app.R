@@ -4,16 +4,6 @@
 library(shiny)
 library(shinyglide)
 library(glue)
-library(styler)
-library(highr)
-
-format_code <- function(code) {
-  out <- styler::style_text(code)
-  ## Generated code syntax highlighting
-  out <- paste(highr::hi_html(out), collapse = "\n")
-  ## Final paste
-  HTML(paste0("<pre class='r'><code class='r'>",out,"</code></pre>"))
-}
 
 controls <- glideControls(
   prevButton(),
