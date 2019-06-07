@@ -61,10 +61,14 @@ glide <- function(...,
   disable_type <- match.arg(disable_type)
   controls_position <- match.arg(controls_position)
 
+  previous_label <- HTML(as.character(previous_label))
+  next_label <- HTML(as.character(next_label))
+  loading_label <- HTML(as.character(loading_label))
+
   controls <- if(is.null(custom_controls)) {
     glideControls(
-      prevButton(previous_label),
-      nextButton(next_label)
+      prevButton(),
+      nextButton()
     )
   } else {
     custom_controls
@@ -72,9 +76,9 @@ glide <- function(...,
 
   tagList(
     tags$div(class = "shinyglide", id = id,
-            `data-next-label` = HTML(as.character(next_label)),
-            `data-prev-label` = HTML(as.character(previous_label)),
-            `data-loading-label` = HTML(as.character(loading_label)),
+            `data-next-label` = next_label,
+            `data-prev-label` = previous_label,
+            `data-loading-label` = loading_label,
             `data-loading-class` = loading_class,
             `data-disable-type` = disable_type,
 
@@ -220,40 +224,32 @@ glideDetectors <- function() {
 #' @details
 #' `prevButton` is hidden on the first screen, while `nextButton` is hidden on
 #' the last one.
+#' The buttons labels are set with the `next_label` and `previous_label`
+#' arguments of `glide()`.
 #'
-#' @param label control label.
 #' @param class control CSS classes. The needed class is automatically added.
+#'
+#' @seealso glide
 #'
 #' @export
 
-nextButton <- function(
-    label = paste("Next", shiny::icon("chevron-right", lib = "glyphicon")),
-    class = c("btn", "btn-primary")
-  ) {
+nextButton <- function(class = c("btn", "btn-primary")) {
 
   class <- paste(union(class, "next-screen"), collapse = " ")
 
-  tags$button(
-    class = class,
-    HTML(label)
-  )
+  tags$button(class = class)
 }
 
 
 #' @rdname nextButton
 #' @export
 
-prevButton <- function(
-    label = paste(shiny::icon("chevron-left", lib = "glyphicon"), "Back"),
-    class = c("btn", "btn-default")
-  ) {
+prevButton <- function(class = c("btn", "btn-default")) {
 
   class <- paste(union(class, "prev-screen"), collapse = " ")
 
-  tags$button(
-    class = class,
-    HTML(label)
-  )
+  tags$button(class = class)
+
 }
 
 
