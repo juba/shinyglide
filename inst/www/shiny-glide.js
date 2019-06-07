@@ -110,7 +110,8 @@ class ShinyGlide {
     // Global init
     init() {
 
-      $(this.prev_control).hide()
+      $(this.prev_control).hide();
+      $(this.last_control).hide();
 
       this.update_labels(this.slides[0]);
 
