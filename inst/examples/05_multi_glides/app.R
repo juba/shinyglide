@@ -7,7 +7,7 @@ library(shinyglide)
 
 css <- "
 .container-fluid {
-  padding: 0 20px;
+  padding: 0 30px;
 }
 .shinyglide {
   border: 1px solid #888;
@@ -22,10 +22,10 @@ ui <- fluidPage(
   ),
   titlePanel("Multi-glides shinyglide app"),
   fluidRow(
-    p("The source code if this app is",
+    p("The source code of this app is",
       tags$a(
         href = "https://github.com/juba/shinyglide/blob/master/inst/examples/05_multi_glides/app.R",
-        "available on GitHub"
+        "available on GitHub."
       )
     )
   ),
