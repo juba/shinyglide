@@ -222,16 +222,12 @@ class ShinyGlide {
           if ($.inArray(event.target, next_screenoutputs) != -1) {
             this.busy_screens += 1;
           }
-          console.log("invalidated")
-          console.log(this.busy_screens)
           this.update_loading_control(slide);
         });
         $(document).on('shiny:value', this.root, event => {
           if ($.inArray(event.target, next_screenoutputs) != -1) {
             this.busy_screens -= 1;
           }
-          console.log("value");
-          console.log(this.busy_screens)
           this.update_loading_control(slide);
         });
       }
