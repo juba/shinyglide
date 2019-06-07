@@ -1,4 +1,5 @@
 ## shinyglide introduction app
+## Live version at : https://data.nozav.org/app/shinyglide/01_presentation/
 
 library(shiny)
 library(shinyglide)
@@ -14,21 +15,33 @@ format_code <- function(code) {
   HTML(paste0("<pre class='r'><code class='r'>",out,"</code></pre>"))
 }
 
-controls <- fluidRow(
-  div(class = "col-xs-6",
-    prevButton()
-  ),
-  div(class = "col-xs-6 text-right",
+controls <- glideControls(
+  prevButton(),
+  list(
     nextButton(),
-    tags$a(
-      class="btn btn-success last-screen",
-      href="https://github.com/juba/shinyglide",
+    lastButton(
+      class="btn btn-success",
+      href="https://juba.github.io/shinyglide",
       "Go to project website"
     )
   )
 )
 
 css <- "
+body {
+  background-color: #E0E0E0;
+}
+.container-fluid {
+  max-width: 700px;
+  padding: 20px;
+}
+.glide-wrapper {
+  border: 1px solid #888;
+  box-shadow: 0px 0px 20px #888;
+  background-color: #FFF;
+  padding: 1em 2em 2em 2em;
+}
+
 span.hl.str { color: #d14;}
 span.hl.kwa { color: #099;}
 span.hl.num { color: #099;}
@@ -41,10 +54,7 @@ ui <- fluidPage(
     tags$style(css)
   ),
   fluidRow(
-    column(
-      width = 8,
-      offset = 2,
-
+    div(class="glide-wrapper",
       glide(
         custom_controls = controls,
 
@@ -136,7 +146,9 @@ ui <- fluidPage(
             '
           ),
           p(HTML("For example, check the following checkbox to get a next screen with a GIF&nbsp;:")),
-          checkboxInput("gif", "A GIF please !", value = FALSE)
+          div(class="bg-info",
+            checkboxInput("gif", "A GIF please !", value = FALSE)
+          )
         ),
         screenOutput("gif_screen"),
 
