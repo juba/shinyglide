@@ -1,4 +1,5 @@
 ## shinyglide custom controls app
+## Live version at : https://data.nozav.org/app/shinyglide/04_custom_controls/
 
 library(shiny)
 library(shinyglide)
@@ -76,7 +77,13 @@ ui <- fluidPage(
   ),
   titlePanel("shinyglide custom controls app"),
   fluidRow(
-    p("This simple app shows an example of completely custom controls.")
+    p("This simple app shows an example of completely custom controls."),
+    p("Its source code is",
+      tags$a(
+        href = "https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R",
+        "available on GitHub"
+      )
+    )
   ),
   fluidRow(
       glide(

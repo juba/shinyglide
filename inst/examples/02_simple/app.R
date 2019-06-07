@@ -1,4 +1,5 @@
 ## shinyglide simple example app
+## Live version at : https://data.nozav.org/app/shinyglide/02_simple/
 
 library(shiny)
 library(shinyglide)

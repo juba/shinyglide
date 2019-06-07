@@ -1,4 +1,5 @@
 ## shinyglide modal example app
+## Live version at : https://data.nozav.org/app/shinyglide/03_modal/
 
 library(shiny)
 library(shinyglide)
@@ -10,7 +11,13 @@ ui <- fixedPage(
     sidebarPanel(
       numericInput("mean", "Mean", value = 0),
       numericInput("sd", "Standard deviation", value = 1, min = 0),
-      numericInput("n", "n", value = 100, min = 1)
+      numericInput("n", "n", value = 100, min = 1),
+      p(
+        tags$a(
+          href = "https://github.com/juba/shinyglide/blob/master/inst/examples/03_modal/app.R",
+          "Source code on GitHub"
+        )
+      )
     ),
     mainPanel(
       plotOutput("plot")
