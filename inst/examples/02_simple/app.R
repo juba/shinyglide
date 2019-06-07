@@ -3,9 +3,10 @@
 library(shiny)
 library(shinyglide)
 
-ui <- fixedPage(
+ui <- fixedPage(style = "max-width: 500px;",
   h3("Simple shinyglide app"),
   glide(
+    height = "350px",
     screen(
       p("This is a very simple shinyglide application."),
       p("Please click on Next to go to the next screen.")
