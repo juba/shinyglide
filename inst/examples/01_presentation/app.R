@@ -3,7 +3,6 @@
 
 library(shiny)
 library(shinyglide)
-library(glue)
 
 controls <- glideControls(
   prevButton(),
