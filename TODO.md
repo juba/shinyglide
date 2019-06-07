@@ -1,5 +1,3 @@
 # TODO
 
-- Update example apps
-- Write README
-- Write vignette
+- Debug screenOutput in custom controls app
