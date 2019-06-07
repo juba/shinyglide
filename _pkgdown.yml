@@ -11,3 +11,6 @@ reference:
 - title: Helper functions
   contents:
   - '`nextButton`'
+  - '`firstButton`'
+  - '`glideControls`'
+
