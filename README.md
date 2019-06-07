@@ -88,7 +88,7 @@ For more information, see the three available vignettes :
 
 - [Introduction to shinyglide](https://juba.github.io/shinyglide/articles/a_introduction.html)
 - [Conditional controls and screen output](https://juba.github.io/shinyglide/articles/b_conditionals.html)
-- [Custom controls](https://juba.github.io/shinyglide/articles/b_custom_controls.html)
+- [Custom controls](https://juba.github.io/shinyglide/articles/c_custom_controls.html)
 
 
 
