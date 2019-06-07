@@ -44,24 +44,22 @@ class ShinyGlide {
     init_detectors () {
 
       // Disable controls
-      if (this.disable_type == "disable") {
-        $(this.prev_detector).on('hide', () => {
-          this.prev_control.setAttribute("disabled", "disabled");
-          this.prev_control.classList.add("disabled");
-        })
-        $(this.prev_detector).on('show', () => {
-          this.prev_control.removeAttribute("disabled");
-          this.prev_control.classList.remove("disabled");
-        })
-        $(this.next_detector).on('hide', () => {
-          this.next_control.setAttribute("disabled", "disabled");
-          this.next_control.classList.add("disabled");
-        })
-        $(this.next_detector).on('show', () => {
-          this.next_control.removeAttribute("disabled");
-          this.next_control.classList.remove("disabled");
-        })
-      }
+      $(this.prev_detector).on('hide', () => {
+        this.prev_control.setAttribute("disabled", "disabled");
+        this.prev_control.classList.add("disabled");
+      })
+      $(this.prev_detector).on('show', () => {
+        this.prev_control.removeAttribute("disabled");
+        this.prev_control.classList.remove("disabled");
+      })
+      $(this.next_detector).on('hide', () => {
+        this.next_control.setAttribute("disabled", "disabled");
+        this.next_control.classList.add("disabled");
+      })
+      $(this.next_detector).on('show', () => {
+        this.next_control.removeAttribute("disabled");
+        this.next_control.classList.remove("disabled");
+      })
       // Hide controls
       if (this.disable_type == "hide") {
         $(this.prev_detector).on('hide', () => { $(this.prev_control).hide(); })
@@ -81,12 +79,12 @@ class ShinyGlide {
       glide.on('run.before', move => {
 
         // Don't move if control is disabled
-        if ($(this.next_detector).css("display") == "none") {
+        if (this.next_control.hasAttribute("disabled")) {
           if (move.direction == ">") {
             move.direction = null;
           }
         }
-        if ($(this.prev_detector).css("display") == "none") {
+        if (this.prev_detector.hasAttribute("disabled")) {
           if (move.direction == "<") {
             move.direction = null;
           }
@@ -224,12 +222,16 @@ class ShinyGlide {
           if ($.inArray(event.target, next_screenoutputs) != -1) {
             this.busy_screens += 1;
           }
+          console.log("invalidated")
+          console.log(this.busy_screens)
           this.update_loading_control(slide);
         });
         $(document).on('shiny:value', this.root, event => {
           if ($.inArray(event.target, next_screenoutputs) != -1) {
             this.busy_screens -= 1;
           }
+          console.log("value");
+          console.log(this.busy_screens)
           this.update_loading_control(slide);
         });
       }
