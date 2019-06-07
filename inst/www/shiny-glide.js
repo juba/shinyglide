@@ -17,28 +17,28 @@ class ShinyGlide {
 
   constructor(root) {
 
-  this.root = root;
+    this.root = root;
 
-  this.glide = null;
+    this.glide = null;
 
-  this.slides = root.querySelectorAll(".glide__slide");
-  this.next_label = root.getAttribute("data-next-label");
-  this.prev_label = root.getAttribute("data-prev-label");
-  this.loading_label = root.getAttribute("data-loading-label");
-  this.loading_class = root.getAttribute("data-loading-class");
-  this.disable_type = root.getAttribute("data-disable-type");
-  this.prev_control = root.getElementsByClassName("prev-screen")[0];
-  this.next_control = root.getElementsByClassName("next-screen")[0];
-  this.first_control = root.getElementsByClassName("first-screen")[0];
-  this.last_control = root.getElementsByClassName("last-screen")[0];
-  this.prev_detector = root.getElementsByClassName("prev-detector")[0];
-  this.next_detector = root.getElementsByClassName("next-detector")[0];
+    this.slides = root.querySelectorAll(".glide__slide");
+    this.next_label = root.getAttribute("data-next-label");
+    this.prev_label = root.getAttribute("data-prev-label");
+    this.loading_label = root.getAttribute("data-loading-label");
+    this.loading_class = root.getAttribute("data-loading-class");
+    this.disable_type = root.getAttribute("data-disable-type");
+    this.prev_control = root.getElementsByClassName("prev-screen")[0];
+    this.next_control = root.getElementsByClassName("next-screen")[0];
+    this.first_control = root.getElementsByClassName("first-screen")[0];
+    this.last_control = root.getElementsByClassName("last-screen")[0];
+    this.prev_detector = root.getElementsByClassName("prev-detector")[0];
+    this.next_detector = root.getElementsByClassName("next-detector")[0];
 
-  this.busy_screens = 0;
+    this.busy_screens = 0;
 
-  this.init(root);
+    this.init(root);
 
-}
+  }
 
     // Add observers to link detectors and controls
     init_detectors () {
@@ -116,6 +116,7 @@ class ShinyGlide {
 
       $(document).off('shiny:outputinvalidated', this.root);
       $(document).off('shiny:value', this.root);
+      this.update_labels(this.slides[0]);
 
       this.next_control.addEventListener("click", event => {
         if (!this.next_control.hasAttribute("disabled")) { this.glide.go(">") };
