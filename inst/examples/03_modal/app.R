@@ -3,7 +3,7 @@
 library(shiny)
 library(shinyglide)
 
-ui <- fluidPage(
+ui <- fixedPage(
 
   titlePanel("shinyglide modal example"),
   sidebarLayout(
@@ -22,21 +22,21 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
-  modal_controls <- fluidRow(
-    column(width = 6,
-      prevButton(),
-      tags$button(
-        class = "btn btn-danger first-screen",
-        `data-dismiss`="modal",
-        "No, thanks !"
-      )
-    ),
-    column(width = 6, class = "text-right",
-      nextButton(),
-      tags$button(
-        class = "btn btn-success last-screen",
-        `data-dismiss`="modal",
-        "Done"
+  modal_controls <- glideControls(
+      list(
+        prevButton(),
+        firstButton(
+          class = "btn btn-danger",
+          `data-dismiss`="modal",
+          "No, thanks !"
+        )
+      ),
+      list(
+        nextButton(),
+        lastButton(
+          class = "btn btn-success",
+          `data-dismiss`="modal",
+          "Done"
       )
     )
   )
