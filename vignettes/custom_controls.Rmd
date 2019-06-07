@@ -1,0 +1,219 @@
+---
+title: "Custom controls"
+author: "Julien Barnier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Custom controls}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Customizing labels
+
+If you want to keep the default controls but just changing the default labels, you can use the `previous_label` and `next_label` arguments of `glide()`. You can pass them any HTML or shiny tags combinations. For example :
+
+```{r eval=FALSE}
+ui <- fluidPage(
+  titlePanel("Basic shinyglide app"),
+  glide(
+    next_label = paste("Next screen", icon("play", lib = "glyphicon")),
+    previous_label = span(style = "opacity: 0.5;", "Go back"),
+    
+    screen(
+      p("Please choose a value for n :"),
+      numericInput("n", "n :", value = 100)
+    ),
+    screen(
+      p("Here is your plot :"),
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    hist(rnorm(input$n), main = paste("n =", input$n))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+You can also use the `controls_position` argument to place at the `"top"` or at the `"bottom"` of the glide.
+
+
+## Custom controls
+
+If you want to change more than the controls labels, you'll have to use your own custom controls. This is done by passing their definition to the `custom_controls` argument of the `glide()` function.
+
+To define custom controls, you can use one of the helpers functions :
+
+- `glideControls()` generates the default controls horizontal layout. It takes two arguments, the first one is the content of the "back" zone (on the left), the second one the content of the "next" zone (on the right).
+- `prevButton()` and `nextButton()` generate the default *Back* and *Next* controls. You can pass them custom CSS classes with their `class` argument.
+
+There is no obligation to use these helpers function, you ca build your own layout and controls. The only constraint is that the "back" control must have a `prev-screen` CSS class, and the "next" control a `next-screen` CSS class. Note that the labels of these controls are defined via the `next_label` and `previous_label` arguments of `glide()`.
+
+Here is an example which uses the `glideControls()` layout. Note that it is not necessary to add the required `prev-screen` class when using `prevButton()`.
+
+```{r eval=FALSE}
+controls <- glideControls(
+  prevButton(class = "btn btn-warning"),
+  tags$button(class = "btn btn-success next-screen")
+)
+
+ui <- fluidPage(
+  titlePanel("Basic shinyglide app"),
+  glide(
+    custom_controls = controls,
+    
+    screen(
+      p("Please choose a value for n :"),
+      numericInput("n", "n :", value = 100)
+    ),
+    screen(
+      p("Here is your plot :"),
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    hist(rnorm(input$n), main = paste("n =", input$n))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+And here is another example with a custom layout :
+
+```{r eval=FALSE}
+controls <- fluidRow(
+  div(class="col-xs-6 text-right",
+    prevButton(class = "btn btn-warning")
+  ),
+  div(class="col-xs-6 text-left",
+    nextButton(class = "btn btn-success")
+  )
+)
+
+ui <- fluidPage(
+  titlePanel("Basic shinyglide app"),
+  glide(
+    custom_controls = controls,
+    controls_position = "top",
+    next_label = "Go next",
+    previous_label = "Go back",
+    
+    screen(
+      p("This is a sample custom controls app")
+    ),
+    screen(
+      p("Please choose a value for n :"),
+      numericInput("n", "n :", value = 100)
+    ),
+    screen(
+      p("Here is your plot :"),
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    hist(rnorm(input$n), main = paste("n =", input$n))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+You can also take a look at the [sample custom controls app](https://data.nozav.org/app/shinyglide/04_custom_controls/
+) and at its [source code](https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R) to see a way to implement a rather different controls styling and positioning.
+
+
+## First and last buttons
+
+When using custom controls, you can define controls that will be shown only on the first and last screens. In general they are used in place of the *Back* and *Next* controls which are hidden on those screens.
+
+To do this, either manually define an element with a `first-screen` or `last-screen` CSS class, or use one of the two `firstButton()` or `lastButton()` helper functions.
+
+Here is an example :
+
+```{r eval = FALSE}
+controls <- glideControls(
+  list(
+    prevButton(class = "btn btn-warning"),
+    firstButton(class = "btn btn-danger", "First screen !")
+  ),
+  list(
+    nextButton(),
+    lastButton(
+      class = "btn btn-success", 
+      HTML(paste("Last screen...", icon("ok", lib = "glyphicon")))
+    )
+  )
+)
+
+ui <- fluidPage(
+  titlePanel("Basic shinyglide app"),
+  glide(
+    custom_controls = controls,
+    
+    screen(
+      p("Please choose a value for n :"),
+      numericInput("n", "n :", value = 100)
+    ),
+    screen(
+      p("Here is your plot :"),
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    hist(rnorm(input$n), main = paste("n =", input$n))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+
+## Custom controls in modal
+
+You can use a glide inside a Shiny modal dialog. This can be useful to create a sort of "assistant-like" interface is the modal is automatically shown at startup.
+
+In this case, when defining the custom modals for your modal glide, it is recommended to create a control with a ```data-dismiss``="modal"` attribute in order to close the modal at the start or at the end of the glide.
+
+Here is an example modal controls :
+
+```{r eval=FALSE}
+modal_controls <- glideControls(
+      list(
+        prevButton(),
+        firstButton(
+          class = "btn btn-danger",
+          `data-dismiss`="modal",
+          "No, thanks !"
+        )
+      ),
+      list(
+        nextButton(),
+        lastButton(
+          class = "btn btn-success",
+          `data-dismiss`="modal",
+          "Done"
+      )
+    )
+)
+```
+
+
+You can take a look at the [sample modal app](https://data.nozav.org/app/shinyglide/03_modal/) and at its [source code](https://github.com/juba/shinyglide/blob/master/inst/examples/03_modal/app.R) to see a full way to implement it.
+
+
+
