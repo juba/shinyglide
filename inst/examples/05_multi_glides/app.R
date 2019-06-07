@@ -3,7 +3,22 @@
 library(shiny)
 library(shinyglide)
 
+
+css <- "
+.container-fluid {
+  padding: 0 20px;
+}
+.shinyglide {
+  border: 1px solid #888;
+  box-shadow: 0px 0px 20px #888;
+  padding: 1em;
+}
+"
+
 ui <- fluidPage(
+  tags$head(
+    tags$style(css)
+  ),
   titlePanel("Multi-glides shinyglide app"),
   fluidRow(
     column(6,
