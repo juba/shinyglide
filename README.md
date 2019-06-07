@@ -21,7 +21,7 @@ The package is still in experimental stage, breaking changes could happen.
 
 ## Features
 
-- Navigation by mouse, keyboard, dragging, swiping
+- Responsive, navigation by mouse, keyboard, dragging, swiping
 - Controls are completely customizable ([live example](https://data.nozav.org/app/shinyglide/04_custom_controls/))
 - *Next* and *Back* controls can be disabled until an input condition is met (same syntax as `shiny::conditionalPanel`)
 - "Screens" can be generated or hidden depending on user inputs. Loading time are taken into accounts (disabled *Next* button and customizable animation)
