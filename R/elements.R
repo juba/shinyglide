@@ -194,8 +194,8 @@ glideDetectors <- function() {
 #' controls.
 #'
 #' @details
-#' `firstButton` is only shown on the first screen, where `prevButton` is hidden.
-#' `lastButton` is only shown on the last screen, where `nextButton` is hidden.
+#' `prevButton` is hidden on the first screen, while `nextButton` is hidden on
+#' the last one.
 #'
 #' @param label control label.
 #' @param class control CSS classes. The needed class is automatically added.
@@ -233,32 +233,47 @@ prevButton <- function(
 }
 
 
-#' @rdname nextButton
+#' Create a glide control only shown on first or last screen
+#'
+#' @param class CSS classes of the control. The needed class is automatically added.
+#' @param ... content of the control
+#'
+#' @detail
+#' These controls generate an `<a>` tag, so you can use `href` attributes.
+#'
+#' `firstButton``is only shown on the first screen of the app, and `finalButton` only
+#' on the last screen.
+#'
+#' @example
+#' firstButton("Go to website", href = "https://example.com", class = "btn btn-primary")
+#'
 #' @export
 
-firstButton <- function(label, class = c("btn", "btn-default")
-  ) {
+firstButton <- function(class = c("btn", "btn-default"), ...) {
 
   class <- paste(union(class, "first-screen"), collapse = " ")
 
-  tags$button(
-    class = class,
-    HTML(label)
+  shiny::tag("a",
+    list(
+      class = class,
+      ...
+    )
   )
 }
 
 
-#' @rdname nextButton
+#' @rdname firstButton
 #' @export
 
-lastButton <- function(label, class = c("btn", "btn-success")
-  ) {
+lastButton <- function(class = c("btn", "btn-success"), ...) {
 
   class <- paste(union(class, "last-screen"), collapse = " ")
 
-  tags$button(
-    class = class,
-    HTML(label)
+  shiny::tag("a",
+    list(
+      class = class,
+      ...
+    )
   )
 }
 
