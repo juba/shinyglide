@@ -224,7 +224,7 @@ class ShinyGlide {
         });
         $(document).on('shiny:value', this.root, event => {
           if ($.inArray(event.target, next_screenoutputs) != -1) {
-            this.busy_screens -= 1;
+            if(this.busy_screens > 0) this.busy_screens -= 1;
           }
           this.update_loading_control(slide);
         });
