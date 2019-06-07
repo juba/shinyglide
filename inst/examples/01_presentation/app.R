@@ -31,6 +31,10 @@ body {
   padding: 1em 2em 2em 2em;
 }
 
+.glide__slide img {
+  max-width: 100%;
+}
+
 .bg-info {
   margin-top: 2em;
   padding: 5px;
