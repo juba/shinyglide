@@ -144,7 +144,7 @@ ui <- fluidPage(
           h3("That's about it !"),
 
           p(HTML("Thanks for your attention. If you want to learn more and see other example apps, you can go to the "), a(href="https://github.com/juba/shinyglide/", "project website.")),
-          p(HTML("You can also take a look at ", a(href="https://github.com/juba/shinyglide/blob/master/inst/examples/01_presentation/app.R", "this application source code.")))
+          p(HTML("You can also take a look at "), a(href="https://github.com/juba/shinyglide/blob/master/inst/examples/01_presentation/app.R", "this application source code."))
       )
     )
   )
