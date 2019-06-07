@@ -4,11 +4,14 @@ library(shiny)
 library(shinyglide)
 
 ui <- fixedPage(style = "max-width: 500px;",
-  h3("Simple shinyglide app"),
+  titlePanel("Simple shinyglide app"),
+
   glide(
     height = "350px",
     screen(
       p("This is a very simple shinyglide application."),
+      p("It's source code is ",
+        tags$a(href = "https://github.com/juba/shinyglide/blob/master/inst/examples/02_simple/app.R", "available on GitHub.")),
       p("Please click on Next to go to the next screen.")
     ),
     screen(
