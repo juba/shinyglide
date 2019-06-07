@@ -5,15 +5,11 @@
 \alias{prevButton}
 \title{Code for the default controls}
 \usage{
-nextButton(label = paste("Next", shiny::icon("chevron-right", lib =
-  "glyphicon")), class = c("btn", "btn-primary"))
+nextButton(class = c("btn", "btn-primary"))
 
-prevButton(label = paste(shiny::icon("chevron-left", lib = "glyphicon"),
-  "Back"), class = c("btn", "btn-default"))
+prevButton(class = c("btn", "btn-default"))
 }
 \arguments{
-\item{label}{control label.}
-
 \item{class}{control CSS classes. The needed class is automatically added.}
 }
 \description{
@@ -23,4 +19,9 @@ controls.
 \details{
 \code{prevButton} is hidden on the first screen, while \code{nextButton} is hidden on
 the last one.
+The buttons labels are set with the \code{next_label} and \code{previous_label}
+arguments of \code{glide()}.
+}
+\seealso{
+glide
 }
