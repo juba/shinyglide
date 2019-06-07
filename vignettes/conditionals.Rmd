@@ -1,0 +1,158 @@
+---
+title: "Conditional controls and screen output"
+author: "Julien Barnier"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Conditional controls and screen output}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+## Conditional controls
+
+Sometimes you don't want your user to be able to go to the next screen if a condition based on inputs is not met. This can be done in `shinyglide` with the `next_condition` argument of the `screen` function. This option takes exactly the same syntax has the one used in `shiny::conditionalPanel`.
+
+For example, in the following app, the *Next* button is disabled until the *n* value is greater then zero :
+
+```{r eval = FALSE}
+ui <- fluidPage(
+  glide(
+    screen(
+      next_condition = "input.n > 0",
+      
+      p("Please choose a value for n :"),
+      numericInput("n", "n :", value = 0)
+    ),
+    screen(
+      p("Here is your plot :"),
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    hist(rnorm(input$n), main = paste("n =", input$n))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+You can do the same for the *Back* button with the `previous_condition` argument.
+
+By default the button is disabled when the condition is not met (more precisely, the button gets a `disabled = "disabled"` argument and a `disabled` CSS class). If you prefer to hide it entirely, you can add `disable_type = "hide"` to your `glide()` definition :
+
+```{r eval = FALSE}
+ui <- fluidPage(
+  glide(
+    disable_type = "hide",
+    
+    screen(
+      next_condition = "input.n > 0",
+      
+      p("Please choose a value for n :"),
+      numericInput("n", "n :", value = 0)
+    ),
+    screen(
+      p("Here is your plot :"),
+      plotOutput("plot")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    hist(rnorm(input$n), main = paste("n =", input$n))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+## Screen output
+
+Sometimes you want to show a screen only if certain conditions are met based on inputs. For example, if a user chooses a value which is not present in a dataset, you would like to display a specific screen to alert him.
+
+This is possible by using a `screenOutput` call in you app UI, associated to a `renderUI` in your app server. If `renderUI` returns `NULL`, the screen will be hidden.
+
+Here is an example :
+
+```{r eval = FALSE}
+ui <- fluidPage(
+  glide(
+    disable_type = "hide",
+    
+    screen(
+      p("Do you want to see the next screen ?"),
+      checkboxInput("check", "Yes, of course !", value = FALSE)
+    ),
+    screenOutput("check_screen"),
+    screen(
+      p("And this is the last screen")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$check_screen <- renderUI({
+    if(!input$check) return(NULL)
+    p("Here it is !")
+  })
+  outputOptions(output, "check_screen", suspendWhenHidden = FALSE)
+}
+
+shinyApp(ui, server)
+```
+
+**Important :** for the `screenOutput` to work, it is mandatory to add the following line in your app server :
+
+```{r eval=FALSE}
+outputOptions(output, "your_screen_id", suspendWhenHidden = FALSE)
+```
+
+Otherwise, it won't be updated when hidden.
+
+Sometimes the `screenOutput` computation takes some time. In these cases, with the default controls, the *Next* button is disabled and a *Loading* message is shown until the next screens computations is done. You can see it in the following example, which is the same as the previous one but with an articial 2 seconds waiting time :
+
+```{r eval = FALSE}
+ui <- fluidPage(
+  glide(
+    disable_type = "hide",
+    
+    screen(
+      p("Do you want to see the next screen ?"),
+      checkboxInput("check", "Yes, of course !", value = FALSE)
+    ),
+    screenOutput("check_screen"),
+    screen(
+      p("And this is the last screen")
+    )
+  )
+)
+
+server <- function(input, output, session) {
+  output$check_screen <- renderUI({
+    Sys.sleep(2)
+    if(!input$check) return(NULL)
+    p("Here it is !")
+  })
+  outputOptions(output, "check_screen", suspendWhenHidden = FALSE)
+}
+
+shinyApp(ui, server)
+```
+
+
+### Customizing loading
+
+You can customize the loading label and animation with options passed to `glide()` :
+
+- `loading_class` (default value : `"loading"`) : a CSS class passed to the *Next* button when in loading state
+- `loading_label` : the label of the *Next* button while in loading state. This can be any HTML, and you can insert a `span(class = "shinyglide-spinner")` in it if you want to display the defautl animated spinner somewhere.
+
+You can take a look at the [custom controls sample app](https://data.nozav.org/app/shinyglide/04_custom_controls/) for an example of loading customization with [custom controls](https://juba.github.io/shinyglide/articles/custom_controls.html) and CSS.
+
+
