@@ -112,8 +112,6 @@ class ShinyGlide {
 
       $(this.prev_control).hide()
 
-      $(document).off('shiny:outputinvalidated', this.root);
-      $(document).off('shiny:value', this.root);
       this.update_labels(this.slides[0]);
 
       this.next_control.addEventListener("click", event => {
@@ -214,7 +212,7 @@ class ShinyGlide {
       var index = next_screenoutputs
                   .toArray()
                   .findIndex(element => !$(element).hasClass("shiny-html-output"));
-      if (index == -1) { index = 0 };
+      if (index == -1) { index = 0 }
       next_screenoutputs = next_screenoutputs.toArray().slice(0, index);
 
       if (next_screenoutputs.length > 0) {
