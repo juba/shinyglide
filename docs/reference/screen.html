@@ -78,6 +78,24 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/01_introduction.html">Introduction to shinyglide</a>
+    </li>
+    <li>
+      <a href="../articles/02_conditionals.html">Conditional controls and screen output</a>
+    </li>
+    <li>
+      <a href="../articles/03_custom_controls.html">Custom controls</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -113,8 +131,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>screen</span>(<span class='no'>...</span>, <span class='kw'>next_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prev_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>next_condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prev_condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>screen</span>(<span class='no'>...</span>, <span class='kw'>next_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>previous_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>next_condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>previous_condition</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,7 +147,7 @@
 use the default one for the current glide.</p></td>
     </tr>
     <tr>
-      <th>prev_label</th>
+      <th>previous_label</th>
       <td><p>specific label of the "back" control for this screen. If <code>NULL</code>,
 use the default one for the current glide.</p></td>
     </tr>
@@ -139,7 +157,7 @@ use the default one for the current glide.</p></td>
 as <code><a href='https://www.rdocumentation.org/packages/shiny/topics/conditionalPanel'>shiny::conditionalPanel</a></code>.</p></td>
     </tr>
     <tr>
-      <th>prev_condition</th>
+      <th>previous_condition</th>
       <td><p>condition for the "back" control to be enabled. Same syntax
 as <code><a href='https://www.rdocumentation.org/packages/shiny/topics/conditionalPanel'>shiny::conditionalPanel</a></code>.</p></td>
     </tr>

@@ -79,6 +79,24 @@ controls." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/01_introduction.html">Introduction to shinyglide</a>
+    </li>
+    <li>
+      <a href="../articles/02_conditionals.html">Conditional controls and screen output</a>
+    </li>
+    <li>
+      <a href="../articles/03_custom_controls.html">Custom controls</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -115,23 +133,13 @@ controls.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>nextButton</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='st'>"Next"</span>, <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"chevron-right"</span>, <span class='kw'>lib</span> <span class='kw'>=</span>
-  <span class='st'>"glyphicon"</span>)), <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"btn"</span>, <span class='st'>"btn-primary"</span>))
+    <pre class="usage"><span class='fu'>nextButton</span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"btn"</span>, <span class='st'>"btn-primary"</span>))
 
-<span class='fu'>prevButton</span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://www.rdocumentation.org/packages/shiny/topics/icon'>icon</a></span>(<span class='st'>"chevron-left"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='st'>"glyphicon"</span>),
-  <span class='st'>"Back"</span>), <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"btn"</span>, <span class='st'>"btn-default"</span>))
-
-<span class='fu'>firstButton</span>(<span class='no'>label</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"btn"</span>, <span class='st'>"btn-default"</span>))
-
-<span class='fu'>lastButton</span>(<span class='no'>label</span>, <span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"btn"</span>, <span class='st'>"btn-success"</span>))</pre>
+<span class='fu'>prevButton</span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"btn"</span>, <span class='st'>"btn-default"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>label</th>
-      <td><p>control label.</p></td>
-    </tr>
     <tr>
       <th>class</th>
       <td><p>control CSS classes. The needed class is automatically added.</p></td>
@@ -140,8 +148,14 @@ controls.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>firstButton</code> is only shown on the first screen, where <code>prevButton</code> is hidden.
-<code>lastButton</code> is only shown on the last screen, where <code>nextButton</code> is hidden.</p>
+    <p><code>prevButton</code> is hidden on the first screen, while <code>nextButton</code> is hidden on
+the last one.
+The buttons labels are set with the <code>next_label</code> and <code>previous_label</code>
+arguments of <code><a href='glide.html'>glide()</a></code>.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>glide</p></div>
     
 
   </div>
@@ -151,6 +165,8 @@ controls.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>

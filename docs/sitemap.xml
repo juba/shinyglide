@@ -4,7 +4,13 @@
     <loc>https://juba.github.io/shinyglide//index.html</loc>
   </url>
   <url>
+    <loc>https://juba.github.io/shinyglide//reference/firstButton.html</loc>
+  </url>
+  <url>
     <loc>https://juba.github.io/shinyglide//reference/glide.html</loc>
+  </url>
+  <url>
+    <loc>https://juba.github.io/shinyglide//reference/glideControls.html</loc>
   </url>
   <url>
     <loc>https://juba.github.io/shinyglide//reference/nextButton.html</loc>
@@ -14,5 +20,14 @@
   </url>
   <url>
     <loc>https://juba.github.io/shinyglide//reference/screenOutput.html</loc>
+  </url>
+  <url>
+    <loc>https://juba.github.io/shinyglide//articles/01_introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://juba.github.io/shinyglide//articles/02_conditionals.html</loc>
+  </url>
+  <url>
+    <loc>https://juba.github.io/shinyglide//articles/03_custom_controls.html</loc>
   </url>
 </urlset>
