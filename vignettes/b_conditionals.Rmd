@@ -153,6 +153,6 @@ You can customize the loading label and animation with options passed to `glide(
 - `loading_class` (default value : `"loading"`) : a CSS class passed to the *Next* button when in loading state
 - `loading_label` : the label of the *Next* button while in loading state. This can be any HTML, and you can insert a `span(class = "shinyglide-spinner")` in it if you want to display the defautl animated spinner somewhere.
 
-You can take a look at the [custom controls sample app](https://data.nozav.org/app/shinyglide/04_custom_controls/) for an example of loading customization with [custom controls](https://juba.github.io/shinyglide/articles/custom_controls.html) and CSS.
+You can take a look at the [custom controls sample app](https://data.nozav.org/app/shinyglide/04_custom_controls/) for an example of loading customization with [custom controls](https://juba.github.io/shinyglide/articles/c_custom_controls.html) and CSS.
 
 

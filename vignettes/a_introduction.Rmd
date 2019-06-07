@@ -71,7 +71,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-You can see that default controls are added to your glide in the form of a "next" button (which doesn't appear on last screen) and a "back" button (which doesn't appear on the first one). There are different ways to customize these controls, which are explained in the [custom controls](https://juba.github.io/shinyglide/articles/custom_controls.html) vignette.
+You can see that default controls are added to your glide in the form of a "next" button (which doesn't appear on last screen) and a "back" button (which doesn't appear on the first one). There are different ways to customize these controls, which are explained in the [custom controls](https://juba.github.io/shinyglide/articles/c_custom_controls.html) vignette.
 
 
 ## Customizing glide
@@ -83,7 +83,7 @@ The `glide()` function accepts several arguments to modify its behavior or appea
 - `controls_position` : wether to place the controls on `"top"` or `"bottom"` of the glide.
 - `next_label`, `previous_label` : allow to specify custom labels for the "Back" and "Next" buttons. You can use text, HTML, `icon()`, etc.
 
-The `loading_label`, `label_class` and `disable_type` options will be described in the [conditional controls and screen output](https://juba.github.io/shinyglide/articles/conditionals.html) vignette, and the `custom_controls` argument is explained in the [custom controls](https://juba.github.io/shinyglide/articles/custom_controls.html) vignette.
+The `loading_label`, `label_class` and `disable_type` options will be described in the [conditional controls and screen output](https://juba.github.io/shinyglide/articles/b_conditionals.html) vignette, and the `custom_controls` argument is explained in the [custom controls](https://juba.github.io/shinyglide/articles/c_custom_controls.html) vignette.
 
 Here is an example of glide customization :
 
@@ -124,7 +124,7 @@ You can also use arguments with `screen()` :
 - `class` : allows to add a CSS class to the current screen
 - `next_label`, `previous_label` : change the "back" and "next" controls labels for this screen
 
-The `next_condition` and `previous_condition` arguments are explained in the [conditional inputs and screen outputs](https://juba.github.io/shinyglide/articles/conditionals.html)
+The `next_condition` and `previous_condition` arguments are explained in the [conditional inputs and screen outputs](https://juba.github.io/shinyglide/articles/b_conditionals.html)
  vignette.
  
 
