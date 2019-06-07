@@ -15,14 +15,13 @@ format_code <- function(code) {
 }
 
 controls <- fluidRow(
-  column(width = 6,
+  div(class = "col-xs-6",
     prevButton()
   ),
-  column(width = 6, class = "text-right",
+  div(class = "col-xs-6 text-right",
     nextButton(),
     tags$a(
       class="btn btn-success last-screen",
-      style="display: none",
       href="https://github.com/juba/shinyglide",
       "Go to project website"
     )
