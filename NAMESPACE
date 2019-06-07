@@ -2,6 +2,7 @@
 
 export(firstButton)
 export(glide)
+export(glideControls)
 export(lastButton)
 export(nextButton)
 export(prevButton)

@@ -62,7 +62,10 @@ glide <- function(...,
   controls_position <- match.arg(controls_position)
 
   controls <- if(is.null(custom_controls)) {
-    glideControls(previous_label, next_label)
+    glideControls(
+      prevButton(previous_label),
+      nextButton(next_label)
+    )
   } else {
     custom_controls
   }
@@ -167,13 +170,34 @@ screen <- function(...,
 }
 
 
-glideControls <- function(previous_label, next_label) {
+
+
+#' Default controls layout
+#'
+#' Creates an horizontal layout with both "previous" and "next" contents
+#' side by side.
+#'
+#' @param previous_content Content of the "previous" (left) zone.
+#' @param next_content Content of the "next" (right) zone.
+#'
+#' @export
+#'
+#' @examples
+#' glideControls(
+#'   prevButton("Back"),
+#'   list(
+#'     lastButton(href = "https://example.com", "Go to website"),
+#'     nextButton("Next")
+#'   )
+#' )
+
+glideControls <- function(previous_content, next_content) {
   fluidRow(
     tags$div(class="col-xs-6",
-      prevButton(previous_label)
+      previous_content
     ),
     tags$div(class="col-xs-6 text-right",
-      nextButton(next_label)
+      next_content
     )
   )
 }
