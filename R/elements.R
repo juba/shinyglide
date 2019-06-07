@@ -109,11 +109,11 @@ glide <- function(...,
 #'
 #' @param next_label specific label of the "next" control for this screen. If `NULL`,
 #' use the default one for the current glide.
-#' @param prev_label specific label of the "back" control for this screen. If `NULL`,
+#' @param previous_label specific label of the "back" control for this screen. If `NULL`,
 #' use the default one for the current glide.
 #' @param next_condition condition for the "next" control to be enabled. Same syntax
 #' as `shiny::conditionalPanel`.
-#' @param prev_condition condition for the "back" control to be enabled. Same syntax
+#' @param previous_condition condition for the "back" control to be enabled. Same syntax
 #' as `shiny::conditionalPanel`.
 #' @param class screen CSS classes. `glide__slide` is automatically added.
 #' @param ... content of the screen.
@@ -150,9 +150,9 @@ glide <- function(...,
 
 screen <- function(...,
   next_label = NULL,
-  prev_label = NULL,
+  previous_label = NULL,
   next_condition = NULL,
-  prev_condition = NULL,
+  previous_condition = NULL,
   class = NULL) {
 
   class <- paste(union(class, "glide__slide"), collapse = " ")
@@ -160,9 +160,9 @@ screen <- function(...,
   shiny::tag("li",
     list(
       class = class,
-      `data-prev-label` = prev_label,
+      `data-prev-label` = previous_label,
       `data-next-label` = next_label,
-      `data-prev-condition` = prev_condition,
+      `data-prev-condition` = previous_condition,
       `data-next-condition` = next_condition,
       list(...)
     )
@@ -262,13 +262,13 @@ prevButton <- function(
 #' @param class CSS classes of the control. The needed class is automatically added.
 #' @param ... content of the control
 #'
-#' @detail
+#' @details
 #' These controls generate an `<a>` tag, so you can use `href` attributes.
 #'
 #' `firstButton``is only shown on the first screen of the app, and `finalButton` only
 #' on the last screen.
 #'
-#' @example
+#' @examples
 #' firstButton("Go to website", href = "https://example.com", class = "btn btn-primary")
 #'
 #' @export

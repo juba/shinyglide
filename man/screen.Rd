@@ -4,8 +4,8 @@
 \alias{screen}
 \title{Screen creation}
 \usage{
-screen(..., next_label = NULL, prev_label = NULL,
-  next_condition = NULL, prev_condition = NULL, class = NULL)
+screen(..., next_label = NULL, previous_label = NULL,
+  next_condition = NULL, previous_condition = NULL, class = NULL)
 }
 \arguments{
 \item{...}{content of the screen.}
@@ -13,13 +13,13 @@ screen(..., next_label = NULL, prev_label = NULL,
 \item{next_label}{specific label of the "next" control for this screen. If \code{NULL},
 use the default one for the current glide.}
 
-\item{prev_label}{specific label of the "back" control for this screen. If \code{NULL},
+\item{previous_label}{specific label of the "back" control for this screen. If \code{NULL},
 use the default one for the current glide.}
 
 \item{next_condition}{condition for the "next" control to be enabled. Same syntax
 as \code{shiny::conditionalPanel}.}
 
-\item{prev_condition}{condition for the "back" control to be enabled. Same syntax
+\item{previous_condition}{condition for the "back" control to be enabled. Same syntax
 as \code{shiny::conditionalPanel}.}
 
 \item{class}{screen CSS classes. \code{glide__slide} is automatically added.}
