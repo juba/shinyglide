@@ -114,6 +114,9 @@ class ShinyGlide {
 
       $(this.prev_control).hide()
 
+      $(document).off('shiny:outputinvalidated', this.root);
+      $(document).off('shiny:value', this.root);
+
       this.next_control.addEventListener("click", event => {
         if (!this.next_control.hasAttribute("disabled")) { this.glide.go(">") };
       });
