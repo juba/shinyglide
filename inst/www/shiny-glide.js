@@ -73,7 +73,8 @@ class ShinyGlide {
     init_glide() {
       var glide = new Glide(this.root, {
         rewind: false,
-        keyboard: true
+        keyboard: true,
+        dragThreshold: false
       }).mount();
 
       glide.on('run.before', move => {

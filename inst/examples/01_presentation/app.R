@@ -62,7 +62,7 @@ ui <- fluidPage(
           h3("shinyglide presentation app"),
           p(HTML("This is an presentation app of <code>shinyglide</code>, an R package to make carousel-like or assistant-like or younameit-like <a href='https://shiny.rstudio.com/'>shiny apps</a>.")),
           p("Did you already install a program on Windows ? Yup, this is the same thing."),
-          p(HTML("To continue, click <em>Next</em>, use keyboard arrows, drag with your mouse, or swipe if you're on mobile."))
+          p(HTML("To continue, click <em>Next</em>, use keyboard arrows, or swipe if you're on mobile."))
         ),
 
 
