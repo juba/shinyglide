@@ -1,6 +1,6 @@
 Package: shinyglide
 Type: Package
-Title: Glide Component For Shiny Applications
+Title: Glide Component for Shiny Applications
 Version: 0.1
 Date: 2019-07-01
 Authors@R: c(
