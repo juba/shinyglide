@@ -258,24 +258,23 @@ class ShinyGlide {
 
 
 
-$(document).ready(function () {
+$(function () {
 
-  $(".shinyglide").each(function(index) {
-    new ShinyGlide(this);
-  });
-
-  // If the glide is in a shiny modal and it is not shown yet,
-  // wait for it to be shown otherwise dimensions are incorrect
-  $(document).on('shiny:idle', e => {
-    var modal_wrapper = document.getElementById('shiny-modal-wrapper');
-    var shiny_modal = $(modal_wrapper).find("#shiny-modal");
-    shiny_modal.on("shown.bs.modal", () => {
-      shiny_modal.find('.shinyglide').each(function(i, el)  {
-          new ShinyGlide(el);
-      });
-      shiny_modal.off("shown.bs.modal");
+    $(".shinyglide").each(function(index) {
+	new ShinyGlide(this);
     });
-  });
+
+    // If the glide is in a shiny modal and it is not shown yet,
+    // wait for it to be shown otherwise dimensions are incorrect
+    $(document).on('shiny:idle', e => {
+	var modal_wrapper = document.getElementById('shiny-modal-wrapper');
+	var shiny_modal = $(modal_wrapper).find("#shiny-modal");
+	shiny_modal.on("shown.bs.modal", () => {
+	    shiny_modal.find('.shinyglide').each(function(i, el)  {
+		new ShinyGlide(el);
+	    });
+	});
+    });
 
 });
 
