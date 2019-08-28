@@ -1,13 +1,13 @@
 // Source : https://stackoverflow.com/questions/38881301/observe-mutations-on-a-target-node-that-doesnt-exist-yet
 function waitForAddedNode(params) {
   new MutationObserver(function (mutations) {
-    var el = document.getElementsByClassName(params.class)[0];
+    var el = params.parent.getElementsByClassName(params.class)[0];
     if (el) {
       this.disconnect();
       params.done(el);
     }
-  }).observe(params.parent || document, {
-    subtree: !!params.recursive,
+  }).observe(document, {
+    subtree: true,
     childList: true,
   });
 }
@@ -285,7 +285,6 @@ $(document).ready(function () {
     waitForAddedNode({
       class: 'shinyglide',
       parent: modal_wrapper,
-      recursive: false,
       done: function (el) {
         var shiny_modal = $(modal_wrapper).find("#shiny-modal");
         shiny_modal.on("shown.bs.modal", () => {
