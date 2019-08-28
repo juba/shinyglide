@@ -33,25 +33,25 @@ class ShinyGlide {
       $(this.prev_detector).on('hide', () => {
         this.prev_control.setAttribute("disabled", "disabled");
         this.prev_control.classList.add("disabled");
-      })
+      });
       $(this.prev_detector).on('show', () => {
         this.prev_control.removeAttribute("disabled");
         this.prev_control.classList.remove("disabled");
-      })
+      });
       $(this.next_detector).on('hide', () => {
         this.next_control.setAttribute("disabled", "disabled");
         this.next_control.classList.add("disabled");
-      })
+      });
       $(this.next_detector).on('show', () => {
         this.next_control.removeAttribute("disabled");
         this.next_control.classList.remove("disabled");
-      })
+      });
       // Hide controls
       if (this.disable_type == "hide") {
-        $(this.prev_detector).on('hide', () => { $(this.prev_control).hide(); })
-        $(this.prev_detector).on('show', () => { $(this.prev_control).show(); })
-        $(this.next_detector).on('hide', () => { $(this.next_control).hide(); })
-        $(this.next_detector).on('show', () => { $(this.next_control).show(); })
+          $(this.prev_detector).on('hide', () => { $(this.prev_control).hide(); });
+          $(this.prev_detector).on('show', () => { $(this.prev_control).show(); });
+          $(this.next_detector).on('hide', () => { $(this.next_control).hide(); });
+          $(this.next_detector).on('show', () => { $(this.next_control).show(); });
       }
     }
 
@@ -83,8 +83,8 @@ class ShinyGlide {
           } else {
             slide.classList.remove("shinyglide-hidden");
           }
-        })
-      })
+        });
+      });
 
       glide.on('run.after', move => {
         this.update_controls();
@@ -103,10 +103,10 @@ class ShinyGlide {
       this.update_labels(this.slides[0]);
 
       this.next_control.addEventListener("click", event => {
-        if (!this.next_control.hasAttribute("disabled")) { this.glide.go(">") };
+          if (!this.next_control.hasAttribute("disabled")) { this.glide.go(">"); };
       });
       this.prev_control.addEventListener("click", event => {
-        if (!this.prev_control.hasAttribute("disabled")) { this.glide.go("<") };
+          if (!this.prev_control.hasAttribute("disabled")) { this.glide.go("<"); };
       });
 
       this.init_detectors();
@@ -274,8 +274,8 @@ $(document).ready(function () {
           new ShinyGlide(el);
       });
       shiny_modal.off("shown.bs.modal");
-    })
-  })
+    });
+  });
 
 });
 
