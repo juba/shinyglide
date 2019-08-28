@@ -1,17 +1,3 @@
-// Source : https://stackoverflow.com/questions/38881301/observe-mutations-on-a-target-node-that-doesnt-exist-yet
-function waitForAddedNode(params) {
-  new MutationObserver(function (mutations) {
-    var el = params.parent.getElementsByClassName(params.class)[0];
-    if (el) {
-      this.disconnect();
-      params.done(el);
-    }
-  }).observe(document, {
-    subtree: true,
-    childList: true,
-  });
-}
-
 
 class ShinyGlide {
 
@@ -278,22 +264,18 @@ $(document).ready(function () {
     new ShinyGlide(this);
   });
 
-  // If the glide is in a shiny modal, wait for it to
-  // be shown otherwise dimensions are incorrect
-  var modal_wrapper = document.getElementById('shiny-modal-wrapper');
-  if (modal_wrapper !== null) {
-    waitForAddedNode({
-      class: 'shinyglide',
-      parent: modal_wrapper,
-      done: function (el) {
-        var shiny_modal = $(modal_wrapper).find("#shiny-modal");
-        shiny_modal.on("shown.bs.modal", () => {
+  // If the glide is in a shiny modal and it is not shown yet,
+  // wait for it to be shown otherwise dimensions are incorrect
+  $(document).on('shiny:idle', e => {
+    var modal_wrapper = document.getElementById('shiny-modal-wrapper');
+    var shiny_modal = $(modal_wrapper).find("#shiny-modal");
+    shiny_modal.on("shown.bs.modal", () => {
+      shiny_modal.find('.shinyglide').each(function(i, el)  {
           new ShinyGlide(el);
-          shiny_modal.off("shown.bs.modal");
-        })
-      }
+      });
+      shiny_modal.off("shown.bs.modal");
     })
-  }
+  })
 
 });
 
