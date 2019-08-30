@@ -256,10 +256,14 @@ class ShinyGlide {
 
   }
 
+// Only run setup once
+var shinyglide_setup_has_run = false;
 
 
-$(function () {
-
+function setup() {
+    
+    if (shinyglide_setup_has_run) { return; }
+    
     $(".shinyglide").each(function(index) {
 	new ShinyGlide(this);
     });
@@ -276,6 +280,21 @@ $(function () {
 	});
     });
 
+    shinyglide_setup_has_run = true;
+    $(document).off("shiny:message");    
+}
+
+
+// When an observer is running, the "ready" event is not fired when
+// this JavaScript is run, so we add a listener to shiny:message and
+// keep whichever comes first
+
+$(document).on("shiny:message", e => {
+    setup();
+});
+
+$(function () {
+    setup();
 });
 
 
