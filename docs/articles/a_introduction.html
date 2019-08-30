@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyglide</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
       <h1>Introduction to shinyglide</h1>
                         <h4 class="author">Julien Barnier</h4>
             
-            <h4 class="date">2019-06-07</h4>
+            <h4 class="date">2019-08-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/a_introduction.Rmd"><code>vignettes/a_introduction.Rmd</code></a></small>
       <div class="hidden name"><code>a_introduction.Rmd</code></div>
@@ -147,7 +147,7 @@
 <a class="sourceLine" id="cb3-19" data-line-number="19">}</a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"></a>
 <a class="sourceLine" id="cb3-21" data-line-number="21"><span class="kw">shinyApp</span>(ui, server)</a></code></pre></div>
-<p>You can see that default controls are added to your glide in the form of a “next” button (which doesn’t appear on last screen) and a “back” button (which doesn’t appear on the first one). There are different ways to customize these controls, which are explained in the <a href="https://juba.github.io/shinyglide/articles/custom_controls.html">custom controls</a> vignette.</p>
+<p>You can see that default controls are added to your glide in the form of a “next” button (which doesn’t appear on last screen) and a “back” button (which doesn’t appear on the first one). There are different ways to customize these controls, which are explained in the <a href="https://juba.github.io/shinyglide/articles/c_custom_controls.html">custom controls</a> vignette.</p>
 </div>
 <div id="customizing-glide" class="section level2">
 <h2 class="hasAnchor">
@@ -163,7 +163,7 @@
 <li>
 <code>next_label</code>, <code>previous_label</code> : allow to specify custom labels for the “Back” and “Next” buttons. You can use text, HTML, <code>icon()</code>, etc.</li>
 </ul>
-<p>The <code>loading_label</code>, <code>label_class</code> and <code>disable_type</code> options will be described in the <a href="https://juba.github.io/shinyglide/articles/conditionals.html">conditional controls and screen output</a> vignette, and the <code>custom_controls</code> argument is explained in the <a href="https://juba.github.io/shinyglide/articles/custom_controls.html">custom controls</a> vignette.</p>
+<p>The <code>loading_label</code>, <code>label_class</code> and <code>disable_type</code> options will be described in the <a href="https://juba.github.io/shinyglide/articles/b_conditionals.html">conditional controls and screen output</a> vignette, and the <code>custom_controls</code> argument is explained in the <a href="https://juba.github.io/shinyglide/articles/c_custom_controls.html">custom controls</a> vignette.</p>
 <p>Here is an example of glide customization :</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="kw"><a href="../reference/glide.html">glide</a></span>(</a>
@@ -202,7 +202,7 @@
 <li>
 <code>next_label</code>, <code>previous_label</code> : change the “back” and “next” controls labels for this screen</li>
 </ul>
-<p>The <code>next_condition</code> and <code>previous_condition</code> arguments are explained in the <a href="https://juba.github.io/shinyglide/articles/conditionals.html">conditional inputs and screen outputs</a> vignette.</p>
+<p>The <code>next_condition</code> and <code>previous_condition</code> arguments are explained in the <a href="https://juba.github.io/shinyglide/articles/b_conditionals.html">conditional inputs and screen outputs</a> vignette.</p>
 </div>
 <div id="in-app-controls" class="section level2">
 <h2 class="hasAnchor">
