@@ -71,7 +71,7 @@ class ShinyGlide {
             move.direction = null;
           }
         }
-        if (this.prev_detector.hasAttribute("disabled")) {
+        if (this.prev_control.hasAttribute("disabled")) {
           if (move.direction == "<") {
             move.direction = null;
           }
@@ -261,9 +261,9 @@ var shinyglide_setup_has_run = false;
 
 
 function setup() {
-    
+
     if (shinyglide_setup_has_run) { return; }
-    
+
     $(".shinyglide").each(function(index) {
 	new ShinyGlide(this);
     });
@@ -281,7 +281,7 @@ function setup() {
     });
 
     shinyglide_setup_has_run = true;
-    $(document).off("shiny:message");    
+    $(document).off("shiny:message");
 }
 
 
