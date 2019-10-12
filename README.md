@@ -17,8 +17,6 @@ Or can be integrated into an existing app to create an "assistant-like" interfac
 
 ![](man/figures/shinyglide_modal.gif)
 
-The package is still in experimental stage, breaking changes could happen.
-
 
 ## Features
 
