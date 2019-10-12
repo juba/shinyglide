@@ -31,7 +31,13 @@ The package is still in experimental stage, breaking changes could happen.
 
 ## Installation
 
-The package is not on CRAN yet. You can install the development version with :
+You can install the stable version with :
+
+```r
+install.packages("shinyglide")
+```
+
+And the development version with :
 
 ```r
 remotes::install_github("juba/shinyglide")
