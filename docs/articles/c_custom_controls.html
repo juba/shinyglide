@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Custom controls • shinyglide</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Custom controls">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -70,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/juba/shinyglide">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -83,13 +84,14 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Custom controls</h1>
                         <h4 class="author">Julien Barnier</h4>
             
-            <h4 class="date">2019-08-30</h4>
+            <h4 class="date">2019-10-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/c_custom_controls.Rmd"><code>vignettes/c_custom_controls.Rmd</code></a></small>
       <div class="hidden name"><code>c_custom_controls.Rmd</code></div>
@@ -105,7 +107,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">titlePanel</span>(<span class="st">"Basic shinyglide app"</span>),</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw"><a href="../reference/glide.html">glide</a></span>(</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">next_label =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Next screen"</span>, <span class="kw">icon</span>(<span class="st">"play"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>)),</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">    <span class="dt">next_label =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Next screen"</span>, <span class="kw">icon</span>(<span class="st">"play"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>)),</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">    <span class="dt">previous_label =</span> <span class="kw">span</span>(<span class="dt">style =</span> <span class="st">"opacity: 0.5;"</span>, <span class="st">"Go back"</span>),</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">    </a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">    <span class="kw"><a href="../reference/screen.html">screen</a></span>(</a>
@@ -121,7 +123,7 @@
 <a class="sourceLine" id="cb1-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb1-18" data-line-number="18">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
 <a class="sourceLine" id="cb1-19" data-line-number="19">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">    <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">    <span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
 <a class="sourceLine" id="cb1-21" data-line-number="21">  })</a>
 <a class="sourceLine" id="cb1-22" data-line-number="22">}</a>
 <a class="sourceLine" id="cb1-23" data-line-number="23"></a>
@@ -164,7 +166,7 @@
 <a class="sourceLine" id="cb2-21" data-line-number="21"></a>
 <a class="sourceLine" id="cb2-22" data-line-number="22">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
 <a class="sourceLine" id="cb2-23" data-line-number="23">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
-<a class="sourceLine" id="cb2-24" data-line-number="24">    <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24">    <span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
 <a class="sourceLine" id="cb2-25" data-line-number="25">  })</a>
 <a class="sourceLine" id="cb2-26" data-line-number="26">}</a>
 <a class="sourceLine" id="cb2-27" data-line-number="27"></a>
@@ -203,7 +205,7 @@
 <a class="sourceLine" id="cb3-31" data-line-number="31"></a>
 <a class="sourceLine" id="cb3-32" data-line-number="32">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
 <a class="sourceLine" id="cb3-33" data-line-number="33">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
-<a class="sourceLine" id="cb3-34" data-line-number="34">    <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">    <span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
 <a class="sourceLine" id="cb3-35" data-line-number="35">  })</a>
 <a class="sourceLine" id="cb3-36" data-line-number="36">}</a>
 <a class="sourceLine" id="cb3-37" data-line-number="37"></a>
@@ -217,15 +219,15 @@
 <p>To do this, either manually define an element with a <code>first-screen</code> or <code>last-screen</code> CSS class, or use one of the two <code><a href="../reference/firstButton.html">firstButton()</a></code> or <code><a href="../reference/firstButton.html">lastButton()</a></code> helper functions.</p>
 <p>Here is an example :</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">controls &lt;-<span class="st"> </span><span class="kw"><a href="../reference/glideControls.html">glideControls</a></span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="kw"><a href="../reference/nextButton.html">prevButton</a></span>(<span class="dt">class =</span> <span class="st">"btn btn-warning"</span>),</a>
 <a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="kw"><a href="../reference/firstButton.html">firstButton</a></span>(<span class="dt">class =</span> <span class="st">"btn btn-danger"</span>, <span class="st">"First screen !"</span>)</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5">  ),</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb4-7" data-line-number="7">    <span class="kw"><a href="../reference/nextButton.html">nextButton</a></span>(),</a>
 <a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="kw"><a href="../reference/firstButton.html">lastButton</a></span>(</a>
 <a class="sourceLine" id="cb4-9" data-line-number="9">      <span class="dt">class =</span> <span class="st">"btn btn-success"</span>, </a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">      <span class="kw">HTML</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Last screen..."</span>, <span class="kw">icon</span>(<span class="st">"ok"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>)))</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">      <span class="kw">HTML</span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Last screen..."</span>, <span class="kw">icon</span>(<span class="st">"ok"</span>, <span class="dt">lib =</span> <span class="st">"glyphicon"</span>)))</a>
 <a class="sourceLine" id="cb4-11" data-line-number="11">    )</a>
 <a class="sourceLine" id="cb4-12" data-line-number="12">  )</a>
 <a class="sourceLine" id="cb4-13" data-line-number="13">)</a>
@@ -248,7 +250,7 @@
 <a class="sourceLine" id="cb4-30" data-line-number="30"></a>
 <a class="sourceLine" id="cb4-31" data-line-number="31">server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output, session) {</a>
 <a class="sourceLine" id="cb4-32" data-line-number="32">  output<span class="op">$</span>plot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</a>
-<a class="sourceLine" id="cb4-33" data-line-number="33">    <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">    <span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(input<span class="op">$</span>n), <span class="dt">main =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, input<span class="op">$</span>n))</a>
 <a class="sourceLine" id="cb4-34" data-line-number="34">  })</a>
 <a class="sourceLine" id="cb4-35" data-line-number="35">}</a>
 <a class="sourceLine" id="cb4-36" data-line-number="36"></a>
@@ -261,7 +263,7 @@
 <p>In this case, when defining the custom modals for your modal glide, it is recommended to create a control with a `<code>data-dismiss</code>=“modal”` attribute in order to close the modal at the start or at the end of the glide.</p>
 <p>Here is an example modal controls :</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">modal_controls &lt;-<span class="st"> </span><span class="kw"><a href="../reference/glideControls.html">glideControls</a></span>(</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">      <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">      <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">        <span class="kw"><a href="../reference/nextButton.html">prevButton</a></span>(),</a>
 <a class="sourceLine" id="cb5-4" data-line-number="4">        <span class="kw"><a href="../reference/firstButton.html">firstButton</a></span>(</a>
 <a class="sourceLine" id="cb5-5" data-line-number="5">          <span class="dt">class =</span> <span class="st">"btn btn-danger"</span>,</a>
@@ -269,7 +271,7 @@
 <a class="sourceLine" id="cb5-7" data-line-number="7">          <span class="st">"No, thanks !"</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8">        )</a>
 <a class="sourceLine" id="cb5-9" data-line-number="9">      ),</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">      <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">      <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</a>
 <a class="sourceLine" id="cb5-11" data-line-number="11">        <span class="kw"><a href="../reference/nextButton.html">nextButton</a></span>(),</a>
 <a class="sourceLine" id="cb5-12" data-line-number="12">        <span class="kw"><a href="../reference/firstButton.html">lastButton</a></span>(</a>
 <a class="sourceLine" id="cb5-13" data-line-number="13">          <span class="dt">class =</span> <span class="st">"btn btn-success"</span>,</a>
@@ -283,6 +285,7 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -298,17 +301,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Julien Barnier.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Default controls layout — glideControls • shinyglide</title>
+<title>Page not found (404) • shinyglide</title>
 
 
 <!-- jquery -->
@@ -29,16 +29,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="https://juba.github.io/shinyglide//pkgdown.css" rel="stylesheet">
+<script src="https://juba.github.io/shinyglide//pkgdown.js"></script>
 
 
 
 
-<meta property="og:title" content="Default controls layout — glideControls" />
-<meta property="og:description" content="Creates an horizontal layout with both &quot;previous&quot; and &quot;next&quot; contents
-side by side." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Page not found (404)" />
 
 
 
@@ -57,7 +54,7 @@ side by side." />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -69,7 +66,7 @@ side by side." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">shinyglide</a>
+        <a class="navbar-link" href="https://juba.github.io/shinyglide//index.html">shinyglide</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
@@ -77,13 +74,13 @@ side by side." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -93,18 +90,18 @@ side by side." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/a_introduction.html">Introduction to shinyglide</a>
+      <a href="articles/a_introduction.html">Introduction to shinyglide</a>
     </li>
     <li>
-      <a href="../articles/b_conditionals.html">Conditional controls and screen output</a>
+      <a href="articles/b_conditionals.html">Conditional controls and screen output</a>
     </li>
     <li>
-      <a href="../articles/c_custom_controls.html">Custom controls</a>
+      <a href="articles/c_custom_controls.html">Custom controls</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -125,60 +122,17 @@ side by side." />
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Default controls layout</h1>
-    <small class="dont-index">Source: <a href='https://github.com/juba/shinyglide/blob/master/R/elements.R'><code>R/elements.R</code></a></small>
-    <div class="hidden name"><code>glideControls.Rd</code></div>
+      <h1>Page not found (404)</h1>
     </div>
 
-    <div class="ref-description">
-    <p>Creates an horizontal layout with both "previous" and "next" contents
-side by side.</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>glideControls</span>(<span class='no'>previous_content</span>, <span class='no'>next_content</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>previous_content</th>
-      <td><p>Content of the "previous" (left) zone.</p></td>
-    </tr>
-    <tr>
-      <th>next_content</th>
-      <td><p>Content of the "next" (right) zone.</p></td>
-    </tr>
-    </table>
-
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>glideControls</span>(
-  <span class='fu'><a href='nextButton.html'>prevButton</a></span>(<span class='st'>"Back"</span>),
-  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='fu'><a href='firstButton.html'>lastButton</a></span>(<span class='kw'>href</span> <span class='kw'>=</span> <span class='st'>"https://example.com"</span>, <span class='st'>"Go to website"</span>),
-    <span class='fu'><a href='nextButton.html'>nextButton</a></span>(<span class='st'>"Next"</span>)
-  )
-)</div><div class='output co'>#&gt; &lt;div class="row"&gt;
-#&gt;   &lt;div class="col-xs-6"&gt;
-#&gt;     &lt;button class="Back prev-screen"&gt;&lt;/button&gt;
-#&gt;   &lt;/div&gt;
-#&gt;   &lt;div class="col-xs-6 text-right"&gt;
-#&gt;     &lt;a class="Go to website last-screen" href="https://example.com"&gt;&lt;/a&gt;
-#&gt;     &lt;button class="Next next-screen"&gt;&lt;/button&gt;
-#&gt;   &lt;/div&gt;
-#&gt; &lt;/div&gt;</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+Content not found. Please use links in the navbar.
 
   </div>
+
 </div>
+
 
 
       <footer>
