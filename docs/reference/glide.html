@@ -141,7 +141,8 @@
   <span class='st'>"Back"</span>), <span class='kw'>loading_label</span> <span class='kw'>=</span> <span class='fu'>span</span>(<span class='fu'>span</span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"shinyglide-spinner"</span>),
   <span class='fu'>span</span>(<span class='st'>"Loading"</span>)), <span class='kw'>loading_class</span> <span class='kw'>=</span> <span class='st'>"loading"</span>,
   <span class='kw'>disable_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"disable"</span>, <span class='st'>"hide"</span>), <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"100%"</span>,
-  <span class='kw'>custom_controls</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>controls_position</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bottom"</span>, <span class='st'>"top"</span>))</pre>
+  <span class='kw'>keyboard</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>custom_controls</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>controls_position</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bottom"</span>, <span class='st'>"top"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,6 +181,10 @@ when it is disabled by a condition.</p></td>
     <tr>
       <th>height</th>
       <td><p>height of the glide (something like "400px" or "100%").</p></td>
+    </tr>
+    <tr>
+      <th>keyboard</th>
+      <td><p>set this to FALSE to disable keyboard navigation.</p></td>
     </tr>
     <tr>
       <th>custom_controls</th>
