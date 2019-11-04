@@ -1,5 +1,6 @@
 # shinyglide 0.1.3
 
+* Add `keyboard` option to `glide` function to disable keyboard navigation
 
 # shinyglide 0.1.2
 

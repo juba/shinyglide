@@ -25,14 +25,16 @@ ui <- fluidPage(
     p("The source code of this app is",
       tags$a(
         href = "https://github.com/juba/shinyglide/blob/master/inst/examples/05_multi_glides/app.R",
-        "available on GitHub."
-      )
+        "available on GitHub"
+      ),
+      HTML(". Note that in this case it is recommended to use <code>keyboard = FALSE</code> in your <code>glide()</code> call.")
     )
   ),
   fluidRow(
     column(6,
       h3("First glide"),
       glide(
+        keyboard = FALSE,
         screen(
           p("This is a very simple shinyglide application."),
           p("Please click on Next to go to the next screen.")
@@ -50,6 +52,7 @@ ui <- fluidPage(
     column(6,
       h3("Second glide"),
       glide(
+        keyboard = FALSE,
         screen(
           p("This is another very simple shinyglide application.")
         ),

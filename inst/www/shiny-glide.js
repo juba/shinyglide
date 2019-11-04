@@ -13,6 +13,7 @@ class ShinyGlide {
     this.loading_label = root.getAttribute("data-loading-label");
     this.loading_class = root.getAttribute("data-loading-class");
     this.disable_type = root.getAttribute("data-disable-type");
+    this.keyboard = root.getAttribute("data-keyboard") != "FALSE";
     this.prev_control = root.getElementsByClassName("prev-screen")[0];
     this.next_control = root.getElementsByClassName("next-screen")[0];
     this.first_control = root.getElementsByClassName("first-screen")[0];
@@ -57,9 +58,10 @@ class ShinyGlide {
 
     // Init glide object
     init_glide() {
+      console.log("keyboard :", this.keyboard);
       var glide = new Glide(this.root, {
         rewind: false,
-        keyboard: true,
+        keyboard: this.keyboard,
         dragThreshold: false
       }).mount();
 

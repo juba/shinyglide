@@ -12,6 +12,7 @@
 #' @param disable_type either to "disable" or "hide" the next or back control
 #'     when it is disabled by a condition.
 #' @param height height of the glide (something like "400px" or "100\%").
+#' @param keyboard set this to FALSE to disable keyboard navigation.
 #' @param custom_controls custom HTML or shiny tags to be used for the controls.
 #'     If `NULL``, use the default ones.
 #' @param controls_position either to place the default or custom controls on "top"
@@ -54,6 +55,7 @@ glide <- function(...,
   loading_class = "loading",
   disable_type = c("disable", "hide"),
   height = "100%",
+  keyboard = TRUE,
   custom_controls = NULL,
   controls_position = c("bottom", "top")) {
 
@@ -76,6 +78,7 @@ glide <- function(...,
 
   tagList(
     tags$div(class = "shinyglide", id = id,
+            `data-keyboard` = keyboard,
             `data-next-label` = next_label,
             `data-prev-label` = previous_label,
             `data-loading-label` = loading_label,

@@ -80,6 +80,7 @@ The `glide()` function accepts several arguments to modify its behavior or appea
 
 - `id` : allows to ass an HTML `id` to the glide root
 - `height` : height of the glide in any CSS unit
+- `keyboard` : set to `FALSE` to disable keyboard arrows navigation 
 - `controls_position` : wether to place the controls on `"top"` or `"bottom"` of the glide.
 - `next_label`, `previous_label` : allow to specify custom labels for the "Back" and "Next" buttons. You can use text, HTML, `icon()`, etc.
 
