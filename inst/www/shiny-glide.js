@@ -58,7 +58,6 @@ class ShinyGlide {
 
     // Init glide object
     init_glide() {
-      console.log("keyboard :", this.keyboard);
       var glide = new Glide(this.root, {
         rewind: false,
         keyboard: this.keyboard,
