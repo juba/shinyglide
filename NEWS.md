@@ -1,6 +1,8 @@
 # shinyglide 0.1.3
 
 * Add `keyboard` option to `glide` function to disable keyboard navigation
+* Fix incorrect glides dimensions in tabs (thanks @LeonhardBakker)
+
 
 # shinyglide 0.1.2
 
