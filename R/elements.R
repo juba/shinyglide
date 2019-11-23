@@ -32,7 +32,7 @@
 #'       p("First screen.")
 #'     ),
 #'     screen(
-#'       p("Second screen."),
+#'       p("Second screen.")
 #'     )
 #'   )
 #' )
