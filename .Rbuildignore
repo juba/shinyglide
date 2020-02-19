@@ -4,3 +4,4 @@ TODO.md
 docs/
 .travis.yml
 _pkgdown.yml
+\.github/
