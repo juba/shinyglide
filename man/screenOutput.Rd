@@ -4,8 +4,15 @@
 \alias{screenOutput}
 \title{Create a screen output element}
 \usage{
-screenOutput(outputId, next_label = NULL, prev_label = NULL,
-  next_condition = NULL, prev_condition = NULL, class = NULL, ...)
+screenOutput(
+  outputId,
+  next_label = NULL,
+  prev_label = NULL,
+  next_condition = NULL,
+  prev_condition = NULL,
+  class = NULL,
+  ...
+)
 }
 \arguments{
 \item{outputId}{output variable to read the value from}
