@@ -198,13 +198,26 @@ screen <- function(...,
 #'   )
 #' )
 
-glideControls <- function(previous_content, next_content, jump_content = NULL) {
+glideControls <- function(previous_content, next_content, jump_content = NULL, width = NULL) {
+
+  if (sum(width) > 12)
+    stop("Maximum width is 12.")
+
+  args_sum <- sum(!vapply(list(previous_content, next_content, jump_content),
+                          is.null, FUN.VALUE = logical(1)))
+
+  if (args_sum == 2 && is.null(width)) {
+    width <- c(6, 6)
+  } else if (args_sum == 3 && is.null(width)) {
+    width <- c(4, 4, 4)
+  }
+
   if (is.null(jump_content)) {
     fluidRow(
-      tags$div(class="col-xs-6",
+      tags$div(class=sprintf("col-xs-%s", width[1]),
                previous_content
       ),
-      tags$div(class="col-xs-6 text-right",
+      tags$div(class=sprintf("col-xs-%s text-right", width[2]),
                next_content
       )
     )
@@ -214,13 +227,13 @@ glideControls <- function(previous_content, next_content, jump_content = NULL) {
     }
 
     fluidRow(
-      tags$div(class="col-xs-3",
+      tags$div(class=sprintf("col-xs-%s", width[1]),
                previous_content
       ),
-      tags$div(class="col-xs-6 text-middle",
+      tags$div(class=sprintf("col-xs-%s text-middle", width[2]),
                jump_content
       ),
-      tags$div(class="col-xs-3 text-right",
+      tags$div(class=sprintf("col-xs-%s text-right", width[3]),
                next_content
       )
     )
@@ -353,5 +366,17 @@ lastBtn <- function(inputId,
                     ...) {
   btn <- shiny::actionButton(inputId, label, icon, width, ...)
   btn$attribs$class <- paste(union(btn$attribs$class, "last-screen"), class, collapse = " ")
+  btn
+}
+
+#' @rdname firstButton
+#' @export
+jumpBtn <- function(inputId,
+                    label,
+                    icon = NULL,
+                    width = NULL,
+                    ...) {
+  btn <- shiny::actionButton(inputId, label, icon, width, ...)
+  btn$attribs$class <- paste(union(btn$attribs$class, "jump-screen"), collapse = " ")
   btn
 }

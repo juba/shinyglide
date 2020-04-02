@@ -5,21 +5,18 @@
 \alias{firstBtn}
 \alias{lastButton}
 \alias{lastBtn}
+\alias{jumpBtn}
 \title{Create a glide control only shown on first or last screen}
 \usage{
 firstButton(class = c("btn", "btn-default"), ...)
 
-firstBtn(inputId, label, icon = NULL, width = NULL, ...)
+firstBtn(inputId, label, icon = NULL, width = NULL, class = "btn-danger", ...)
 
 lastButton(class = c("btn", "btn-success"), ...)
 
-lastBtn(
-  inputId,
-  label,
-  icon = icon("ok", lib = "glyphicon"),
-  width = NULL,
-  ...
-)
+lastBtn(inputId, label, icon = NULL, class = "btn-success", width = NULL, ...)
+
+jumpBtn(inputId, label, icon = NULL, width = NULL, ...)
 }
 \arguments{
 \item{class}{CSS classes of the control. The needed class is automatically added.}

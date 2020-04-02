@@ -1,6 +1,12 @@
 library(shinydashboard)
 library(shinyglide)
 
+btn_x_screen <- list(
+  "jump_0_btn" = "1",
+  "jump_1_btn" = "2",
+  "jump_2_btn" = "3"
+)
+
 controls <- glideControls(
   list(
     prevBtn("prev_screen_btn",  "Previous"),
@@ -10,12 +16,11 @@ controls <- glideControls(
     nextBtn("next_screen_btn", "Next"),
     lastBtn("last_screen_btn", "Last screen...")
   ),
-  list(
-    shiny::actionButton("jump_0_btn", "1", class = "jump-screen"),
-    shiny::actionButton("jump_1_btn", "2", class = "jump-screen"),
-    shiny::actionButton("jump_2_btn", "3", class = "jump-screen")
-  )
+  lapply(names(btn_x_screen), function(nm) {
+    do.call(jumpBtn, list(nm, btn_x_screen[[nm]]))
+  })
 )
+
 
 screens <- list(
   shinyglide::screen(
@@ -77,8 +82,17 @@ server <- function(input, output, session) {
   observeEvent(input$next_screen_btn, {
     print(">>>>>> clicked next button")
   })
-  observeEvent(input$next_screen_btn, {
-    print(">>>>>> clicked next button")
+  observeEvent(input$prev_screen_btn, {
+    print(">>>>>> clicked prev button")
+  })
+  observeEvent(input$first_screen_btn, {
+    print(">>>>>> clicked first button")
+  })
+  observeEvent(input$last_screen_btn, {
+    print(">>>>>> clicked last button")
+  })
+  observeEvent(lapply(names(btn_x_screen), function(id) input[[id]]), ignoreInit = TRUE, {
+    print(">>>>>> jumped to screen")
   })
 }
 
