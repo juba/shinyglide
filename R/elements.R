@@ -209,6 +209,10 @@ glideControls <- function(previous_content, next_content, jump_content = NULL) {
       )
     )
   } else {
+    for (i in 1:length(jump_content)) {
+      jump_content[[i]]$attribs$screen = i
+    }
+
     fluidRow(
       tags$div(class="col-xs-3",
                previous_content
