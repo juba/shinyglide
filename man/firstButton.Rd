@@ -22,6 +22,8 @@ jumpBtn(inputId, label, icon = NULL, width = NULL, ...)
 \item{class}{CSS classes of the control. The needed class is automatically added.}
 
 \item{...}{content of the control}
+
+\item{inputId, label, icon, width, ...}{see decription in \code{\link[shiny]{actionButton}}}
 }
 \description{
 Create a glide control only shown on first or last screen

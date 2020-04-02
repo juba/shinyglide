@@ -17,6 +17,8 @@ prevBtn(inputId, label, icon = NULL, width = NULL, ...)
 }
 \arguments{
 \item{class}{control CSS classes. The needed class is automatically added.}
+
+\item{inputId, label, icon, width, ...}{see decription in \code{\link[shiny]{actionButton}}}
 }
 \description{
 This generates the code of the default controls, and can be used in custom

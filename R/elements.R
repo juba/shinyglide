@@ -274,6 +274,7 @@ nextButton <- function(class = c("btn", "btn-primary")) {
   tags$button(class = class)
 }
 
+#' @param inputId,label,icon,width,... see decription in \code{\link[shiny]{actionButton}}
 #' @rdname nextButton
 #' @export
 nextBtn <- function(inputId, label, icon = NULL, width = NULL, ...) {
@@ -328,6 +329,7 @@ firstButton <- function(class = c("btn", "btn-default"), ...) {
   )
 }
 
+#' @param inputId,label,icon,width,... see decription in \code{\link[shiny]{actionButton}}
 #' @rdname firstButton
 #' @export
 firstBtn <- function(inputId,
