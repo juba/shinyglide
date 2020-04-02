@@ -261,10 +261,16 @@ nextButton <- function(class = c("btn", "btn-primary")) {
   tags$button(class = class)
 }
 
+#' @rdname nextButton
+#' @export
+nextBtn <- function(inputId, label, icon = NULL, width = NULL, ...) {
+  btn <- shiny::actionButton(inputId, label, icon, width, ...)
+  btn$attribs$class <- paste(union(btn$attribs$class, "btn-primary next-screen"), collapse = " ")
+  btn
+}
 
 #' @rdname nextButton
 #' @export
-
 prevButton <- function(class = c("btn", "btn-default")) {
 
   class <- paste(union(class, "prev-screen"), collapse = " ")
@@ -273,6 +279,13 @@ prevButton <- function(class = c("btn", "btn-default")) {
 
 }
 
+#' @rdname nextButton
+#' @export
+prevBtn <- function(inputId, label, icon = NULL, width = NULL, ...) {
+  btn <- shiny::actionButton(inputId, label, icon, width, ...)
+  btn$attribs$class <- paste(union(btn$attribs$class, "btn-default prev-screen"), collapse = " ")
+  btn
+}
 
 #' Create a glide control only shown on first or last screen
 #'
@@ -302,10 +315,17 @@ firstButton <- function(class = c("btn", "btn-default"), ...) {
   )
 }
 
+#' @rdname firstButton
+#' @export
+firstBtn <- function(inputId, label, icon = NULL, width = NULL, ...) {
+  btn <- shiny::actionButton(inputId, label, icon, width, ...)
+  btn$attribs$class <- paste(union(btn$attribs$class, "btn-default first-screen"), collapse = " ")
+  btn
+}
+
 
 #' @rdname firstButton
 #' @export
-
 lastButton <- function(class = c("btn", "btn-success"), ...) {
 
   class <- paste(union(class, "last-screen"), collapse = " ")
@@ -318,6 +338,10 @@ lastButton <- function(class = c("btn", "btn-success"), ...) {
   )
 }
 
-
-
-
+#' @rdname firstButton
+#' @export
+lastBtn <- function(inputId, label, icon = icon("ok", lib = "glyphicon"), width = NULL, ...) {
+  btn <- shiny::actionButton(inputId, label, icon, width, ...)
+  btn$attribs$class <- paste(union(btn$attribs$class, "btn-success last-screen"), collapse = " ")
+  btn
+}
