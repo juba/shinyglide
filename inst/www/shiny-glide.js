@@ -21,6 +21,8 @@ class ShinyGlide {
     this.prev_detector = root.getElementsByClassName("prev-detector")[0];
     this.next_detector = root.getElementsByClassName("next-detector")[0];
 
+    this.jump_control = root.getElementsByClassName("jump-screen")[0];
+
     this.busy_screens = 0;
 
     this.init(root);
@@ -116,6 +118,12 @@ class ShinyGlide {
       this.prev_control.addEventListener("click", event => {
           if (!this.prev_control.hasAttribute("disabled")) { this.glide.go("<"); };
       });
+
+      this.jump_control.addEventListener("click", event => {
+          //if (!this.prev_control.hasAttribute("disabled")) { this.glide.go(">"); };
+          this.glide.go("=2");
+      });
+
 
       this.init_detectors();
       this.init_glide();

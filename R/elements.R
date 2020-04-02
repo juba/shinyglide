@@ -198,15 +198,29 @@ screen <- function(...,
 #'   )
 #' )
 
-glideControls <- function(previous_content, next_content) {
-  fluidRow(
-    tags$div(class="col-xs-6",
-      previous_content
-    ),
-    tags$div(class="col-xs-6 text-right",
-      next_content
+glideControls <- function(previous_content, next_content, jump_content = NULL) {
+  if (is.null(jump_content)) {
+    fluidRow(
+      tags$div(class="col-xs-6",
+               previous_content
+      ),
+      tags$div(class="col-xs-6 text-right",
+               next_content
+      )
     )
-  )
+  } else {
+    fluidRow(
+      tags$div(class="col-xs-3",
+               previous_content
+      ),
+      tags$div(class="col-xs-6 text-middle",
+               jump_content
+      ),
+      tags$div(class="col-xs-3 text-right",
+               next_content
+      )
+    )
+  }
 }
 
 
