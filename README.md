@@ -4,7 +4,7 @@
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![CRAN status](https://www.r-pkg.org/badges/version-ago/shinyglide)](https://cran.r-project.org/package=shinyglide)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/shinyglide)](https://cran.r-project.org/package=shinyglide)
-[![R build status](https://github.com/juba/shinyglide/workflows/R-CMD-check/badge.svg)](https://github.com/juba/shinyglide/actions?query=workflow%3AR-CMD-check)
+[![R build status](https://github.com/juba/shinyglide/workflows/R-CMD-check/badge.svg)](https://github.com/juba/shinyglide/actions)
 <!-- badges: end -->
 
 `shinyglide` is an R package which provides carousel-like or assistant-like components to [shiny](https://shiny.rstudio.com) applications, thanks to the [Glide](https://glidejs.com) JavaScript library.
