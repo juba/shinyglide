@@ -115,16 +115,20 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the stable version with :</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"shinyglide"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"shinyglide"</span>)
+</pre></div>
 <p>And the development version with :</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"juba/shinyglide"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"juba/shinyglide"</span>)
+</pre></div>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>A <code>shinyglide</code> component is created with the <code>glide()</code> function. This component is then divided intro <em>screens</em> with the <code><a href="https://rdrr.io/r/graphics/screen.html">screen()</a></code> function.</p>
+<p>A <code>shinyglide</code> component is created with the <code><a href="reference/glide.html">glide()</a></code> function. This component is then divided intro <em>screens</em> with the <code><a href="reference/screen.html">screen()</a></code> function.</p>
 <p>Here is the code of a very basic app (<a href="https://data.nozav.org/app/shinyglide/02_simple/">live example</a>):</p>
-<pre class="{r}"><code><a href="https://rdrr.io/pkg/shiny/man">library(shiny)
+<pre class="{r}"><code><a href="http://shiny.rstudio.com">library(shiny)
 library(shinyglide)
 
 ui &lt;- fixedPage(style = "max-width: 500px;",
@@ -223,7 +227,7 @@ shinyApp(ui, server)
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
