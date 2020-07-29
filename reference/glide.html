@@ -138,14 +138,14 @@
     <p>Insert a glide component in the current shiny app UI</p>
     </div>
 
-    <pre class="usage"><span class='fu'>glide</span>(<span class='kw'>...</span>, id = <span class='kw'>NULL</span>, next_label = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Next"</span>,
-  <span class='kw'>shiny</span>::<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span>(<span class='st'>"chevron-right"</span>, lib = <span class='st'>"glyphicon"</span>)),
-  previous_label = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='kw'>shiny</span>::<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span>(<span class='st'>"chevron-left"</span>, lib = <span class='st'>"glyphicon"</span>),
-  <span class='st'>"Back"</span>), loading_label = <span class='fu'>span</span>(<span class='fu'>span</span>(class = <span class='st'>"shinyglide-spinner"</span>),
-  <span class='fu'>span</span>(<span class='st'>"Loading"</span>)), loading_class = <span class='st'>"loading"</span>,
-  disable_type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"disable"</span>, <span class='st'>"hide"</span>), height = <span class='st'>"100%"</span>,
-  keyboard = <span class='fl'>TRUE</span>, custom_controls = <span class='kw'>NULL</span>,
-  controls_position = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bottom"</span>, <span class='st'>"top"</span>))</pre>
+    <pre class="usage"><span class='fu'>glide</span>(<span class='no'>...</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>next_label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Next"</span>,
+  <span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span>(<span class='st'>"chevron-right"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='st'>"glyphicon"</span>)),
+  <span class='kw'>previous_label</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='kw pkg'>shiny</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/icon.html'>icon</a></span>(<span class='st'>"chevron-left"</span>, <span class='kw'>lib</span> <span class='kw'>=</span> <span class='st'>"glyphicon"</span>),
+  <span class='st'>"Back"</span>), <span class='kw'>loading_label</span> <span class='kw'>=</span> <span class='fu'>span</span>(<span class='fu'>span</span>(<span class='kw'>class</span> <span class='kw'>=</span> <span class='st'>"shinyglide-spinner"</span>),
+  <span class='fu'>span</span>(<span class='st'>"Loading"</span>)), <span class='kw'>loading_class</span> <span class='kw'>=</span> <span class='st'>"loading"</span>,
+  <span class='kw'>disable_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"disable"</span>, <span class='st'>"hide"</span>), <span class='kw'>height</span> <span class='kw'>=</span> <span class='st'>"100%"</span>,
+  <span class='kw'>keyboard</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>custom_controls</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>controls_position</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bottom"</span>, <span class='st'>"top"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -207,27 +207,26 @@ or "bottom" of the glide.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Only run examples in interactive R sessions</span>
-<span class='co'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
 
-<span class='kw'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fixedPage</span>(
+<span class='no'>ui</span> <span class='kw'>&lt;-</span> <span class='fu'>fixedPage</span>(
  <span class='fu'>h3</span>(<span class='st'>"Simple shinyglide app"</span>),
  <span class='fu'>glide</span>(
-    <span class='fu'><a href='https://rdrr.io/r/graphics/screen.html'>screen</a></span>(
+    <span class='fu'><a href='screen.html'>screen</a></span>(
       <span class='fu'>p</span>(<span class='st'>"First screen."</span>)
     ),
-    <span class='fu'><a href='https://rdrr.io/r/graphics/screen.html'>screen</a></span>(
+    <span class='fu'><a href='screen.html'>screen</a></span>(
       <span class='fu'>p</span>(<span class='st'>"Second screen."</span>),
     )
   )
 )
 
-<span class='kw'>server</span> <span class='op'>&lt;-</span> <span class='fu'>function</span>(<span class='kw'>input</span>, <span class='kw'>output</span>, <span class='kw'>session</span>) {
+<span class='no'>server</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>input</span>, <span class='no'>output</span>, <span class='no'>session</span>) {
 }
 
-<span class='fu'>shinyApp</span>(<span class='kw'>ui</span>, <span class='kw'>server</span>)
+<span class='fu'>shinyApp</span>(<span class='no'>ui</span>, <span class='no'>server</span>)
 
-}
-</div></pre>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -243,7 +242,7 @@ or "bottom" of the glide.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

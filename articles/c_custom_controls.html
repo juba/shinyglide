@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Custom controls</h1>
                         <h4 class="author">Julien Barnier</h4>
             
-            <h4 class="date">2020-06-18</h4>
+            <h4 class="date">2020-07-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/c_custom_controls.Rmd"><code>vignettes/c_custom_controls.Rmd</code></a></small>
       <div class="hidden name"><code>c_custom_controls.Rmd</code></div>
@@ -104,16 +104,15 @@
 <h2 class="hasAnchor">
 <a href="#customizing-labels" class="anchor"></a>Customizing labels</h2>
 <p>If you want to keep the default controls but just changing the default labels, you can use the <code>previous_label</code> and <code>next_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>. You can pass them any HTML or shiny tags combinations. For example :</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span>(
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">ui</span> <span class="kw">&lt;-</span> <span class="fu">fluidPage</span>(
   <span class="fu">titlePanel</span>(<span class="st">"Basic shinyglide app"</span>),
   <span class="fu"><a href="../reference/glide.html">glide</a></span>(
-    next_label = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Next screen"</span>, <span class="fu">icon</span>(<span class="st">"play"</span>, lib = <span class="st">"glyphicon"</span>)),
-    previous_label = <span class="fu">span</span>(style = <span class="st">"opacity: 0.5;"</span>, <span class="st">"Go back"</span>),
-    
+    <span class="kw">next_label</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Next screen"</span>, <span class="fu">icon</span>(<span class="st">"play"</span>, <span class="kw">lib</span> <span class="kw">=</span> <span class="st">"glyphicon"</span>)),
+    <span class="kw">previous_label</span> <span class="kw">=</span> <span class="fu">span</span>(<span class="kw">style</span> <span class="kw">=</span> <span class="st">"opacity: 0.5;"</span>, <span class="st">"Go back"</span>),
+
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Please choose a value for n :"</span>),
-      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, value = <span class="fl">100</span>)
+      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="fl">100</span>)
     ),
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Here is your plot :"</span>),
@@ -122,14 +121,13 @@
   )
 )
 
-<span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>, <span class="kw">session</span>) {
-  <span class="kw">output</span><span class="op">$</span><span class="kw">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span>({
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">n</span>), main = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="kw">input</span><span class="op">$</span><span class="kw">n</span>))
+<span class="no">server</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>, <span class="no">session</span>) {
+  <span class="no">output</span>$<span class="no">plot</span> <span class="kw">&lt;-</span> <span class="fu">renderPlot</span>({
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">input</span>$<span class="no">n</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="no">input</span>$<span class="no">n</span>))
   })
 }
 
-<span class="fu">shinyApp</span>(<span class="kw">ui</span>, <span class="kw">server</span>)
-</pre></div>
+<span class="fu">shinyApp</span>(<span class="no">ui</span>, <span class="no">server</span>)</pre></body></html></div>
 <p>You can also use the <code>controls_position</code> argument to place at the <code>"top"</code> or at the <code>"bottom"</code> of the glide.</p>
 </div>
 <div id="custom-controls" class="section level2">
@@ -145,20 +143,19 @@
 </ul>
 <p>There is no obligation to use these helpers function, you ca build your own layout and controls. The only constraint is that the “back” control must have a <code>prev-screen</code> CSS class, and the “next” control a <code>next-screen</code> CSS class. Note that the labels of these controls are defined via the <code>next_label</code> and <code>previous_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>.</p>
 <p>Here is an example which uses the <code><a href="../reference/glideControls.html">glideControls()</a></code> layout. Note that it is not necessary to add the required <code>prev-screen</code> class when using <code><a href="../reference/nextButton.html">prevButton()</a></code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span>(
-  <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span>(class = <span class="st">"btn btn-warning"</span>),
-  <span class="kw">tags</span><span class="op">$</span><span class="fu">button</span>(class = <span class="st">"btn btn-success next-screen"</span>)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">controls</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span>(
+  <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-warning"</span>),
+  <span class="no">tags</span>$<span class="fu">button</span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-success next-screen"</span>)
 )
 
-<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span>(
+<span class="no">ui</span> <span class="kw">&lt;-</span> <span class="fu">fluidPage</span>(
   <span class="fu">titlePanel</span>(<span class="st">"Basic shinyglide app"</span>),
   <span class="fu"><a href="../reference/glide.html">glide</a></span>(
-    custom_controls = <span class="kw">controls</span>,
-    
+    <span class="kw">custom_controls</span> <span class="kw">=</span> <span class="no">controls</span>,
+
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Please choose a value for n :"</span>),
-      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, value = <span class="fl">100</span>)
+      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="fl">100</span>)
     ),
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Here is your plot :"</span>),
@@ -167,39 +164,37 @@
   )
 )
 
-<span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>, <span class="kw">session</span>) {
-  <span class="kw">output</span><span class="op">$</span><span class="kw">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span>({
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">n</span>), main = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="kw">input</span><span class="op">$</span><span class="kw">n</span>))
+<span class="no">server</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>, <span class="no">session</span>) {
+  <span class="no">output</span>$<span class="no">plot</span> <span class="kw">&lt;-</span> <span class="fu">renderPlot</span>({
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">input</span>$<span class="no">n</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="no">input</span>$<span class="no">n</span>))
   })
 }
 
-<span class="fu">shinyApp</span>(<span class="kw">ui</span>, <span class="kw">server</span>)
-</pre></div>
+<span class="fu">shinyApp</span>(<span class="no">ui</span>, <span class="no">server</span>)</pre></body></html></div>
 <p>And here is another example with a custom layout :</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">controls</span> <span class="op">&lt;-</span> <span class="fu">fluidRow</span>(
-  <span class="fu">div</span>(class=<span class="st">"col-xs-6 text-right"</span>,
-    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span>(class = <span class="st">"btn btn-warning"</span>)
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">controls</span> <span class="kw">&lt;-</span> <span class="fu">fluidRow</span>(
+  <span class="fu">div</span>(<span class="kw">class</span><span class="kw">=</span><span class="st">"col-xs-6 text-right"</span>,
+    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-warning"</span>)
   ),
-  <span class="fu">div</span>(class=<span class="st">"col-xs-6 text-left"</span>,
-    <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span>(class = <span class="st">"btn btn-success"</span>)
+  <span class="fu">div</span>(<span class="kw">class</span><span class="kw">=</span><span class="st">"col-xs-6 text-left"</span>,
+    <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-success"</span>)
   )
 )
 
-<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span>(
+<span class="no">ui</span> <span class="kw">&lt;-</span> <span class="fu">fluidPage</span>(
   <span class="fu">titlePanel</span>(<span class="st">"Basic shinyglide app"</span>),
   <span class="fu"><a href="../reference/glide.html">glide</a></span>(
-    custom_controls = <span class="kw">controls</span>,
-    controls_position = <span class="st">"top"</span>,
-    next_label = <span class="st">"Go next"</span>,
-    previous_label = <span class="st">"Go back"</span>,
-    
+    <span class="kw">custom_controls</span> <span class="kw">=</span> <span class="no">controls</span>,
+    <span class="kw">controls_position</span> <span class="kw">=</span> <span class="st">"top"</span>,
+    <span class="kw">next_label</span> <span class="kw">=</span> <span class="st">"Go next"</span>,
+    <span class="kw">previous_label</span> <span class="kw">=</span> <span class="st">"Go back"</span>,
+
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"This is a sample custom controls app"</span>)
     ),
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Please choose a value for n :"</span>),
-      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, value = <span class="fl">100</span>)
+      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="fl">100</span>)
     ),
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Here is your plot :"</span>),
@@ -208,14 +203,13 @@
   )
 )
 
-<span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>, <span class="kw">session</span>) {
-  <span class="kw">output</span><span class="op">$</span><span class="kw">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span>({
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">n</span>), main = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="kw">input</span><span class="op">$</span><span class="kw">n</span>))
+<span class="no">server</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>, <span class="no">session</span>) {
+  <span class="no">output</span>$<span class="no">plot</span> <span class="kw">&lt;-</span> <span class="fu">renderPlot</span>({
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">input</span>$<span class="no">n</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="no">input</span>$<span class="no">n</span>))
   })
 }
 
-<span class="fu">shinyApp</span>(<span class="kw">ui</span>, <span class="kw">server</span>)
-</pre></div>
+<span class="fu">shinyApp</span>(<span class="no">ui</span>, <span class="no">server</span>)</pre></body></html></div>
 <p>You can also take a look at the <a href="https://data.nozav.org/app/shinyglide/04_custom_controls/">sample custom controls app</a> and at its <a href="https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R">source code</a> to see a way to implement a rather different controls styling and positioning.</p>
 </div>
 <div id="first-and-last-buttons" class="section level2">
@@ -224,29 +218,28 @@
 <p>When using custom controls, you can define controls that will be shown only on the first and last screens. In general they are used in place of the <em>Back</em> and <em>Next</em> controls which are hidden on those screens.</p>
 <p>To do this, either manually define an element with a <code>first-screen</code> or <code>last-screen</code> CSS class, or use one of the two <code><a href="../reference/firstButton.html">firstButton()</a></code> or <code><a href="../reference/firstButton.html">lastButton()</a></code> helper functions.</p>
 <p>Here is an example :</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span>(
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">controls</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span>(class = <span class="st">"btn btn-warning"</span>),
-    <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span>(class = <span class="st">"btn btn-danger"</span>, <span class="st">"First screen !"</span>)
+    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-warning"</span>),
+    <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span>(<span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-danger"</span>, <span class="st">"First screen !"</span>)
   ),
   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span>(),
     <span class="fu"><a href="../reference/firstButton.html">lastButton</a></span>(
-      class = <span class="st">"btn btn-success"</span>, 
-      <span class="fu">HTML</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Last screen..."</span>, <span class="fu">icon</span>(<span class="st">"ok"</span>, lib = <span class="st">"glyphicon"</span>)))
+      <span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-success"</span>,
+      <span class="fu">HTML</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"Last screen..."</span>, <span class="fu">icon</span>(<span class="st">"ok"</span>, <span class="kw">lib</span> <span class="kw">=</span> <span class="st">"glyphicon"</span>)))
     )
   )
 )
 
-<span class="kw">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span>(
+<span class="no">ui</span> <span class="kw">&lt;-</span> <span class="fu">fluidPage</span>(
   <span class="fu">titlePanel</span>(<span class="st">"Basic shinyglide app"</span>),
   <span class="fu"><a href="../reference/glide.html">glide</a></span>(
-    custom_controls = <span class="kw">controls</span>,
-    
+    <span class="kw">custom_controls</span> <span class="kw">=</span> <span class="no">controls</span>,
+
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Please choose a value for n :"</span>),
-      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, value = <span class="fl">100</span>)
+      <span class="fu">numericInput</span>(<span class="st">"n"</span>, <span class="st">"n :"</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="fl">100</span>)
     ),
     <span class="fu"><a href="../reference/screen.html">screen</a></span>(
       <span class="fu">p</span>(<span class="st">"Here is your plot :"</span>),
@@ -255,14 +248,13 @@
   )
 )
 
-<span class="kw">server</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">input</span>, <span class="kw">output</span>, <span class="kw">session</span>) {
-  <span class="kw">output</span><span class="op">$</span><span class="kw">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span>({
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="kw">input</span><span class="op">$</span><span class="kw">n</span>), main = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="kw">input</span><span class="op">$</span><span class="kw">n</span>))
+<span class="no">server</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">input</span>, <span class="no">output</span>, <span class="no">session</span>) {
+  <span class="no">output</span>$<span class="no">plot</span> <span class="kw">&lt;-</span> <span class="fu">renderPlot</span>({
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="no">input</span>$<span class="no">n</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"n ="</span>, <span class="no">input</span>$<span class="no">n</span>))
   })
 }
 
-<span class="fu">shinyApp</span>(<span class="kw">ui</span>, <span class="kw">server</span>)
-</pre></div>
+<span class="fu">shinyApp</span>(<span class="no">ui</span>, <span class="no">server</span>)</pre></body></html></div>
 </div>
 <div id="custom-controls-in-modal" class="section level2">
 <h2 class="hasAnchor">
@@ -270,26 +262,24 @@
 <p>You can use a glide inside a Shiny modal dialog. This can be useful to create a sort of “assistant-like” interface is the modal is automatically shown at startup.</p>
 <p>In this case, when defining the custom modals for your modal glide, it is recommended to create a control with a `<code>data-dismiss</code>=“modal”` attribute in order to close the modal at the start or at the end of the glide.</p>
 <p>Here is an example modal controls :</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">modal_controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span>(
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">modal_controls</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span>(
       <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
         <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span>(),
         <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span>(
-          class = <span class="st">"btn btn-danger"</span>,
-          `data-dismiss`=<span class="st">"modal"</span>,
+          <span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-danger"</span>,
+          <span class="kw">`data-dismiss`</span><span class="kw">=</span><span class="st">"modal"</span>,
           <span class="st">"No, thanks !"</span>
         )
       ),
       <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
         <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span>(),
         <span class="fu"><a href="../reference/firstButton.html">lastButton</a></span>(
-          class = <span class="st">"btn btn-success"</span>,
-          `data-dismiss`=<span class="st">"modal"</span>,
+          <span class="kw">class</span> <span class="kw">=</span> <span class="st">"btn btn-success"</span>,
+          <span class="kw">`data-dismiss`</span><span class="kw">=</span><span class="st">"modal"</span>,
           <span class="st">"Done"</span>
       )
     )
-)
-</pre></div>
+)</pre></body></html></div>
 <p>You can take a look at the <a href="https://data.nozav.org/app/shinyglide/03_modal/">sample modal app</a> and at its <a href="https://github.com/juba/shinyglide/blob/master/inst/examples/03_modal/app.R">source code</a> to see a full way to implement it.</p>
 </div>
   </div>
@@ -309,7 +299,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
