@@ -2,15 +2,23 @@
 % Please edit documentation in R/elements.R
 \name{nextButton}
 \alias{nextButton}
+\alias{nextBtn}
 \alias{prevButton}
+\alias{prevBtn}
 \title{Code for the default controls}
 \usage{
 nextButton(class = c("btn", "btn-primary"))
 
+nextBtn(inputId, label, icon = NULL, width = NULL, ...)
+
 prevButton(class = c("btn", "btn-default"))
+
+prevBtn(inputId, label, icon = NULL, width = NULL, ...)
 }
 \arguments{
 \item{class}{control CSS classes. The needed class is automatically added.}
+
+\item{inputId, label, icon, width, ...}{see decription in \code{\link[shiny]{actionButton}}}
 }
 \description{
 This generates the code of the default controls, and can be used in custom

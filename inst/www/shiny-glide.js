@@ -20,6 +20,7 @@ class ShinyGlide {
     this.last_control = root.getElementsByClassName("last-screen")[0];
     this.prev_detector = root.getElementsByClassName("prev-detector")[0];
     this.next_detector = root.getElementsByClassName("next-detector")[0];
+    this.jump_control = root.querySelectorAll(".jump-screen");
 
     this.busy_screens = 0;
 
@@ -115,6 +116,13 @@ class ShinyGlide {
       });
       this.prev_control.addEventListener("click", event => {
           if (!this.prev_control.hasAttribute("disabled")) { this.glide.go("<"); };
+      });
+
+      this.jump_control.forEach(slide => {
+        slide.addEventListener("click", event => {
+          var screen_nr = slide.getAttribute("screen") - 1; // starts from 0
+          this.glide.go("=" + screen_nr);
+        });
       });
 
       this.init_detectors();

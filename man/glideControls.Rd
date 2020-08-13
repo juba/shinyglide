@@ -4,7 +4,12 @@
 \alias{glideControls}
 \title{Default controls layout}
 \usage{
-glideControls(previous_content, next_content)
+glideControls(
+  previous_content,
+  next_content,
+  jump_content = NULL,
+  width = NULL
+)
 }
 \arguments{
 \item{previous_content}{Content of the "previous" (left) zone.}

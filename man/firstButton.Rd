@@ -2,25 +2,36 @@
 % Please edit documentation in R/elements.R
 \name{firstButton}
 \alias{firstButton}
+\alias{firstBtn}
 \alias{lastButton}
+\alias{lastBtn}
+\alias{jumpBtn}
 \title{Create a glide control only shown on first or last screen}
 \usage{
 firstButton(class = c("btn", "btn-default"), ...)
 
+firstBtn(inputId, label, icon = NULL, width = NULL, class = "btn-danger", ...)
+
 lastButton(class = c("btn", "btn-success"), ...)
+
+lastBtn(inputId, label, icon = NULL, class = "btn-success", width = NULL, ...)
+
+jumpBtn(inputId, label, icon = NULL, width = NULL, ...)
 }
 \arguments{
 \item{class}{CSS classes of the control. The needed class is automatically added.}
 
 \item{...}{content of the control}
+
+\item{inputId, label, icon, width, ...}{see decription in \code{\link[shiny]{actionButton}}}
 }
 \description{
 Create a glide control only shown on first or last screen
 }
 \details{
-These controls generate an \code{<a>} tag, so you can use \code{href} attributes.
+These controls generate an \verb{<a>} tag, so you can use \code{href} attributes.
 
-\code{firstButton``is only shown on the first screen of the app, and }finalButton` only
+\verb{firstButton``is only shown on the first screen of the app, and }finalButton` only
 on the last screen.
 }
 \examples{

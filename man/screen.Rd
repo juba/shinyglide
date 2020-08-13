@@ -4,8 +4,14 @@
 \alias{screen}
 \title{Screen creation}
 \usage{
-screen(..., next_label = NULL, previous_label = NULL,
-  next_condition = NULL, previous_condition = NULL, class = NULL)
+screen(
+  ...,
+  next_label = NULL,
+  previous_label = NULL,
+  next_condition = NULL,
+  previous_condition = NULL,
+  class = NULL
+)
 }
 \arguments{
 \item{...}{content of the screen.}

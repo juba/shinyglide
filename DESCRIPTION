@@ -1,7 +1,7 @@
 Package: shinyglide
 Type: Package
 Title: Glide Component for Shiny Applications
-Version: 0.1.3
+Version: 0.1.3002
 Date: 2019-10-13
 Authors@R: c(
     person("Julien", "Barnier", 
@@ -24,5 +24,4 @@ Suggests:
     rmarkdown
 Roxygen: list(markdown = TRUE) 
 LazyData: true
-RoxygenNote: 6.1.1
-
+RoxygenNote: 7.0.2
