@@ -18,9 +18,9 @@ lastButton(class = c("btn", "btn-success"), ...)
 Create a glide control only shown on first or last screen
 }
 \details{
-These controls generate an \code{<a>} tag, so you can use \code{href} attributes.
+These controls generate an \verb{<a>} tag, so you can use \code{href} attributes.
 
-\code{firstButton``is only shown on the first screen of the app, and }finalButton` only
+\verb{firstButton``is only shown on the first screen of the app, and }finalButton` only
 on the last screen.
 }
 \examples{
