@@ -11,7 +11,7 @@
 #'     screen is still loading.
 #' @param disable_type either to "disable" or "hide" the next or back control
 #'     when it is disabled by a condition.
-#' @param height height of the glide (something like "400px" or "100\%").
+#' @param height height of the glide (something like "400px" or "100%").
 #' @param keyboard set this to FALSE to disable keyboard navigation.
 #' @param custom_controls custom HTML or shiny tags to be used for the controls.
 #'     If `NULL``, use the default ones.

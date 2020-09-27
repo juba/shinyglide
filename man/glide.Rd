@@ -36,7 +36,7 @@ screen is still loading.}
 \item{disable_type}{either to "disable" or "hide" the next or back control
 when it is disabled by a condition.}
 
-\item{height}{height of the glide (something like "400px" or "100\\%").}
+\item{height}{height of the glide (something like "400px" or "100\%").}
 
 \item{keyboard}{set this to FALSE to disable keyboard navigation.}
 
