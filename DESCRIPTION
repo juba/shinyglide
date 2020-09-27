@@ -2,13 +2,13 @@ Package: shinyglide
 Type: Package
 Title: Glide Component for Shiny Applications
 Version: 0.1.3
-Date: 2019-10-13
+Date: 2020-09-27
 Authors@R: c(
     person("Julien", "Barnier", 
            role=c("aut","cre"),
-           email="julien.barnier@ens-lyon.fr")
+           email="julien.barnier@cnrs.fr")
     )
-Maintainer: Julien Barnier <julien.barnier@ens-lyon.fr>
+Maintainer: Julien Barnier <julien.barnier@cnrs.fr>
 Description: Insert Glide JavaScript component into Shiny applications for
     carousel or assistant-like user interfaces.
 License: GPL (>= 3)
