@@ -1,11 +1,11 @@
 pandoc: 2.7.3
-pkgdown: 1.5.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   a_introduction: a_introduction.html
   b_conditionals: b_conditionals.html
   c_custom_controls: c_custom_controls.html
-last_built: 2020-08-27T12:32Z
+last_built: 2020-09-27T14:20Z
 urls:
   reference: https://juba.github.io/shinyglide//reference
   article: https://juba.github.io/shinyglide//articles
