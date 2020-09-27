@@ -91,12 +91,17 @@ class ShinyGlide {
         this.update_controls();
       });
 
+
       // Resize glides each time a bootstrap tab is shown
       $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        glide._c.Sizes.setupWrapper();
-        glide._c.Sizes.setupSlides();
+        glide.mount()
       });
-
+      // Resize glides each time sidebar is collapsed in shinydashboard
+      $(document).on('shiny:inputchanged', function(event) {
+        if (event.name === 'sidebarCollapsed') {
+          glide.mount()
+        }
+      });
 
       this.glide = glide;
     }
