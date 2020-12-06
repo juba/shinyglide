@@ -85,13 +85,14 @@
 
       
 
-      </header><script src="c_custom_controls_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="c_custom_controls_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="c_custom_controls_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="c_custom_controls_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Custom controls</h1>
                         <h4 class="author">Julien Barnier</h4>
             
-            <h4 class="date">2020-09-27</h4>
+            <h4 class="date">2020-12-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/c_custom_controls.Rmd"><code>vignettes/c_custom_controls.Rmd</code></a></small>
       <div class="hidden name"><code>c_custom_controls.Rmd</code></div>
@@ -104,8 +105,8 @@
 <h2 class="hasAnchor">
 <a href="#customizing-labels" class="anchor"></a>Customizing labels</h2>
 <p>If you want to keep the default controls but just changing the default labels, you can use the <code>previous_label</code> and <code>next_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>. You can pass them any HTML or shiny tags combinations. For example :</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
   <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     next_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Next screen"</span>, <span class="fu">icon</span><span class="op">(</span><span class="st">"play"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span>,
@@ -128,7 +129,7 @@
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>You can also use the <code>controls_position</code> argument to place at the <code>"top"</code> or at the <code>"bottom"</code> of the glide.</p>
 </div>
 <div id="custom-controls" class="section level2">
@@ -144,8 +145,8 @@
 </ul>
 <p>There is no obligation to use these helpers function, you ca build your own layout and controls. The only constraint is that the “back” control must have a <code>prev-screen</code> CSS class, and the “next” control a <code>next-screen</code> CSS class. Note that the labels of these controls are defined via the <code>next_label</code> and <code>previous_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>.</p>
 <p>Here is an example which uses the <code><a href="../reference/glideControls.html">glideControls()</a></code> layout. Note that it is not necessary to add the required <code>prev-screen</code> class when using <code><a href="../reference/nextButton.html">prevButton()</a></code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,
   <span class="va">tags</span><span class="op">$</span><span class="fu">button</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-success next-screen"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -172,10 +173,10 @@
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>And here is another example with a custom layout :</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu">fluidRow</span><span class="op">(</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu">fluidRow</span><span class="op">(</span>
   <span class="fu">div</span><span class="op">(</span>class<span class="op">=</span><span class="st">"col-xs-6 text-right"</span>,
     <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>
   <span class="op">)</span>,
@@ -212,7 +213,7 @@
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>You can also take a look at the <a href="https://data.nozav.org/app/shinyglide/04_custom_controls/">sample custom controls app</a> and at its <a href="https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R">source code</a> to see a way to implement a rather different controls styling and positioning.</p>
 </div>
 <div id="first-and-last-buttons" class="section level2">
@@ -221,8 +222,8 @@
 <p>When using custom controls, you can define controls that will be shown only on the first and last screens. In general they are used in place of the <em>Back</em> and <em>Next</em> controls which are hidden on those screens.</p>
 <p>To do this, either manually define an element with a <code>first-screen</code> or <code>last-screen</code> CSS class, or use one of the two <code><a href="../reference/firstButton.html">firstButton()</a></code> or <code><a href="../reference/firstButton.html">lastButton()</a></code> helper functions.</p>
 <p>Here is an example :</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
   <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,
     <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-danger"</span>, <span class="st">"First screen !"</span><span class="op">)</span>
@@ -258,7 +259,7 @@
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="custom-controls-in-modal" class="section level2">
 <h2 class="hasAnchor">
@@ -266,8 +267,8 @@
 <p>You can use a glide inside a Shiny modal dialog. This can be useful to create a sort of “assistant-like” interface is the modal is automatically shown at startup.</p>
 <p>In this case, when defining the custom modals for your modal glide, it is recommended to create a control with a `<code>data-dismiss</code>=“modal”` attribute in order to close the modal at the start or at the end of the glide.</p>
 <p>Here is an example modal controls :</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">modal_controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">modal_controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
       <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
         <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span><span class="op">)</span>,
         <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span><span class="op">(</span>
@@ -284,7 +285,7 @@
           <span class="st">"Done"</span>
       <span class="op">)</span>
     <span class="op">)</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p>You can take a look at the <a href="https://data.nozav.org/app/shinyglide/03_modal/">sample modal app</a> and at its <a href="https://github.com/juba/shinyglide/blob/master/inst/examples/03_modal/app.R">source code</a> to see a full way to implement it.</p>
 </div>
   </div>

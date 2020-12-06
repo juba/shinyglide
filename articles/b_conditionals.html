@@ -85,13 +85,14 @@
 
       
 
-      </header><script src="b_conditionals_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="b_conditionals_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="b_conditionals_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="b_conditionals_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Conditional controls and screen output</h1>
                         <h4 class="author">Julien Barnier</h4>
             
-            <h4 class="date">2020-09-27</h4>
+            <h4 class="date">2020-12-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/b_conditionals.Rmd"><code>vignettes/b_conditionals.Rmd</code></a></small>
       <div class="hidden name"><code>b_conditionals.Rmd</code></div>
@@ -105,8 +106,8 @@
 <a href="#conditional-controls" class="anchor"></a>Conditional controls</h2>
 <p>Sometimes you don’t want your user to be able to go to the next screen if a condition based on inputs is not met. This can be done in <code>shinyglide</code> with the <code>next_condition</code> argument of the <code>screen</code> function. This option takes exactly the same syntax has the one used in <code><a href="https://shiny.rstudio.com/reference/shiny/latest/conditionalPanel.html">shiny::conditionalPanel</a></code>.</p>
 <p>For example, in the following app, the <em>Next</em> button is disabled until the <em>n</em> value is greater then zero :</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
       next_condition <span class="op">=</span> <span class="st">"input.n &gt; 0"</span>,
@@ -127,11 +128,11 @@
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>You can do the same for the <em>Back</em> button with the <code>previous_condition</code> argument.</p>
 <p>By default the button is disabled when the condition is not met (more precisely, the button gets a <code>disabled = "disabled"</code> argument and a <code>disabled</code> CSS class). If you prefer to hide it entirely, you can add <code>disable_type = "hide"</code> to your <code><a href="../reference/glide.html">glide()</a></code> definition :</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     disable_type <span class="op">=</span> <span class="st">"hide"</span>,
     
@@ -154,7 +155,7 @@
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="screen-output" class="section level2">
 <h2 class="hasAnchor">
@@ -162,8 +163,8 @@
 <p>Sometimes you want to show a screen only if certain conditions are met based on inputs. For example, if a user chooses a value which is not present in a dataset, you would like to display a specific screen to alert him.</p>
 <p>This is possible by using a <code>screenOutput</code> call in you app UI, associated to a <code>renderUI</code> in your app server. If <code>renderUI</code> returns <code>NULL</code>, the screen will be hidden.</p>
 <p>Here is an example :</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     disable_type <span class="op">=</span> <span class="st">"hide"</span>,
     
@@ -186,14 +187,14 @@
   <span class="fu">outputOptions</span><span class="op">(</span><span class="va">output</span>, <span class="st">"check_screen"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><strong>Important :</strong> for the <code>screenOutput</code> to work, it is mandatory to add the following line in your app server :</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu">outputOptions</span><span class="op">(</span><span class="va">output</span>, <span class="st">"your_screen_id"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">outputOptions</span><span class="op">(</span><span class="va">output</span>, <span class="st">"your_screen_id"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Otherwise, it won’t be updated when hidden.</p>
 <p>Sometimes the <code>screenOutput</code> computation takes some time. In these cases, with the default controls, the <em>Next</em> button is disabled and a <em>Loading</em> message is shown until the next screens computations is done. You can see it in the following example, which is the same as the previous one but with an articial 2 seconds waiting time :</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     disable_type <span class="op">=</span> <span class="st">"hide"</span>,
     
@@ -217,7 +218,7 @@
   <span class="fu">outputOptions</span><span class="op">(</span><span class="va">output</span>, <span class="st">"check_screen"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></pre></div>
+<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <div id="customizing-loading" class="section level3">
 <h3 class="hasAnchor">
 <a href="#customizing-loading" class="anchor"></a>Customizing loading</h3>
