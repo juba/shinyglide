@@ -143,18 +143,18 @@
 <li>
 <code><a href="../reference/nextButton.html">prevButton()</a></code> and <code><a href="../reference/nextButton.html">nextButton()</a></code> generate the default <em>Back</em> and <em>Next</em> controls. You can pass them custom CSS classes with their <code>class</code> argument.</li>
 </ul>
-<p>There is no obligation to use these helpers function, you ca build your own layout and controls. The only constraint is that the “back” control must have a <code>prev-screen</code> CSS class, and the “next” control a <code>next-screen</code> CSS class. Note that the labels of these controls are defined via the <code>next_label</code> and <code>previous_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>.</p>
-<p>Here is an example which uses the <code><a href="../reference/glideControls.html">glideControls()</a></code> layout. Note that it is not necessary to add the required <code>prev-screen</code> class when using <code><a href="../reference/nextButton.html">prevButton()</a></code>.</p>
+<p>There is no obligation to use these helpers function, you can build your own layout and controls. The only constraint is that the “back” control must have a <code>prev-screen</code> CSS class, and the “next” control a <code>next-screen</code> CSS class. Note that the labels of these controls are defined via the <code>next_label</code> and <code>previous_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>.</p>
+<p>Here is an example which uses the <code><a href="../reference/glideControls.html">glideControls()</a></code> helper. Note that it is not necessary to add the required <code>prev-screen</code> class when using <code><a href="../reference/nextButton.html">prevButton()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,
-  <span class="va">tags</span><span class="op">$</span><span class="fu">button</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-success next-screen"</span><span class="op">)</span>
-<span class="op">)</span>
+<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> 
 
 <span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
   <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    custom_controls <span class="op">=</span> <span class="va">controls</span>,
+    custom_controls <span class="op">=</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
+      <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,
+      <span class="va">tags</span><span class="op">$</span><span class="fu">button</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-success next-screen"</span><span class="op">)</span>
+    <span class="op">)</span>,
     
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
       <span class="fu">p</span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
