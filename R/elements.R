@@ -198,7 +198,10 @@ screen <- function(...,
 #'   )
 #' )
 
-glideControls <- function(previous_content, next_content) {
+glideControls <- function(
+  previous_content = prevButton(),
+  next_content = nextButton()
+) {
   fluidRow(
     tags$div(class="col-xs-6",
       previous_content
