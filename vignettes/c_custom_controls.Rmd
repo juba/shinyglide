@@ -52,20 +52,20 @@ To define custom controls, you can use one of the helpers functions :
 - `glideControls()` generates the default controls horizontal layout. It takes two arguments, the first one is the content of the "back" zone (on the left), the second one the content of the "next" zone (on the right).
 - `prevButton()` and `nextButton()` generate the default *Back* and *Next* controls. You can pass them custom CSS classes with their `class` argument.
 
-There is no obligation to use these helpers function, you ca build your own layout and controls. The only constraint is that the "back" control must have a `prev-screen` CSS class, and the "next" control a `next-screen` CSS class. Note that the labels of these controls are defined via the `next_label` and `previous_label` arguments of `glide()`.
+There is no obligation to use these helpers function, you can build your own layout and controls. The only constraint is that the "back" control must have a `prev-screen` CSS class, and the "next" control a `next-screen` CSS class. Note that the labels of these controls are defined via the `next_label` and `previous_label` arguments of `glide()`.
 
-Here is an example which uses the `glideControls()` layout. Note that it is not necessary to add the required `prev-screen` class when using `prevButton()`.
+Here is an example which uses the `glideControls()` helper. Note that it is not necessary to add the required `prev-screen` class when using `prevButton()`.
 
 ```{r eval=FALSE}
-controls <- glideControls(
-  prevButton(class = "btn btn-warning"),
-  tags$button(class = "btn btn-success next-screen")
-)
+controls <- 
 
 ui <- fluidPage(
   titlePanel("Basic shinyglide app"),
   glide(
-    custom_controls = controls,
+    custom_controls = glideControls(
+      prevButton(class = "btn btn-warning"),
+      tags$button(class = "btn btn-success next-screen")
+    ),
     
     screen(
       p("Please choose a value for n :"),
