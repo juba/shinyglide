@@ -40,7 +40,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -72,7 +72,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/juba/shinyglide/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@
 <li>Responsive, navigation by mouse, keyboard, swiping</li>
 <li>Controls are completely customizable (<a href="https://data.nozav.org/app/shinyglide/04_custom_controls/">live example</a>)</li>
 <li>
-<em>Next</em> and <em>Back</em> controls can be disabled until an input condition is met (same syntax as <code><a href="https://shiny.rstudio.com/reference/shiny/latest/conditionalPanel.html">shiny::conditionalPanel</a></code>)</li>
+<em>Next</em> and <em>Back</em> controls can be disabled until an input condition is met (same syntax as <code><a href="https://rdrr.io/pkg/shiny/man/conditionalPanel.html">shiny::conditionalPanel</a></code>)</li>
 <li>“Screens” can be generated or hidden depending on user inputs. Loading time are taken into accounts (disabled <em>Next</em> button and customizable animation)</li>
 <li>Integration with Shiny modal dialogs (<a href="https://data.nozav.org/app/shinyglide/03_modal/">live example</a>)</li>
 <li>Multiple glides per app (<a href="https://data.nozav.org/app/shinyglide/05_multi_glides/">live example</a>)</li>
@@ -126,7 +126,7 @@
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>A <code>shinyglide</code> component is created with the <code><a href="reference/glide.html">glide()</a></code> function. This component is then divided intro <em>screens</em> with the <code><a href="reference/screen.html">screen()</a></code> function.</p>
 <p>Here is the code of a very basic app (<a href="https://data.nozav.org/app/shinyglide/02_simple/">live example</a>):</p>
-<pre class="{r}"><code><a href="http://shiny.rstudio.com">library(shiny)
+<pre class="{r}"><code><a href="https://shiny.rstudio.com/">library(shiny)
 library(shinyglide)
 
 ui &lt;- fixedPage(style = "max-width: 500px;",

@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/juba/shinyglide/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,14 +85,13 @@
 
       
 
-      </header><script src="b_conditionals_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="b_conditionals_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="b_conditionals_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="b_conditionals_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Conditional controls and screen output</h1>
                         <h4 class="author">Julien Barnier</h4>
             
-            <h4 class="date">2020-12-06</h4>
+            <h4 class="date">2021-02-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/b_conditionals.Rmd"><code>vignettes/b_conditionals.Rmd</code></a></small>
       <div class="hidden name"><code>b_conditionals.Rmd</code></div>
@@ -104,7 +103,7 @@
 <div id="conditional-controls" class="section level2">
 <h2 class="hasAnchor">
 <a href="#conditional-controls" class="anchor"></a>Conditional controls</h2>
-<p>Sometimes you don’t want your user to be able to go to the next screen if a condition based on inputs is not met. This can be done in <code>shinyglide</code> with the <code>next_condition</code> argument of the <code>screen</code> function. This option takes exactly the same syntax has the one used in <code><a href="https://shiny.rstudio.com/reference/shiny/latest/conditionalPanel.html">shiny::conditionalPanel</a></code>.</p>
+<p>Sometimes you don’t want your user to be able to go to the next screen if a condition based on inputs is not met. This can be done in <code>shinyglide</code> with the <code>next_condition</code> argument of the <code>screen</code> function. This option takes exactly the same syntax has the one used in <code><a href="https://rdrr.io/pkg/shiny/man/conditionalPanel.html">shiny::conditionalPanel</a></code>.</p>
 <p>For example, in the following app, the <em>Next</em> button is disabled until the <em>n</em> value is greater then zero :</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
