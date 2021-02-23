@@ -180,7 +180,6 @@ server <- function(input, output, session){
 }
 ```
 
-
-
+Note that this won't work if you put an hyphen in your glide `id`.
 
 
