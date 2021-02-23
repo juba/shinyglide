@@ -268,7 +268,7 @@ prevButton <- function(class = c("btn", "btn-default")) {
 #' @details
 #' These controls generate an `<a>` tag, so you can use `href` attributes.
 #'
-#' `firstButton``is only shown on the first screen of the app, and `finalButton` only
+#' `firstButton` is only shown on the first screen of the app, and `finalButton` only
 #' on the last screen.
 #'
 #' @examples
