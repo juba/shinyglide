@@ -5,7 +5,14 @@ class ShinyGlide {
 
     this.root = root;
 
-    this.index_input = root.id ? 'shinyglide_index_' + root.id : 'shinyglide_index';
+    let id_split = root.id.split("-");
+    if (id_split.length == 1) {
+      this.index_input = 'shinyglide_index_' + root.id;
+    }
+    // Namespace in module
+    if (id_split.length == 2) {
+      this.index_input = id_split[0] + '-shinyglide_index_' + id_split[1];
+    }
 
     this.glide = null;
 
