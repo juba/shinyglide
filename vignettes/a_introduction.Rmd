@@ -158,7 +158,27 @@ The `data-glide-dir` attribute accepts the following values :
 - `=n` : go to the screen at index *n* (starting at 0)
 
 
+## Getting back the current slide index into Shiny
 
+`shinyglide` automatically updates a Shiny input with the current slide index. If you gave an `id` to your `glide()` element, you can access it with `input$shinyglide_index_id`, otherwise the variable name is `input$shinyglide_index`. Here is a quick example :
+
+```{r eval=FALSE}
+ui <- fluidPage(
+  glide(
+    id = "myglide",
+    screen(h1("First screen")),
+    screen(h1("Second screen")),
+    screen(h1("Third screen"))
+  ),
+  textOutput("index")
+)
+
+server <- function(input, output, session){
+  output$index <- renderText(
+    input$shinyglide_index_myglide
+  )
+}
+```
 
 
 
