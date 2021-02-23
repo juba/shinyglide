@@ -1,5 +1,6 @@
 # shinyglide 0.1.3
 
+* Style default controls layout with flex instead of bootstrap
 * Add fix for collapsible sidebar in shinydashboard (thanks @nklepeis)
 * Add `keyboard` option to `glide` function to disable keyboard navigation
 * Fix incorrect glides dimensions in tabs (thanks @LeonhardBakker)
