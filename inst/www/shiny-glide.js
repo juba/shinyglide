@@ -5,6 +5,8 @@ class ShinyGlide {
 
     this.root = root;
 
+    this.index_input = root.id ? 'shinyglide_index_' + root.id : 'shinyglide_index';
+
     this.glide = null;
 
     this.slides = root.querySelectorAll(".glide__slide");
@@ -89,6 +91,7 @@ class ShinyGlide {
 
       glide.on('run.after', move => {
         this.update_controls();
+        Shiny.setInputValue(this.index_input, glide.index);
       });
 
 
@@ -278,7 +281,7 @@ function setup() {
     if (shinyglide_setup_has_run) { return; }
 
     $(".shinyglide").each(function(index) {
-	new ShinyGlide(this);
+	    new ShinyGlide(this);
     });
 
     // If the glide is in a shiny modal and it is not shown yet,
@@ -288,7 +291,7 @@ function setup() {
 	var shiny_modal = $(modal_wrapper).find("#shiny-modal");
 	shiny_modal.on("shown.bs.modal", () => {
 	    shiny_modal.find('.shinyglide').each(function(i, el)  {
-		new ShinyGlide(el);
+		    new ShinyGlide(el);
 	    });
 	});
     });
