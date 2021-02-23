@@ -5,13 +5,14 @@ class ShinyGlide {
 
     this.root = root;
 
-    let id_split = root.id.split("-");
-    if (id_split.length == 1) {
-      this.index_input = 'shinyglide_index_' + root.id;
+    let id = root.id;
+    let split = root.id.lastIndexOf("-");
+    if (split == -1) {
+      this.index_input = 'shinyglide_index_' + id;
     }
     // Namespace in module
-    if (id_split.length == 2) {
-      this.index_input = id_split[0] + '-shinyglide_index_' + id_split[1];
+    else {
+      this.index_input = id.substr(0, split) + '-shinyglide_index_' + id.substr(split+1);
     }
 
     this.glide = null;
