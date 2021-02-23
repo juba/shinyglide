@@ -123,6 +123,8 @@ class ShinyGlide {
 
       this.update_labels(this.slides[0]);
 
+      this.init_glide();
+
       this.next_control.addEventListener("click", event => {
           if (!this.next_control.hasAttribute("disabled")) { this.glide.go(">"); };
       });
@@ -131,7 +133,6 @@ class ShinyGlide {
       });
 
       this.init_detectors();
-      this.init_glide();
 
       // Wait for shiny app to be started
       $(document).on("shiny:sessioninitialized", this.root, () => {
