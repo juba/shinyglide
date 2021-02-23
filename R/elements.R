@@ -202,11 +202,12 @@ glideControls <- function(
   previous_content = prevButton(),
   next_content = nextButton()
 ) {
-  fluidRow(
-    tags$div(class="col-sm-6",
+  tags$div(
+    style="display: flex; justify-content: space-between",
+    tags$div(
       previous_content
     ),
-    tags$div(class="col-sm-6 text-right",
+    tags$div(
       next_content
     )
   )
