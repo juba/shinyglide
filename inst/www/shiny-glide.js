@@ -64,7 +64,7 @@ class ShinyGlide {
         rewind: false,
         keyboard: this.keyboard,
         dragThreshold: false
-      }).mount();
+      });
 
       glide.on('run.before', move => {
 
@@ -89,6 +89,10 @@ class ShinyGlide {
         });
       });
 
+      glide.on("mount.after", () => {
+        Shiny.setInputValue(this.index_input, glide.index);
+      });
+
       glide.on('run.after', move => {
         this.update_controls();
         Shiny.setInputValue(this.index_input, glide.index);
@@ -106,6 +110,7 @@ class ShinyGlide {
         }
       });
 
+      glide.mount();
       this.glide = glide;
     }
 
