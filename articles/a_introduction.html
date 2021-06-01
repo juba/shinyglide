@@ -91,7 +91,7 @@
       <h1 data-toc-skip>Introduction to shinyglide</h1>
                         <h4 class="author">Julien Barnier</h4>
             
-            <h4 class="date">2021-02-19</h4>
+            <h4 class="date">2021-06-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/a_introduction.Rmd"><code>vignettes/a_introduction.Rmd</code></a></small>
       <div class="hidden name"><code>a_introduction.Rmd</code></div>
@@ -236,6 +236,28 @@
 <li>
 <code>=n</code> : go to the screen at index <em>n</em> (starting at 0)</li>
 </ul>
+</div>
+<div id="getting-back-the-current-slide-index-into-shiny" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-back-the-current-slide-index-into-shiny" class="anchor"></a>Getting back the current slide index into Shiny</h2>
+<p><code>shinyglide</code> automatically updates a Shiny input with the current slide index. If you gave an <code>id</code> to your <code><a href="../reference/glide.html">glide()</a></code> element, you can access it with <code>input$shinyglide_index_id</code>, otherwise the variable name is <code>input$shinyglide_index</code>. Here is a quick example :</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
+    id <span class="op">=</span> <span class="st">"myglide"</span>,
+    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu">h1</span><span class="op">(</span><span class="st">"First screen"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Second screen"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Third screen"</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span>,
+  <span class="fu">textOutput</span><span class="op">(</span><span class="st">"index"</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu">renderText</span><span class="op">(</span>
+    <span class="va">input</span><span class="op">$</span><span class="va">shinyglide_index_myglide</span>
+  <span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>Note that this won’t work if you put an hyphen in your glide <code>id</code>.</p>
 </div>
   </div>
 
