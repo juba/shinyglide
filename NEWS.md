@@ -1,8 +1,6 @@
-# Changelog
+# shinyglide 0.1.4
 
-## shinyglide 0.1.4
-
-## shinyglide 0.1.3
+# shinyglide 0.1.3
 
 - Add current index Shiny input (thanks @gueyenono)
 - Style default controls layout with flex instead of bootstrap
@@ -11,11 +9,11 @@
 - Fix incorrect glides dimensions in tabs (thanks @LeonhardBakker)
 - Limit tab key navigation to the current visible slide (thanks @Chaskelr)
 
-## shinyglide 0.1.2
+# shinyglide 0.1.2
 
 - Fix typo which prevented left arrow disabling when prev_condition is not met
 - Fix conflict with slickR (thanks @JonP-16)
 
-## shinyglide 0.1.1
+# shinyglide 0.1.1
 
 - First version
