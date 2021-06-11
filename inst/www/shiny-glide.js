@@ -5,8 +5,8 @@ class ShinyGlide {
 
     this.root = root;
 
-    let id = root.id;
-    let split = root.id.lastIndexOf("-");
+    const id = root.id;
+    const split = root.id.lastIndexOf("-");
     if (split == -1) {
       this.index_input = 'shinyglide_index_' + id;
     }
@@ -68,7 +68,7 @@ class ShinyGlide {
 
   // Init glide object
   init_glide() {
-    var glide = new Glide(this.root, {
+    const glide = new Glide(this.root, {
       rewind: false,
       keyboard: this.keyboard,
       dragThreshold: false
@@ -99,7 +99,9 @@ class ShinyGlide {
 
     glide.on("mount.after", () => {
       this.update_inputs_tabindex();
-      Shiny.setInputValue(this.index_input, glide.index);
+      if (Shiny.setInputValue !== undefined) {
+        Shiny.setInputValue(this.index_input, glide.index);
+      }
     });
 
     glide.on('run.after', move => {
@@ -155,8 +157,8 @@ class ShinyGlide {
   // Update controls enabling conditions
   update_conditions(slide) {
 
-    var next_condition = slide.getAttribute('data-next-condition');
-    var prev_condition = slide.getAttribute('data-prev-condition');
+    const next_condition = slide.getAttribute('data-next-condition');
+    const prev_condition = slide.getAttribute('data-prev-condition');
 
     $(this.prev_detector).data("data-display-if-func", null);
     $(this.next_detector).data("data-display-if-func", null);
@@ -176,15 +178,15 @@ class ShinyGlide {
 
   // Get current slide next label
   slide_next_label(slide) {
-    var screen_next_label = slide.getAttribute('data-next-label');
-    var label = screen_next_label !== null ? screen_next_label : this.next_label;
+    const screen_next_label = slide.getAttribute('data-next-label');
+    const label = screen_next_label !== null ? screen_next_label : this.next_label;
     return (label);
   }
 
   // Get current slide prev label
   slide_prev_label(slide) {
-    var screen_prev_label = slide.getAttribute('data-prev-label');
-    var label = screen_prev_label !== null ? screen_prev_label : this.prev_label;
+    const screen_prev_label = slide.getAttribute('data-prev-label');
+    const label = screen_prev_label !== null ? screen_prev_label : this.prev_label;
     return (label);
   }
 
@@ -227,8 +229,8 @@ class ShinyGlide {
 
     this.busy_screens = 0;
 
-    var next_screenoutputs = $(slide).find("~ li.glide__slide");
-    var index = next_screenoutputs
+    let next_screenoutputs = $(slide).find("~ li.glide__slide");
+    let index = next_screenoutputs
       .toArray()
       .findIndex(element => !$(element).hasClass("shiny-html-output"));
     if (index == -1) { index = 0 }
@@ -265,9 +267,9 @@ class ShinyGlide {
     $(this.first_control).hide();
     $(this.last_control).hide();
 
-    var visible_slides = $(this.slides).not('.shinyglide-hidden');
-    var slide = visible_slides[this.glide.index];
-    var n_slides = visible_slides.length - 1;
+    const visible_slides = $(this.slides).not('.shinyglide-hidden');
+    const slide = visible_slides[this.glide.index];
+    const n_slides = visible_slides.length - 1;
 
     this.update_conditions(slide);
     this.update_labels(slide);
@@ -287,18 +289,18 @@ class ShinyGlide {
 
   // Set tabindex to -1 to inactive slides
   update_inputs_tabindex() {
-
-    const inputs = this.root.querySelectorAll(".glide__slide input");
+    const inputs_query = ".glide__slide input, .glide__slide select, .glide__slide button, .glide__slide textarea, .glide__slide a"
+    const inputs = this.root.querySelectorAll(inputs_query);
     inputs.forEach((input) => input.setAttribute("tabindex", -1));
-    const active_inputs = this.root.querySelectorAll(".glide__slide--active input");
+    const active_inputs_query = ".glide__slide--active input, .glide__slide--active select, .glide__slide--active button, .glide__slide--active textarea, .glide__slide--active a"
+    const active_inputs = this.root.querySelectorAll(active_inputs_query);
     active_inputs.forEach((input) => input.setAttribute("tabindex", 0));
-
   }
 
 }
 
 // Only run setup once
-var shinyglide_setup_has_run = false;
+let shinyglide_setup_has_run = false;
 
 
 function setup() {
@@ -312,8 +314,8 @@ function setup() {
   // If the glide is in a shiny modal and it is not shown yet,
   // wait for it to be shown otherwise dimensions are incorrect
   $(document).on('shiny:idle', e => {
-    var modal_wrapper = document.getElementById('shiny-modal-wrapper');
-    var shiny_modal = $(modal_wrapper).find("#shiny-modal");
+    const modal_wrapper = document.getElementById('shiny-modal-wrapper');
+    const shiny_modal = $(modal_wrapper).find("#shiny-modal");
     shiny_modal.on("shown.bs.modal", () => {
       shiny_modal.find('.shinyglide').each(function (i, el) {
         new ShinyGlide(el);
