@@ -7,6 +7,7 @@
 - Add fix for collapsible sidebar in shinydashboard (thanks @nklepeis)
 - Add `keyboard` option to `glide` function to disable keyboard navigation
 - Fix incorrect glides dimensions in tabs (thanks @LeonhardBakker)
+- Limit tab key navigation to the current visible slide (thanks @Chaskelr)
 
 ## shinyglide 0.1.2
 
