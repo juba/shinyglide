@@ -1,8 +1,8 @@
 Package: shinyglide
 Type: Package
 Title: Glide Component for Shiny Applications
-Version: 0.1.3
-Date: 2021-06-11
+Version: 0.1.4
+Date: 2021-06-12
 Authors@R: c(
     person("Julien", "Barnier", 
            role=c("aut","cre"),

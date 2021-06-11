@@ -1,5 +1,7 @@
 # Changelog
 
+## shinyglide 0.1.4
+
 ## shinyglide 0.1.3
 
 - Add current index Shiny input (thanks @gueyenono)
