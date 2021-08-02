@@ -97,8 +97,12 @@ glide <- function(...,
 
       glideDetectors()
     ),
-    glideLib(),
-    shinyglideLib()
+    htmltools::htmlDependency(
+      name = "shinyglide",
+      version = "0.1",
+      src = c(file = system.file("packer", package = "shinyglide")),
+      script = "shinyglide.js"
+    )
   )
 
 }

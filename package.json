@@ -1,0 +1,38 @@
+{
+  "name": "shinyglide",
+  "version": "1.0.0",
+  "description": "<!-- badges: start --> [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html) [![CRAN status](https://www.r-pkg.org/badges/version-ago/shinyglide)](https://cran.r-project.org/package=shinyglide) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/shinyglide)](https://cran.r-project.org/package=shinyglide) [![R build status](https://github.com/juba/shinyglide/workflows/R-CMD-check/badge.svg)](https://github.com/juba/shinyglide/actions) <!-- badges: end -->",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "man": "man"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "none": "webpack --config webpack.dev.js --mode=none",
+    "development": "webpack --config webpack.dev.js",
+    "production": "webpack --config webpack.prod.js",
+    "watch": "webpack --config webpack.config.js -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juba/shinyglide.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juba/shinyglide/issues"
+  },
+  "homepage": "https://github.com/juba/shinyglide#readme",
+  "devDependencies": {
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.48.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@glidejs/glide": "^3.4.1"
+  }
+}
