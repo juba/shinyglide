@@ -340,5 +340,22 @@ $(function () {
   setup();
 });
 
+// Add MutationObservers to each shiny output div to rerun setup if a new 
+// shinyglide is dynamically inserted with renderUI()
 
+const config = { childList: true, subtree: true };
+const observer = new MutationObserver((mutationsList, observer) => {
+  mutationsList.forEach(mutation => {
+    if (mutation.addedNodes === undefined) return;
+    mutation.addedNodes.forEach(node => {
+      if (node.classList && node.classList.contains("shinyglide")) {
+        shinyglide_setup_has_run = false;
+        setup()
+      }
+    })
+  })
+});
+document.querySelectorAll(".shiny-html-output").forEach(node => {
+  observer.observe(node, config);
+})
 
