@@ -1,5 +1,8 @@
 # shinyglide 0.1.4
 
+- Fix issue when slide reloaded from renderUI (thanks @ChristianKahmann)
+- Migrate development to packer
+
 # shinyglide 0.1.3
 
 - Add current index Shiny input (thanks @gueyenono)
