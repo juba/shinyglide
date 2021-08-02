@@ -100,3 +100,4 @@ For more information, see the three available vignettes :
 ## Credits
 
 - `shinyglide` is based on the [Glide](https://glidejs.com/) JavaScript library, by [Jędrzej Chałubek](https://github.com/jedrzejchalubek).
+- `shinyglide` is developed with the help of the [packer](https://github.com/JohnCoene/packer) package by [John Coene](https://twitter.com/jdatap).
