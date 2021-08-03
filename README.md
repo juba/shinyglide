@@ -11,12 +11,11 @@
 
 It allows to create this sort of app ([live example](https://data.nozav.org/app/shinyglide/01_presentation/)) :
 
-![](man/figures/shinyglide_presentation.gif)
+![presentation](man/figures/shinyglide_presentation.gif)
 
 Or can be integrated into an existing app to create an "assistant-like" interface ([live example](https://data.nozav.org/app/shinyglide/03_modal/)):
 
-![](man/figures/shinyglide_modal.gif)
-
+![modal](man/figures/shinyglide_modal.gif)
 
 ## Features
 
@@ -43,7 +42,7 @@ remotes::install_github("juba/shinyglide")
 
 ## Usage
 
-A `shinyglide` component is created with the `glide()` function. This component is then divided intro *screens* with the `screen()` function. 
+A `shinyglide` component is created with the `glide()` function. This component is then divided intro *screens* with the `screen()` function.
 
 Here is the code of a very basic app ([live example](https://data.nozav.org/app/shinyglide/02_simple/)):
 
@@ -88,14 +87,33 @@ shinyApp(ui, server)
 
 ```
 
-
 For more information, see the three available vignettes :
 
 - [Introduction to shinyglide](https://juba.github.io/shinyglide/articles/a_introduction.html)
 - [Conditional controls and screen output](https://juba.github.io/shinyglide/articles/b_conditionals.html)
 - [Custom controls](https://juba.github.io/shinyglide/articles/c_custom_controls.html)
 
+## Development notes
 
+This package uses [packer](https://github.com/JohnCoene/packer) to manage JavaScript source code and dependencies. If you want to modify it, you'll need a working installation of [Node.js](https://nodejs.org/en/).
+
+After cloning this repository, run the following in a terminal at the project root :
+
+```sh
+npm install
+```
+
+Then, if you modify the JavaScript code in `srcjs`, you'll have to run the following command to bundle and update the widget JavaScript code :
+
+```r
+packer::bundle_dev()
+```
+
+If you want to ship a minimized production version, use :
+
+```r
+packer::bundle_prod()
+```
 
 ## Credits
 
