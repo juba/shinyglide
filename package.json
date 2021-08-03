@@ -1,7 +1,7 @@
 {
   "name": "shinyglide",
-  "version": "1.0.0",
-  "description": "<!-- badges: start --> [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html) [![CRAN status](https://www.r-pkg.org/badges/version-ago/shinyglide)](https://cran.r-project.org/package=shinyglide) [![CRAN downloads](https://cranlogs.r-pkg.org/badges/shinyglide)](https://cran.r-project.org/package=shinyglide) [![R build status](https://github.com/juba/shinyglide/workflows/R-CMD-check/badge.svg)](https://github.com/juba/shinyglide/actions) <!-- badges: end -->",
+  "version": "0.1.0",
+  "description": "Glide.js component for Shiny apps",
   "main": "index.js",
   "directories": {
     "doc": "docs",
