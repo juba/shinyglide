@@ -95,9 +95,9 @@
 
 <p><code>shinyglide</code> is an R package which provides carousel-like or assistant-like components to <a href="https://shiny.rstudio.com">shiny</a> applications, thanks to the <a href="https://glidejs.com">Glide</a> JavaScript library.</p>
 <p>It allows to create this sort of app (<a href="https://data.nozav.org/app/shinyglide/01_presentation/">live example</a>) :</p>
-<p><img src="reference/figures/shinyglide_presentation.gif"></p>
+<p><img src="reference/figures/shinyglide_presentation.gif" alt="presentation"></p>
 <p>Or can be integrated into an existing app to create an “assistant-like” interface (<a href="https://data.nozav.org/app/shinyglide/03_modal/">live example</a>):</p>
-<p><img src="reference/figures/shinyglide_modal.gif"></p>
+<p><img src="reference/figures/shinyglide_modal.gif" alt="modal"></p>
 <div id="features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#features" class="anchor"></a>Features</h2>
@@ -170,6 +170,19 @@ shinyApp(ui, server)
 <li><a href="https://juba.github.io/shinyglide/articles/b_conditionals.html">Conditional controls and screen output</a></li>
 <li><a href="https://juba.github.io/shinyglide/articles/c_custom_controls.html">Custom controls</a></li>
 </ul>
+</div>
+<div id="development-notes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#development-notes" class="anchor"></a>Development notes</h2>
+<p>This package uses <a href="https://github.com/JohnCoene/packer">packer</a> to manage JavaScript source code and dependencies. If you want to modify it, you’ll need a working installation of <a href="https://nodejs.org/en/">Node.js</a>.</p>
+<p>After cloning this repository, run the following in a terminal at the project root :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">npm</span> install</span></code></pre></div>
+<p>Then, if you modify the JavaScript code in <code>srcjs</code>, you’ll have to run the following command to bundle and update the widget JavaScript code :</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">packer</span><span class="fu">::</span><span class="fu">bundle_dev</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>If you want to ship a minimized production version, use :</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">packer</span><span class="fu">::</span><span class="fu">bundle_prod</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="credits" class="section level2">
 <h2 class="hasAnchor">
