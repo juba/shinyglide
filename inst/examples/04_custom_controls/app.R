@@ -91,6 +91,7 @@ ui <- fluidPage(
         previous_label = icon("chevron-left", lib="glyphicon"),
         loading_label = icon("hourglass", lib="glyphicon"),
         height = "300px",
+        swipe = FALSE,
         custom_controls = controls,
 
         screen(
