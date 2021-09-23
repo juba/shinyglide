@@ -1,5 +1,6 @@
-# shinyglide 0.1.4
+# shinyglide (development version)
 
+- Add `swipe` option to `glide` function to disable swiping navigation
 - Fix issue when slide reloaded from renderUI (thanks @ChristianKahmann)
 - Migrate development to packer
 
