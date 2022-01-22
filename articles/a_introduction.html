@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">shinyglide</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.3.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -70,7 +66,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/juba/shinyglide/">
+  <a href="https://github.com/juba/shinyglide/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -89,74 +85,74 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to shinyglide</h1>
-                        <h4 class="author">Julien Barnier</h4>
+                        <h4 data-toc-skip class="author">Julien Barnier</h4>
             
-            <h4 class="date">2021-10-06</h4>
+            <h4 data-toc-skip class="date">2022-01-22</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/master/vignettes/a_introduction.Rmd"><code>vignettes/a_introduction.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/HEAD/vignettes/a_introduction.Rmd" class="external-link"><code>vignettes/a_introduction.Rmd</code></a></small>
       <div class="hidden name"><code>a_introduction.Rmd</code></div>
 
     </div>
 
     
     
-<p><code>shinyglide</code> allows to add carousel-like components to shiny applications thanks to the <a href="https://www.glidejs.com">Glide</a> Javascript library.</p>
-<div id="creating-a-glide" class="section level2">
-<h2 class="hasAnchor">
-<a href="#creating-a-glide" class="anchor"></a>Creating a glide</h2>
+<p><code>shinyglide</code> allows to add carousel-like components to shiny applications thanks to the <a href="https://www.glidejs.com" class="external-link">Glide</a> Javascript library.</p>
+<div class="section level2">
+<h2 id="creating-a-glide">Creating a glide<a class="anchor" aria-label="anchor" href="#creating-a-glide"></a>
+</h2>
 <p>To add a <em>glide</em> component to an app, you must call the <code><a href="../reference/glide.html">glide()</a></code> function in you application UI declaration :</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
-  <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"App title"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"App title"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     <span class="va">...</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 </div>
-<div id="adding-screens" class="section level2">
-<h2 class="hasAnchor">
-<a href="#adding-screens" class="anchor"></a>Adding screens</h2>
+<div class="section level2">
+<h2 id="adding-screens">Adding screens<a class="anchor" aria-label="anchor" href="#adding-screens"></a>
+</h2>
 <p>Once your glide is created, you have to add <em>screens</em> to it. This is done by calling the <code><a href="../reference/screen.html">screen()</a></code> function :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
-  <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"App title"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"App title"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu">p</span><span class="op">(</span><span class="st">"This is the first screen of this glide."</span><span class="op">)</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"This is the first screen of this glide."</span><span class="op">)</span>
     <span class="op">)</span>,
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu">p</span><span class="op">(</span><span class="st">"This is the second and final screen."</span><span class="op">)</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"This is the second and final screen."</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>Of course, <em>screens</em> can contain anything you want, including shiny inputs and outputs. Here is a very basic complete app :</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
-  <span class="fu">titlePanel</span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu">p</span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu">numericInput</span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
     <span class="op">)</span>,
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu">p</span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p>You can see that default controls are added to your glide in the form of a “next” button (which doesn’t appear on last screen) and a “back” button (which doesn’t appear on the first one). There are different ways to customize these controls, which are explained in the <a href="https://juba.github.io/shinyglide/articles/c_custom_controls.html">custom controls</a> vignette.</p>
 </div>
-<div id="customizing-glide" class="section level2">
-<h2 class="hasAnchor">
-<a href="#customizing-glide" class="anchor"></a>Customizing glide</h2>
+<div class="section level2">
+<h2 id="customizing-glide">Customizing glide<a class="anchor" aria-label="anchor" href="#customizing-glide"></a>
+</h2>
 <p>The <code><a href="../reference/glide.html">glide()</a></code> function accepts several arguments to modify its behavior or appearance :</p>
 <ul>
 <li>
@@ -168,12 +164,12 @@
 <li>
 <code>controls_position</code> : wether to place the controls on <code>"top"</code> or <code>"bottom"</code> of the glide.</li>
 <li>
-<code>next_label</code>, <code>previous_label</code> : allow to specify custom labels for the “Back” and “Next” buttons. You can use text, HTML, <code>icon()</code>, etc.</li>
+<code>next_label</code>, <code>previous_label</code> : allow to specify custom labels for the “Back” and “Next” buttons. You can use text, HTML, <code><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon()</a></code>, etc.</li>
 </ul>
 <p>The <code>loading_label</code>, <code>label_class</code> and <code>disable_type</code> options will be described in the <a href="https://juba.github.io/shinyglide/articles/b_conditionals.html">conditional controls and screen output</a> vignette, and the <code>custom_controls</code> argument is explained in the <a href="https://juba.github.io/shinyglide/articles/c_custom_controls.html">custom controls</a> vignette.</p>
 <p>Here is an example of glide customization :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     id <span class="op">=</span> <span class="st">"plot-glide"</span>,
     height <span class="op">=</span> <span class="st">"450px"</span>,
@@ -182,27 +178,27 @@
     previous_label <span class="op">=</span> <span class="st">"Go back"</span>,
     
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu">p</span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu">numericInput</span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
     <span class="op">)</span>,
     <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu">p</span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu">plotOutput</span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
+      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
+      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu">renderPlot</span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu">shinyApp</span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="customizing-screens" class="section level2">
-<h2 class="hasAnchor">
-<a href="#customizing-screens" class="anchor"></a>Customizing screens</h2>
+<div class="section level2">
+<h2 id="customizing-screens">Customizing screens<a class="anchor" aria-label="anchor" href="#customizing-screens"></a>
+</h2>
 <p>You can also use arguments with <code><a href="../reference/screen.html">screen()</a></code> :</p>
 <ul>
 <li>
@@ -212,48 +208,48 @@
 </ul>
 <p>The <code>next_condition</code> and <code>previous_condition</code> arguments are explained in the <a href="https://juba.github.io/shinyglide/articles/b_conditionals.html">conditional inputs and screen outputs</a> vignette.</p>
 </div>
-<div id="in-app-controls" class="section level2">
-<h2 class="hasAnchor">
-<a href="#in-app-controls" class="anchor"></a>In app controls</h2>
+<div class="section level2">
+<h2 id="in-app-controls">In app controls<a class="anchor" aria-label="anchor" href="#in-app-controls"></a>
+</h2>
 <p>It’s possible to add controls inside the content of screens, such as a button which send the user back to the first screen, a link to go two screens forward, etc.</p>
 <p>To do this, you have to create an element (usually a link or a button) with a <code>data-glide-dir</code> attribute, and wrap it inside an element (usually a <code>&lt;div&gt;</code>) with a <code></code>data-glide-el=“controls”` attribute.</p>
 <p>For example, the following will create a link which will go back one screen :</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">div</span><span class="op">(</span>`data-glide-el`<span class="op">=</span><span class="st">"controls"</span>,
-  <span class="fu">a</span><span class="op">(</span>`data-glide-dir`<span class="op">=</span><span class="st">"&lt;"</span>, href<span class="op">=</span><span class="st">"#"</span>, <span class="st">"Go back"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">div</a></span><span class="op">(</span>`data-glide-el`<span class="op">=</span><span class="st">"controls"</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">a</a></span><span class="op">(</span>`data-glide-dir`<span class="op">=</span><span class="st">"&lt;"</span>, href<span class="op">=</span><span class="st">"#"</span>, <span class="st">"Go back"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>And this will create a button that will go back to the first screen :</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">div</span><span class="op">(</span>`data-glide-el`<span class="op">=</span><span class="st">"controls"</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">div</a></span><span class="op">(</span>`data-glide-el`<span class="op">=</span><span class="st">"controls"</span>,
   <span class="va">tags</span><span class="op">$</span><span class="fu">button</span><span class="op">(</span>`data-glide-dir`<span class="op">=</span><span class="st">"&lt;&lt;"</span>, href<span class="op">=</span><span class="st">"#"</span>, <span class="st">"Back to start"</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p>The <code>data-glide-dir</code> attribute accepts the following values :</p>
 <ul>
 <li>
-<code><a href="https://rdrr.io/r/base/Comparison.html">&lt;</a></code>, <code><a href="https://rdrr.io/r/base/Comparison.html">&gt;</a></code> : move one screen backward/forward</li>
+<code>&lt;</code>, <code>&gt;</code> : move one screen backward/forward</li>
 <li>
 <code>&lt;&lt;</code>, <code>&gt;&gt;</code> : go to the first/last screen</li>
 <li>
 <code>=n</code> : go to the screen at index <em>n</em> (starting at 0)</li>
 </ul>
 </div>
-<div id="getting-back-the-current-slide-index-into-shiny" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-back-the-current-slide-index-into-shiny" class="anchor"></a>Getting back the current slide index into Shiny</h2>
+<div class="section level2">
+<h2 id="getting-back-the-current-slide-index-into-shiny">Getting back the current slide index into Shiny<a class="anchor" aria-label="anchor" href="#getting-back-the-current-slide-index-into-shiny"></a>
+</h2>
 <p><code>shinyglide</code> automatically updates a Shiny input with the current slide index. If you gave an <code>id</code> to your <code><a href="../reference/glide.html">glide()</a></code> element, you can access it with <code>input$shinyglide_index_id</code>, otherwise the variable name is <code>input$shinyglide_index</code>. Here is a quick example :</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span>
+<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
     id <span class="op">=</span> <span class="st">"myglide"</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu">h1</span><span class="op">(</span><span class="st">"First screen"</span><span class="op">)</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Second screen"</span><span class="op">)</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu">h1</span><span class="op">(</span><span class="st">"Third screen"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"First screen"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Second screen"</span><span class="op">)</span><span class="op">)</span>,
+    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">h1</a></span><span class="op">(</span><span class="st">"Third screen"</span><span class="op">)</span><span class="op">)</span>
   <span class="op">)</span>,
-  <span class="fu">textOutput</span><span class="op">(</span><span class="st">"index"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/textOutput.html" class="external-link">textOutput</a></span><span class="op">(</span><span class="st">"index"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span><span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu">renderText</span><span class="op">(</span>
+  <span class="va">output</span><span class="op">$</span><span class="va">index</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderText</a></span><span class="op">(</span>
     <span class="va">input</span><span class="op">$</span><span class="va">shinyglide_index_myglide</span>
   <span class="op">)</span>
 <span class="op">}</span></code></pre></div>
@@ -272,11 +268,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Julien Barnier.</p>
+  <p></p>
+<p>Developed by Julien Barnier.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -284,6 +282,8 @@
 
   
 
+
+  
 
   </body>
 </html>
