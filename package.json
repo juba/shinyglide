@@ -33,6 +33,6 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@glidejs/glide": "^3.4.1"
+    "@glidejs/glide": "^3.5.2"
   }
 }
