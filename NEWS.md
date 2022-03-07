@@ -1,5 +1,6 @@
 # shinyglide (development version)
 
+- Resize glides when parent is resized (#30, @ismirsehregal)
 - Add `swipe` option to `glide` function to disable swiping navigation
 - Fix issue when slide reloaded from renderUI (thanks @ChristianKahmann)
 - Migrate development to packer

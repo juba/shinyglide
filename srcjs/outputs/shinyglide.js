@@ -129,6 +129,14 @@ class ShinyGlide {
       }
     });
 
+    // Resize glides each time its parent is resized. Allows to manage
+    // parent resize without window resize (vertical scrollbars)
+    const resizeObserver = new ResizeObserver(entries => {
+      glide.mount()
+    })
+    resizeObserver.observe(this.root);
+
+
     glide.mount();
     this.glide = glide;
   }
