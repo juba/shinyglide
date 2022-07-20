@@ -87,7 +87,7 @@
       <h1 data-toc-skip>Custom controls</h1>
                         <h4 data-toc-skip class="author">Julien Barnier</h4>
             
-            <h4 data-toc-skip class="date">2022-03-07</h4>
+            <h4 data-toc-skip class="date">2022-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/HEAD/vignettes/c_custom_controls.Rmd" class="external-link"><code>vignettes/c_custom_controls.Rmd</code></a></small>
       <div class="hidden name"><code>c_custom_controls.Rmd</code></div>
@@ -101,30 +101,30 @@
 </h2>
 <p>If you want to keep the default controls but just changing the default labels, you can use the <code>previous_label</code> and <code>next_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>. You can pass them any HTML or shiny tags combinations. For example :</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    next_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Next screen"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"play"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span>,
-    previous_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">span</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"opacity: 0.5;"</span>, <span class="st">"Go back"</span><span class="op">)</span>,
-    
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    next_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Next screen"</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"play"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    previous_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">span</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"opacity: 0.5;"</span>, <span class="st">"Go back"</span><span class="op">)</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <p>You can also use the <code>controls_position</code> argument to place at the <code>"top"</code> or at the <code>"bottom"</code> of the glide.</p>
 </div>
 <div class="section level2">
@@ -141,74 +141,74 @@
 <p>There is no obligation to use these helpers function, you can build your own layout and controls. The only constraint is that the “back” control must have a <code>prev-screen</code> CSS class, and the “next” control a <code>next-screen</code> CSS class. Note that the labels of these controls are defined via the <code>next_label</code> and <code>previous_label</code> arguments of <code><a href="../reference/glide.html">glide()</a></code>.</p>
 <p>Here is an example which uses the <code><a href="../reference/glideControls.html">glideControls()</a></code> helper. Note that it is not necessary to add the required <code>prev-screen</code> class when using <code><a href="../reference/nextButton.html">prevButton()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> 
-
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    custom_controls <span class="op">=</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
-      <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,
-      <span class="va">tags</span><span class="op">$</span><span class="fu">button</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-success next-screen"</span><span class="op">)</span>
-    <span class="op">)</span>,
-    
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">controls</span> <span class="op">&lt;-</span> </span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    custom_controls <span class="op">=</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,</span>
+<span>      <span class="va">tags</span><span class="op">$</span><span class="fu">button</span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-success next-screen"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <p>And here is another example with a custom layout :</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">div</a></span><span class="op">(</span>class<span class="op">=</span><span class="st">"col-xs-6 text-right"</span>,
-    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>
-  <span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">div</a></span><span class="op">(</span>class<span class="op">=</span><span class="st">"col-xs-6 text-left"</span>,
-    <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-success"</span><span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    custom_controls <span class="op">=</span> <span class="va">controls</span>,
-    controls_position <span class="op">=</span> <span class="st">"top"</span>,
-    next_label <span class="op">=</span> <span class="st">"Go next"</span>,
-    previous_label <span class="op">=</span> <span class="st">"Go back"</span>,
-    
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"This is a sample custom controls app"</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidRow</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">div</a></span><span class="op">(</span>class<span class="op">=</span><span class="st">"col-xs-6 text-right"</span>,</span>
+<span>    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">div</a></span><span class="op">(</span>class<span class="op">=</span><span class="st">"col-xs-6 text-left"</span>,</span>
+<span>    <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-success"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    custom_controls <span class="op">=</span> <span class="va">controls</span>,</span>
+<span>    controls_position <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>    next_label <span class="op">=</span> <span class="st">"Go next"</span>,</span>
+<span>    previous_label <span class="op">=</span> <span class="st">"Go back"</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"This is a sample custom controls app"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <p>You can also take a look at the <a href="https://data.nozav.org/app/shinyglide/04_custom_controls/" class="external-link">sample custom controls app</a> and at its <a href="https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R" class="external-link">source code</a> to see a way to implement a rather different controls styling and positioning.</p>
 </div>
 <div class="section level2">
@@ -218,43 +218,43 @@
 <p>To do this, either manually define an element with a <code>first-screen</code> or <code>last-screen</code> CSS class, or use one of the two <code><a href="../reference/firstButton.html">firstButton()</a></code> or <code><a href="../reference/firstButton.html">lastButton()</a></code> helper functions.</p>
 <p>Here is an example :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-danger"</span>, <span class="st">"First screen !"</span><span class="op">)</span>
-  <span class="op">)</span>,
-  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-    <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span><span class="op">(</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/firstButton.html">lastButton</a></span><span class="op">(</span>
-      class <span class="op">=</span> <span class="st">"btn btn-success"</span>, 
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/HTML.html" class="external-link">HTML</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Last screen..."</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"ok"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    custom_controls <span class="op">=</span> <span class="va">controls</span>,
-    
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-warning"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"btn btn-danger"</span>, <span class="st">"First screen !"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/firstButton.html">lastButton</a></span><span class="op">(</span></span>
+<span>      class <span class="op">=</span> <span class="st">"btn btn-success"</span>, </span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/HTML.html" class="external-link">HTML</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Last screen..."</span>, <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/icon.html" class="external-link">icon</a></span><span class="op">(</span><span class="st">"ok"</span>, lib <span class="op">=</span> <span class="st">"glyphicon"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Basic shinyglide app"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    custom_controls <span class="op">=</span> <span class="va">controls</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="custom-controls-in-modal">Custom controls in modal<a class="anchor" aria-label="anchor" href="#custom-controls-in-modal"></a>
@@ -263,24 +263,24 @@
 <p>In this case, when defining the custom modals for your modal glide, it is recommended to create a control with a `<code>data-dismiss</code>=“modal”` attribute in order to close the modal at the start or at the end of the glide.</p>
 <p>Here is an example modal controls :</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">modal_controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-        <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span><span class="op">)</span>,
-        <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span><span class="op">(</span>
-          class <span class="op">=</span> <span class="st">"btn btn-danger"</span>,
-          `data-dismiss`<span class="op">=</span><span class="st">"modal"</span>,
-          <span class="st">"No, thanks !"</span>
-        <span class="op">)</span>
-      <span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-        <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span><span class="op">(</span><span class="op">)</span>,
-        <span class="fu"><a href="../reference/firstButton.html">lastButton</a></span><span class="op">(</span>
-          class <span class="op">=</span> <span class="st">"btn btn-success"</span>,
-          `data-dismiss`<span class="op">=</span><span class="st">"modal"</span>,
-          <span class="st">"Done"</span>
-      <span class="op">)</span>
-    <span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">modal_controls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/glideControls.html">glideControls</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="../reference/nextButton.html">prevButton</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        <span class="fu"><a href="../reference/firstButton.html">firstButton</a></span><span class="op">(</span></span>
+<span>          class <span class="op">=</span> <span class="st">"btn btn-danger"</span>,</span>
+<span>          `data-dismiss`<span class="op">=</span><span class="st">"modal"</span>,</span>
+<span>          <span class="st">"No, thanks !"</span></span>
+<span>        <span class="op">)</span></span>
+<span>      <span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        <span class="fu"><a href="../reference/nextButton.html">nextButton</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>        <span class="fu"><a href="../reference/firstButton.html">lastButton</a></span><span class="op">(</span></span>
+<span>          class <span class="op">=</span> <span class="st">"btn btn-success"</span>,</span>
+<span>          `data-dismiss`<span class="op">=</span><span class="st">"modal"</span>,</span>
+<span>          <span class="st">"Done"</span></span>
+<span>      <span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>You can take a look at the <a href="https://data.nozav.org/app/shinyglide/03_modal/" class="external-link">sample modal app</a> and at its <a href="https://github.com/juba/shinyglide/blob/master/inst/examples/03_modal/app.R" class="external-link">source code</a> to see a full way to implement it.</p>
 </div>
   </div>
@@ -302,7 +302,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

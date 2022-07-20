@@ -87,7 +87,7 @@
       <h1 data-toc-skip>Conditional controls and screen output</h1>
                         <h4 data-toc-skip class="author">Julien Barnier</h4>
             
-            <h4 data-toc-skip class="date">2022-03-07</h4>
+            <h4 data-toc-skip class="date">2022-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/juba/shinyglide/blob/HEAD/vignettes/b_conditionals.Rmd" class="external-link"><code>vignettes/b_conditionals.Rmd</code></a></small>
       <div class="hidden name"><code>b_conditionals.Rmd</code></div>
@@ -102,55 +102,55 @@
 <p>Sometimes you don’t want your user to be able to go to the next screen if a condition based on inputs is not met. This can be done in <code>shinyglide</code> with the <code>next_condition</code> argument of the <code>screen</code> function. This option takes exactly the same syntax has the one used in <code><a href="https://rdrr.io/pkg/shiny/man/conditionalPanel.html" class="external-link">shiny::conditionalPanel</a></code>.</p>
 <p>For example, in the following app, the <em>Next</em> button is disabled until the <em>n</em> value is greater then zero :</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      next_condition <span class="op">=</span> <span class="st">"input.n &gt; 0"</span>,
-      
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      next_condition <span class="op">=</span> <span class="st">"input.n &gt; 0"</span>,</span>
+<span>      </span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <p>You can do the same for the <em>Back</em> button with the <code>previous_condition</code> argument.</p>
 <p>By default the button is disabled when the condition is not met (more precisely, the button gets a <code>disabled = "disabled"</code> argument and a <code>disabled</code> CSS class). If you prefer to hide it entirely, you can add <code>disable_type = "hide"</code> to your <code><a href="../reference/glide.html">glide()</a></code> definition :</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    disable_type <span class="op">=</span> <span class="st">"hide"</span>,
-    
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      next_condition <span class="op">=</span> <span class="st">"input.n &gt; 0"</span>,
-      
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    disable_type <span class="op">=</span> <span class="st">"hide"</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      next_condition <span class="op">=</span> <span class="st">"input.n &gt; 0"</span>,</span>
+<span>      </span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value for n :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n :"</span>, value <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here is your plot :"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>, main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="screen-output">Screen output<a class="anchor" aria-label="anchor" href="#screen-output"></a>
@@ -159,61 +159,61 @@
 <p>This is possible by using a <code>screenOutput</code> call in you app UI, associated to a <code>renderUI</code> in your app server. If <code>renderUI</code> returns <code>NULL</code>, the screen will be hidden.</p>
 <p>Here is an example :</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    disable_type <span class="op">=</span> <span class="st">"hide"</span>,
-    
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Do you want to see the next screen ?"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"check"</span>, <span class="st">"Yes, of course !"</span>, value <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screenOutput.html">screenOutput</a></span><span class="op">(</span><span class="st">"check_screen"</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"And this is the last screen"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">check_screen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">check</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here it is !"</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/outputOptions.html" class="external-link">outputOptions</a></span><span class="op">(</span><span class="va">output</span>, <span class="st">"check_screen"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    disable_type <span class="op">=</span> <span class="st">"hide"</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Do you want to see the next screen ?"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"check"</span>, <span class="st">"Yes, of course !"</span>, value <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screenOutput.html">screenOutput</a></span><span class="op">(</span><span class="st">"check_screen"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"And this is the last screen"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">check_screen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">check</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here it is !"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/outputOptions.html" class="external-link">outputOptions</a></span><span class="op">(</span><span class="va">output</span>, <span class="st">"check_screen"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Important :</strong> for the <code>screenOutput</code> to work, it is mandatory to add the following line in your app server :</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/outputOptions.html" class="external-link">outputOptions</a></span><span class="op">(</span><span class="va">output</span>, <span class="st">"your_screen_id"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/outputOptions.html" class="external-link">outputOptions</a></span><span class="op">(</span><span class="va">output</span>, <span class="st">"your_screen_id"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Otherwise, it won’t be updated when hidden.</p>
 <p>Sometimes the <code>screenOutput</code> computation takes some time. In these cases, with the default controls, the <em>Next</em> button is disabled and a <em>Loading</em> message is shown until the next screens computations is done. You can see it in the following example, which is the same as the previous one but with an articial 2 seconds waiting time :</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span>
-    disable_type <span class="op">=</span> <span class="st">"hide"</span>,
-    
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Do you want to see the next screen ?"</span><span class="op">)</span>,
-      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"check"</span>, <span class="st">"Yes, of course !"</span>, value <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-    <span class="op">)</span>,
-    <span class="fu"><a href="../reference/screenOutput.html">screenOutput</a></span><span class="op">(</span><span class="st">"check_screen"</span><span class="op">)</span>,
-    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span>
-      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"And this is the last screen"</span><span class="op">)</span>
-    <span class="op">)</span>
-  <span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">output</span><span class="op">$</span><span class="va">check_screen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
-    <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">check</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here it is !"</span><span class="op">)</span>
-  <span class="op">}</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/outputOptions.html" class="external-link">outputOptions</a></span><span class="op">(</span><span class="va">output</span>, <span class="st">"check_screen"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/glide.html">glide</a></span><span class="op">(</span></span>
+<span>    disable_type <span class="op">=</span> <span class="st">"hide"</span>,</span>
+<span>    </span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Do you want to see the next screen ?"</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/checkboxInput.html" class="external-link">checkboxInput</a></span><span class="op">(</span><span class="st">"check"</span>, <span class="st">"Yes, of course !"</span>, value <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screenOutput.html">screenOutput</a></span><span class="op">(</span><span class="st">"check_screen"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/screen.html">screen</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"And this is the last screen"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">check_screen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderUI.html" class="external-link">renderUI</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span>    <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="va">input</span><span class="op">$</span><span class="va">check</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Here it is !"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/outputOptions.html" class="external-link">outputOptions</a></span><span class="op">(</span><span class="va">output</span>, <span class="st">"check_screen"</span>, suspendWhenHidden <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="customizing-loading">Customizing loading<a class="anchor" aria-label="anchor" href="#customizing-loading"></a>
 </h3>
@@ -246,7 +246,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
