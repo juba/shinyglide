@@ -1,5 +1,6 @@
 # shinyglide (development version)
 
+- Fix conditional controls not updated when glide inserted with `InsertUI` (#36, @JulianoAtto)
 - Resize glides when parent is resized (#30, @ismirsehregal)
 - Add `swipe` option to `glide` function to disable swiping navigation
 - Fix issue when slide reloaded from renderUI (thanks @ChristianKahmann)

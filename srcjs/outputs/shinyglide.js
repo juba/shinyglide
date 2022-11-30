@@ -161,12 +161,13 @@ class ShinyGlide {
 
     this.init_detectors();
 
+    // Update controls in case this glide is inserted after shiny initialization
+    this.update_controls();
     // Wait for shiny app to be started
     $(document).on("shiny:sessioninitialized", this.root, () => {
       this.update_controls();
       $(document).off("shiny:sessioninitialized", this.root);
     });
-    console.log("init ended")
 
   }
 
