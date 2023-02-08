@@ -326,18 +326,6 @@ function setup() {
     new ShinyGlide(this);
   });
 
-  // If the glide is in a shiny modal and it is not shown yet,
-  // wait for it to be shown otherwise dimensions are incorrect
-  $(document).on('shiny:idle', e => {
-    const modal_wrapper = document.getElementById('shiny-modal-wrapper');
-    const shiny_modal = $(modal_wrapper).find("#shiny-modal");
-    shiny_modal.on("shown.bs.modal", () => {
-      shiny_modal.find('.shinyglide').each(function (i, el) {
-        new ShinyGlide(el);
-      });
-    });
-  });
-
   shinyglide_setup_has_run = true;
   $(document).off("shiny:message");
 }
@@ -355,8 +343,8 @@ $(function () {
   setup();
 });
 
-// Add MutationObservers to each shiny output div to rerun setup if a new 
-// shinyglide is dynamically inserted with renderUI()
+// Add MutationObserver to to rerun setup if a new shinyglide 
+// is dynamically inserted with renderUI() or with a modal
 
 const config = { childList: true, subtree: true };
 const observer = new MutationObserver((mutationsList, observer) => {
