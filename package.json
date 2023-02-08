@@ -28,11 +28,11 @@
   "devDependencies": {
     "css-loader": "^6.2.0",
     "style-loader": "^3.2.1",
-    "webpack": "^5.48.0",
-    "webpack-cli": "^4.7.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@glidejs/glide": "^3.5.2"
+    "@glidejs/glide": "^3.6.0"
   }
 }
