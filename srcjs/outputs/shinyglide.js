@@ -6,7 +6,6 @@ import '@glidejs/glide/dist/css/glide.core.min.css';
 import '@glidejs/glide/dist/css/glide.theme.min.css';
 
 class ShinyGlide {
-
   constructor(root) {
 
     this.root = root;
@@ -75,6 +74,7 @@ class ShinyGlide {
 
   // Init glide object
   init_glide() {
+
     const glide = new Glide(this.root, {
       rewind: false,
       keyboard: this.keyboard,
@@ -319,9 +319,7 @@ class ShinyGlide {
 // Only run setup once
 let shinyglide_setup_has_run = false;
 
-
 function setup() {
-
   if (shinyglide_setup_has_run) { return; }
 
   $(".shinyglide").each(function (index) {
@@ -365,14 +363,12 @@ const observer = new MutationObserver((mutationsList, observer) => {
   mutationsList.forEach(mutation => {
     if (mutation.addedNodes === undefined) return;
     mutation.addedNodes.forEach(node => {
-      if (node.classList && node.classList.contains("shinyglide")) {
+      if (node.nodeType === Node.ELEMENT_NODE && node.querySelector(".shinyglide") !== null) {
         shinyglide_setup_has_run = false;
         setup()
       }
     })
   })
 });
-document.querySelectorAll(".shiny-html-output").forEach(node => {
-  observer.observe(node, config);
-})
+observer.observe(document.querySelector("body"), config);
 
