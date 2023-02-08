@@ -1,11 +1,12 @@
 # shinyglide (development version)
 
+- Fix issue with glides not working in modals (#39, @analytichealth)
 - Fix conditional controls not updated when glide inserted with `InsertUI` (#36, @JulianoAtto)
 - Resize glides when parent is resized (#30, @ismirsehregal)
 - Add `swipe` option to `glide` function to disable swiping navigation
 - Fix issue when slide reloaded from renderUI (thanks @ChristianKahmann)
 - Migrate development to packer
-- Update Glide.js to 3.5.2
+- Update Glide.js to 3.6.0
 
 # shinyglide 0.1.3
 
