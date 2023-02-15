@@ -1,4 +1,4 @@
-# shinyglide (development version)
+# shinyglide 0.1.4
 
 - Fix issue with glides not working in modals (#39, @analytichealth)
 - Fix conditional controls not updated when glide inserted with `InsertUI` (#36, @JulianoAtto)
