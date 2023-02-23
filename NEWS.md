@@ -1,5 +1,6 @@
 # shinyglide (development version)
 
+- Fix regression on conditional controls not updated when glide inserted with `InsertUI` (#36, @JulianoAtto)
 
 # shinyglide 0.1.4
 

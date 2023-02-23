@@ -351,7 +351,10 @@ const observer = new MutationObserver((mutationsList, observer) => {
   mutationsList.forEach(mutation => {
     if (mutation.addedNodes === undefined) return;
     mutation.addedNodes.forEach(node => {
-      if (node.nodeType === Node.ELEMENT_NODE && node.querySelector(".shinyglide") !== null) {
+      console.log(node);
+      if (node.nodeType === Node.ELEMENT_NODE &&
+        (node.querySelector(".shinyglide") !== null) || node.classList.contains("shinyglide")
+      ) {
         shinyglide_setup_has_run = false;
         setup()
       }
@@ -359,4 +362,3 @@ const observer = new MutationObserver((mutationsList, observer) => {
   })
 });
 observer.observe(document.querySelector("body"), config);
-
