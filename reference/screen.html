@@ -97,12 +97,12 @@ use the default one for the current glide.</p></dd>
 
 <dt>next_condition</dt>
 <dd><p>condition for the "next" control to be enabled. Same syntax
-as <code><a href="https://shiny.rstudio.com/reference/shiny/latest/conditionalPanel.html" class="external-link">shiny::conditionalPanel</a></code>.</p></dd>
+as <code><a href="https://rdrr.io/pkg/shiny/man/conditionalPanel.html" class="external-link">shiny::conditionalPanel</a></code>.</p></dd>
 
 
 <dt>previous_condition</dt>
 <dd><p>condition for the "back" control to be enabled. Same syntax
-as <code><a href="https://shiny.rstudio.com/reference/shiny/latest/conditionalPanel.html" class="external-link">shiny::conditionalPanel</a></code>.</p></dd>
+as <code><a href="https://rdrr.io/pkg/shiny/man/conditionalPanel.html" class="external-link">shiny::conditionalPanel</a></code>.</p></dd>
 
 
 <dt>class</dt>
@@ -124,14 +124,14 @@ can only be used inside a <code><a href="glide.html">glide()</a></code> call, in
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Only run examples in interactive R sessions</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fixedPage.html" class="external-link">fixedPage</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fixedPage.html" class="external-link">fixedPage</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">h3</a></span><span class="op">(</span><span class="st">"Simple shinyglide app"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span> <span class="fu"><a href="glide.html">glide</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fu">screen</span><span class="op">(</span></span></span>
 <span class="r-in"><span>      next_label <span class="op">=</span> <span class="st">"Go next"</span>,</span></span>
 <span class="r-in"><span>      next_condition <span class="op">=</span> <span class="st">"input.x &gt; 0"</span>,</span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"First screen."</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"x"</span>, value <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"x"</span>, value <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">screen</span><span class="op">(</span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Final screen."</span><span class="op">)</span>,</span></span>
@@ -142,7 +142,7 @@ can only be used inside a <code><a href="glide.html">glide()</a></code> call, in
 <span class="r-in"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>

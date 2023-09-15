@@ -105,7 +105,7 @@
 <li>Responsive, navigation by mouse, keyboard, swiping</li>
 <li>Controls are completely customizable (<a href="https://data.nozav.org/app/shinyglide/04_custom_controls/" class="external-link">live example</a>)</li>
 <li>
-<em>Next</em> and <em>Back</em> controls can be disabled until an input condition is met (same syntax as <code><a href="https://shiny.rstudio.com/reference/shiny/latest/conditionalPanel.html" class="external-link">shiny::conditionalPanel</a></code>)</li>
+<em>Next</em> and <em>Back</em> controls can be disabled until an input condition is met (same syntax as <code><a href="https://rdrr.io/pkg/shiny/man/conditionalPanel.html" class="external-link">shiny::conditionalPanel</a></code>)</li>
 <li>“Screens” can be generated or hidden depending on user inputs. Loading time are taken into accounts (disabled <em>Next</em> button and customizable animation)</li>
 <li>Integration with Shiny modal dialogs (<a href="https://data.nozav.org/app/shinyglide/03_modal/" class="external-link">live example</a>)</li>
 <li>Multiple glides per app (<a href="https://data.nozav.org/app/shinyglide/05_multi_glides/" class="external-link">live example</a>)</li>
@@ -126,11 +126,11 @@
 </h2>
 <p>A <code>shinyglide</code> component is created with the <code><a href="reference/glide.html">glide()</a></code> function. This component is then divided intro <em>screens</em> with the <code><a href="reference/screen.html">screen()</a></code> function.</p>
 <p>Here is the code of a very basic app (<a href="https://data.nozav.org/app/shinyglide/02_simple/" class="external-link">live example</a>):</p>
-<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://juba.github.io/shinyglide/">shinyglide</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/fixedPage.html" class="external-link">fixedPage</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"max-width: 500px;"</span>,</span>
-<span>  <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Simple shinyglide app"</span><span class="op">)</span>,</span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fixedPage.html" class="external-link">fixedPage</a></span><span class="op">(</span>style <span class="op">=</span> <span class="st">"max-width: 500px;"</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Simple shinyglide app"</span><span class="op">)</span>,</span>
 <span></span>
 <span>  <span class="fu"><a href="reference/glide.html">glide</a></span><span class="op">(</span></span>
 <span>    height <span class="op">=</span> <span class="st">"350px"</span>,</span>
@@ -140,11 +140,11 @@
 <span>    <span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="reference/screen.html">screen</a></span><span class="op">(</span></span>
 <span>      <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"Please choose a value."</span><span class="op">)</span>,</span>
-<span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n"</span>, value <span class="op">=</span> <span class="fl">10</span>, min <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/numericInput.html" class="external-link">numericInput</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"n"</span>, value <span class="op">=</span> <span class="fl">10</span>, min <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span>    <span class="op">)</span>,</span>
 <span>    <span class="fu"><a href="reference/screen.html">screen</a></span><span class="op">(</span></span>
 <span>      <span class="fu"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">p</a></span><span class="op">(</span><span class="st">"And here is the result."</span><span class="op">)</span>,</span>
-<span>      <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">plotOutput</a></span><span class="op">(</span><span class="st">"plot"</span><span class="op">)</span></span>
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -152,7 +152,7 @@
 <span></span>
 <span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span></span>
-<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html" class="external-link">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>,</span>
 <span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"n ="</span>, <span class="va">input</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>,</span>
@@ -162,7 +162,7 @@
 <span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu"><a href="https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre>
 <p>For more information, see the three available vignettes :</p>
 <ul>
 <li><a href="https://juba.github.io/shinyglide/articles/a_introduction.html">Introduction to shinyglide</a></li>
