@@ -190,7 +190,9 @@ class ShinyGlide {
       this.next_detector.setAttribute("data-display-if", next_condition);
     }
 
-    window.Shiny.shinyapp.$updateConditionals();
+    if (window.Shiny.shinyapp !== undefined) {
+      window.Shiny.shinyapp.$updateConditionals();
+    }
   }
 
   // Get current slide next label
@@ -341,24 +343,23 @@ $(document).on("shiny:message", e => {
 
 $(function () {
   setup();
-});
 
-// Add MutationObserver to to rerun setup if a new shinyglide 
-// is dynamically inserted with renderUI() or with a modal
+  // Add MutationObserver to to rerun setup if a new shinyglide 
+  // is dynamically inserted with renderUI() or with a modal
 
-const config = { childList: true, subtree: true };
-const observer = new MutationObserver((mutationsList, observer) => {
-  mutationsList.forEach(mutation => {
-    if (mutation.addedNodes === undefined) return;
-    mutation.addedNodes.forEach(node => {
-      console.log(node);
-      if (node.nodeType === Node.ELEMENT_NODE &&
-        (node.querySelector(".shinyglide") !== null) || node.classList.contains("shinyglide")
-      ) {
-        shinyglide_setup_has_run = false;
-        setup()
-      }
+  const config = { childList: true, subtree: true };
+  const observer = new MutationObserver((mutationsList, observer) => {
+    mutationsList.forEach(mutation => {
+      if (mutation.addedNodes === undefined) return;
+      mutation.addedNodes.forEach(node => {
+        if (node.nodeType === Node.ELEMENT_NODE &&
+          (node.querySelector(".shinyglide") !== null) || (node.classList !== undefined && node.classList.contains("shinyglide"))
+        ) {
+          shinyglide_setup_has_run = false;
+          setup()
+        }
+      })
     })
-  })
+  });
+  observer.observe(document.querySelector("body"), config);
 });
-observer.observe(document.querySelector("body"), config);
