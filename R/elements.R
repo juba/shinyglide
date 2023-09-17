@@ -14,6 +14,8 @@
 #' @param height height of the glide (something like "400px" or "100%").
 #' @param keyboard set this to FALSE to disable keyboard navigation.
 #' @param swipe set this to FALSE to disable swipe navigation.
+#' @param start_at start at specific slide number defined with zero-based index
+#'     (default 0).
 #' @param custom_controls custom HTML or shiny tags to be used for the controls.
 #'     If `NULL``, use the default ones.
 #' @param controls_position either to place the default or custom controls on "top"
@@ -25,42 +27,41 @@
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'
-#' ui <- fixedPage(
-#'  h3("Simple shinyglide app"),
-#'  glide(
-#'     screen(
-#'       p("First screen.")
-#'     ),
-#'     screen(
-#'       p("Second screen.")
+#'   ui <- fixedPage(
+#'     h3("Simple shinyglide app"),
+#'     glide(
+#'       screen(
+#'         p("First screen.")
+#'       ),
+#'       screen(
+#'         p("Second screen.")
+#'       )
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#' }
+#'   server <- function(input, output, session) {
+#'   }
 #'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 #'
 #' @export
 #' @import shiny
 
-glide <- function(...,
-  id = NULL,
-  next_label = paste("Next", shiny::icon("chevron-right", lib = "glyphicon")),
-  previous_label = paste(shiny::icon("chevron-left", lib = "glyphicon"), "Back"),
-  loading_label = span(span(class="shinyglide-spinner"), span("Loading")),
-  loading_class = "loading",
-  disable_type = c("disable", "hide"),
-  height = "100%",
-  keyboard = TRUE,
-  swipe = TRUE,
-  custom_controls = NULL,
-  controls_position = c("bottom", "top")) {
-
+glide <- function(
+    ...,
+    id = NULL,
+    next_label = paste("Next", shiny::icon("chevron-right", lib = "glyphicon")),
+    previous_label = paste(shiny::icon("chevron-left", lib = "glyphicon"), "Back"),
+    loading_label = span(span(class = "shinyglide-spinner"), span("Loading")),
+    loading_class = "loading",
+    disable_type = c("disable", "hide"),
+    height = "100%",
+    keyboard = TRUE,
+    swipe = TRUE,
+    start_at = 0,
+    custom_controls = NULL,
+    controls_position = c("bottom", "top")) {
   css <- paste0("height: ", height, ";")
   disable_type <- match.arg(disable_type)
   controls_position <- match.arg(controls_position)
@@ -69,7 +70,7 @@ glide <- function(...,
   next_label <- HTML(as.character(next_label))
   loading_label <- HTML(as.character(loading_label))
 
-  controls <- if(is.null(custom_controls)) {
+  controls <- if (is.null(custom_controls)) {
     glideControls(
       prevButton(),
       nextButton()
@@ -79,25 +80,25 @@ glide <- function(...,
   }
 
   tagList(
-    tags$div(class = "shinyglide", id = id,
-            `data-keyboard` = keyboard,
-            `data-swipe` = swipe,
-            `data-next-label` = next_label,
-            `data-prev-label` = previous_label,
-            `data-loading-label` = loading_label,
-            `data-loading-class` = loading_class,
-            `data-disable-type` = disable_type,
-
+    tags$div(
+      class = "shinyglide", id = id,
+      `data-keyboard` = keyboard,
+      `data-swipe` = swipe,
+      `data-start-at` = start_at,
+      `data-next-label` = next_label,
+      `data-prev-label` = previous_label,
+      `data-loading-label` = loading_label,
+      `data-loading-class` = loading_class,
+      `data-disable-type` = disable_type,
       if (controls_position == "top") controls,
-
-      tags$div(class = "glide__track", `data-glide-el` = "track",
-        tags$ul(class = "glide__slides", style = css,
+      tags$div(
+        class = "glide__track", `data-glide-el` = "track",
+        tags$ul(
+          class = "glide__slides", style = css,
           list(...)
         )
       ),
-
       if (controls_position == "bottom") controls,
-
       glideDetectors()
     ),
     htmltools::htmlDependency(
@@ -107,7 +108,6 @@ glide <- function(...,
       script = "shinyglide.js"
     )
   )
-
 }
 
 
@@ -137,41 +137,40 @@ glide <- function(...,
 #' @examples
 #' ## Only run examples in interactive R sessions
 #' if (interactive()) {
-#'
-#' ui <- fixedPage(
-#'  h3("Simple shinyglide app"),
-#'  glide(
-#'     screen(
-#'       next_label = "Go next",
-#'       next_condition = "input.x > 0",
-#'       p("First screen."),
-#'       numericInput("x", "x", value = 0)
-#'     ),
-#'     screen(
-#'       p("Final screen."),
+#'   ui <- fixedPage(
+#'     h3("Simple shinyglide app"),
+#'     glide(
+#'       screen(
+#'         next_label = "Go next",
+#'         next_condition = "input.x > 0",
+#'         p("First screen."),
+#'         numericInput("x", "x", value = 0)
+#'       ),
+#'       screen(
+#'         p("Final screen."),
+#'       )
 #'     )
 #'   )
-#' )
 #'
-#' server <- function(input, output, session) {
-#' }
+#'   server <- function(input, output, session) {
+#'   }
 #'
-#' shinyApp(ui, server)
-#'
+#'   shinyApp(ui, server)
 #' }
 #'
 #' @export
 
-screen <- function(...,
-  next_label = NULL,
-  previous_label = NULL,
-  next_condition = NULL,
-  previous_condition = NULL,
-  class = NULL) {
-
+screen <- function(
+    ...,
+    next_label = NULL,
+    previous_label = NULL,
+    next_condition = NULL,
+    previous_condition = NULL,
+    class = NULL) {
   class <- paste(union(class, "glide__slide"), collapse = " ")
 
-  shiny::tag("li",
+  shiny::tag(
+    "li",
     list(
       class = class,
       `data-prev-label` = previous_label,
@@ -204,13 +203,11 @@ screen <- function(...,
 #'     nextButton("Next")
 #'   )
 #' )
-
 glideControls <- function(
-  previous_content = prevButton(),
-  next_content = nextButton()
-) {
+    previous_content = prevButton(),
+    next_content = nextButton()) {
   tags$div(
-    style="display: flex; justify-content: space-between",
+    style = "display: flex; justify-content: space-between",
     tags$div(
       previous_content
     ),
@@ -248,7 +245,6 @@ glideDetectors <- function() {
 #' @export
 
 nextButton <- function(class = c("btn", "btn-primary")) {
-
   class <- paste(union(class, "next-screen"), collapse = " ")
 
   tags$button(class = class)
@@ -259,11 +255,9 @@ nextButton <- function(class = c("btn", "btn-primary")) {
 #' @export
 
 prevButton <- function(class = c("btn", "btn-default")) {
-
   class <- paste(union(class, "prev-screen"), collapse = " ")
 
   tags$button(class = class)
-
 }
 
 
@@ -284,10 +278,10 @@ prevButton <- function(class = c("btn", "btn-default")) {
 #' @export
 
 firstButton <- function(class = c("btn", "btn-default"), ...) {
-
   class <- paste(union(class, "first-screen"), collapse = " ")
 
-  shiny::tag("a",
+  shiny::tag(
+    "a",
     list(
       class = class,
       ...
@@ -300,17 +294,13 @@ firstButton <- function(class = c("btn", "btn-default"), ...) {
 #' @export
 
 lastButton <- function(class = c("btn", "btn-success"), ...) {
-
   class <- paste(union(class, "last-screen"), collapse = " ")
 
-  shiny::tag("a",
+  shiny::tag(
+    "a",
     list(
       class = class,
       ...
     )
   )
 }
-
-
-
-

@@ -30,6 +30,7 @@ class ShinyGlide {
     this.disable_type = root.getAttribute("data-disable-type");
     this.keyboard = root.getAttribute("data-keyboard") != "FALSE";
     this.disable_swipe = root.getAttribute("data-swipe") == "FALSE";
+    this.start_at = root.getAttribute("data-start-at");
     this.prev_control = root.getElementsByClassName("prev-screen")[0];
     this.next_control = root.getElementsByClassName("next-screen")[0];
     this.first_control = root.getElementsByClassName("first-screen")[0];
@@ -79,7 +80,8 @@ class ShinyGlide {
       rewind: false,
       keyboard: this.keyboard,
       swipeThreshold: this.disable_swipe ? false : 80,
-      dragThreshold: false
+      dragThreshold: false,
+      startAt: this.start_at
     });
 
     glide.on('run.before', move => {
