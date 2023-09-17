@@ -15,6 +15,7 @@ glide(
   height = "100\%",
   keyboard = TRUE,
   swipe = TRUE,
+  start_at = 0,
   custom_controls = NULL,
   controls_position = c("bottom", "top")
 )
@@ -43,6 +44,9 @@ when it is disabled by a condition.}
 
 \item{swipe}{set this to FALSE to disable swipe navigation.}
 
+\item{start_at}{start at specific slide number defined with zero-based index
+(default 0).}
+
 \item{custom_controls}{custom HTML or shiny tags to be used for the controls.
 If `NULL``, use the default ones.}
 
@@ -55,24 +59,22 @@ Insert a glide component in the current shiny app UI
 \examples{
 ## Only run examples in interactive R sessions
 if (interactive()) {
-
-ui <- fixedPage(
- h3("Simple shinyglide app"),
- glide(
-    screen(
-      p("First screen.")
-    ),
-    screen(
-      p("Second screen.")
+  ui <- fixedPage(
+    h3("Simple shinyglide app"),
+    glide(
+      screen(
+        p("First screen.")
+      ),
+      screen(
+        p("Second screen.")
+      )
     )
   )
-)
 
-server <- function(input, output, session) {
-}
+  server <- function(input, output, session) {
+  }
 
-shinyApp(ui, server)
-
+  shinyApp(ui, server)
 }
 
 }

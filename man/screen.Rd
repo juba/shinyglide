@@ -40,27 +40,25 @@ can only be used inside a \code{glide()} call, in a shiny app UI.
 \examples{
 ## Only run examples in interactive R sessions
 if (interactive()) {
-
-ui <- fixedPage(
- h3("Simple shinyglide app"),
- glide(
-    screen(
-      next_label = "Go next",
-      next_condition = "input.x > 0",
-      p("First screen."),
-      numericInput("x", "x", value = 0)
-    ),
-    screen(
-      p("Final screen."),
+  ui <- fixedPage(
+    h3("Simple shinyglide app"),
+    glide(
+      screen(
+        next_label = "Go next",
+        next_condition = "input.x > 0",
+        p("First screen."),
+        numericInput("x", "x", value = 0)
+      ),
+      screen(
+        p("Final screen."),
+      )
     )
   )
-)
 
-server <- function(input, output, session) {
-}
+  server <- function(input, output, session) {
+  }
 
-shinyApp(ui, server)
-
+  shinyApp(ui, server)
 }
 
 }
