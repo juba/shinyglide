@@ -1,7 +1,7 @@
 # shinyglide (development version)
 
 - Fix regression on conditional controls not updated when glide inserted with `InsertUI` (#36, @JulianoAtto)
-- New `start_at` argument to `glide()` to allow to start at a specific glide (#43, @analytichealth)
+- New `start_at` argument to `glide()` to allow to start at a specific glide (#44, @analytichealth)
 
 # shinyglide 0.1.4
 
