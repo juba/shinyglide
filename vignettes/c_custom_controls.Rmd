@@ -130,8 +130,7 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 ```
 
-You can also take a look at the [sample custom controls app](https://data.nozav.org/app/shinyglide/04_custom_controls/
-) and at its [source code](https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R) to see a way to implement a rather different controls styling and positioning.
+You can also take a look at the [sample custom controls app](https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R) to see a way to implement a rather different controls styling and positioning.
 
 
 ## First and last buttons
@@ -213,7 +212,7 @@ modal_controls <- glideControls(
 ```
 
 
-You can take a look at the [sample modal app](https://data.nozav.org/app/shinyglide/03_modal/) and at its [source code](https://github.com/juba/shinyglide/blob/master/inst/examples/03_modal/app.R) to see a full way to implement it.
+You can take a look at the [sample modal app](https://github.com/juba/shinyglide/blob/master/inst/examples/03_modal/app.R) to see a full way to implement it.
 
 
 

@@ -1,20 +1,20 @@
 ## shinyglide custom controls app
-## Live version at : https://data.nozav.org/app/shinyglide/04_custom_controls/
 
 library(shiny)
 library(shinyglide)
 
 controls <- tags$div(
-    tags$div(class="my-control prev-screen"),
-    tags$div(class="my-control next-screen"),
-    div(`data-glide-el`="controls",
-      tags$a(
-        class="my-control last-screen",
-        `data-glide-dir` = "<<",
-        icon("repeat", lib = "glyphicon")
-      )
+  tags$div(class = "my-control prev-screen"),
+  tags$div(class = "my-control next-screen"),
+  div(
+    `data-glide-el` = "controls",
+    tags$a(
+      class = "my-control last-screen",
+      `data-glide-dir` = "<<",
+      icon("repeat", lib = "glyphicon")
     )
   )
+)
 
 css <- "
 .container-fluid {
@@ -78,7 +78,8 @@ ui <- fluidPage(
   titlePanel("shinyglide custom controls app"),
   fluidRow(
     p("This simple app shows an example of completely custom controls."),
-    p("Its source code is",
+    p(
+      "Its source code is",
       tags$a(
         href = "https://github.com/juba/shinyglide/blob/master/inst/examples/04_custom_controls/app.R",
         "available on GitHub"
@@ -86,43 +87,38 @@ ui <- fluidPage(
     )
   ),
   fluidRow(
-      glide(
-        next_label = icon("chevron-right", lib="glyphicon"),
-        previous_label = icon("chevron-left", lib="glyphicon"),
-        loading_label = icon("hourglass", lib="glyphicon"),
-        height = "300px",
-        swipe = TRUE,
-        custom_controls = controls,
-
-        screen(
-          h3("First screen"),
-          p("Click the arrow to go to next screen")
-        ),
-
-        screen(
-          h3("Second screen"),
-          p("Check the following checkbox to see the loading animation."),
-          checkboxInput("x", "Such wow !", value = FALSE)
-        ),
-
-        screenOutput("loading_screen"),
-
-        screen(
-          h3("Final screen"),
-            p("And... this is the end.")
-          )
+    glide(
+      next_label = icon("chevron-right", lib = "glyphicon"),
+      previous_label = icon("chevron-left", lib = "glyphicon"),
+      loading_label = icon("hourglass", lib = "glyphicon"),
+      height = "300px",
+      swipe = TRUE,
+      custom_controls = controls,
+      screen(
+        h3("First screen"),
+        p("Click the arrow to go to next screen")
+      ),
+      screen(
+        h3("Second screen"),
+        p("Check the following checkbox to see the loading animation."),
+        checkboxInput("x", "Such wow !", value = FALSE)
+      ),
+      screenOutput("loading_screen"),
+      screen(
+        h3("Final screen"),
+        p("And... this is the end.")
       )
+    )
   )
 )
 
 
 server <- function(input, output, session) {
-
   output$loading_screen <- renderUI({
     Sys.sleep(2)
     list(
       h3("Custom controls"),
-      if(input$x) {
+      if (input$x) {
         p("Incredible, you checked the box !")
       } else {
         p("You unchecked the box, unbelievable !")
@@ -130,7 +126,6 @@ server <- function(input, output, session) {
     )
   })
   outputOptions(output, "loading_screen", suspendWhenHidden = FALSE)
-
 }
 
 shinyApp(ui, server)

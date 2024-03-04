@@ -1,5 +1,4 @@
 ## shinyglide multi-glides example app
-## Live version at : https://data.nozav.org/app/shinyglide/05_multi_glides/
 
 library(shiny)
 library(shinyglide)
@@ -22,7 +21,8 @@ ui <- fluidPage(
   ),
   titlePanel("Multi-glides shinyglide app"),
   fluidRow(
-    p("The source code of this app is",
+    p(
+      "The source code of this app is",
       tags$a(
         href = "https://github.com/juba/shinyglide/blob/master/inst/examples/05_multi_glides/app.R",
         "available on GitHub"
@@ -31,7 +31,8 @@ ui <- fluidPage(
     )
   ),
   fluidRow(
-    column(6,
+    column(
+      6,
       h3("First glide"),
       glide(
         keyboard = FALSE,
@@ -49,7 +50,8 @@ ui <- fluidPage(
         )
       )
     ),
-    column(6,
+    column(
+      6,
       h3("Second glide"),
       glide(
         keyboard = FALSE,
@@ -71,7 +73,6 @@ ui <- fluidPage(
 
 
 server <- function(input, output, session) {
-
   output$plot <- renderPlot({
     hist(
       rnorm(input$n),
@@ -87,7 +88,6 @@ server <- function(input, output, session) {
       xlab = ""
     )
   })
-
 }
 
 shinyApp(ui, server)

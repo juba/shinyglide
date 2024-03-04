@@ -1,11 +1,9 @@
 ## shinyglide modal example app
-## Live version at : https://data.nozav.org/app/shinyglide/03_modal/
 
 library(shiny)
 library(shinyglide)
 
 ui <- fixedPage(
-
   titlePanel("shinyglide modal example"),
   sidebarLayout(
     sidebarPanel(
@@ -23,27 +21,25 @@ ui <- fixedPage(
       plotOutput("plot")
     )
   )
-
 )
 
 
 server <- function(input, output, session) {
-
   modal_controls <- glideControls(
-      list(
-        prevButton(),
-        firstButton(
-          class = "btn btn-danger",
-          `data-dismiss`="modal",
-          "No, thanks !"
-        )
-      ),
-      list(
-        nextButton(),
-        lastButton(
-          class = "btn btn-success",
-          `data-dismiss`="modal",
-          "Done"
+    list(
+      prevButton(),
+      firstButton(
+        class = "btn btn-danger",
+        `data-dismiss` = "modal",
+        "No, thanks !"
+      )
+    ),
+    list(
+      nextButton(),
+      lastButton(
+        class = "btn btn-success",
+        `data-dismiss` = "modal",
+        "Done"
       )
     )
   )
@@ -78,7 +74,8 @@ server <- function(input, output, session) {
     hist(rnorm(req(input$n), req(input$mean), req(input$sd)),
       main = "Such wow",
       xlab = "Wonderful x values",
-      ylab = "Incredible frequencies")
+      ylab = "Incredible frequencies"
+    )
   })
 
   observe({
@@ -88,8 +85,6 @@ server <- function(input, output, session) {
   observe({
     updateNumericInput(session, "sd", value = input$sd_modal)
   })
-
-
 }
 
 shinyApp(ui, server)
