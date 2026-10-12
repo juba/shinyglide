@@ -122,19 +122,19 @@ class ShinyGlide {
 
     // Resize glides each time a bootstrap tab is shown
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      glide.mount()
+      glide.update({})
     });
     // Resize glides each time sidebar is collapsed in shinydashboard
     $(document).on('shiny:inputchanged', function (event) {
       if (event.name === 'sidebarCollapsed') {
-        glide.mount()
+        glide.update({})
       }
     });
 
     // Resize glides each time its parent is resized. Allows to manage
     // parent resize without window resize (vertical scrollbars)
     const resizeObserver = new ResizeObserver(entries => {
-      glide.mount()
+      glide.update({})
     })
     resizeObserver.observe(this.root);
 
